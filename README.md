@@ -1,8 +1,14 @@
-# dtvis-master
 
-> A vue project of Traffic Data Visualization
+# DTVis-master
+> Author: Lee ZChuan
 
-## Build Setup
+> E-mail: cdutlzc@gmail.com
+
+> Date: 2020-02-29
+
+>Description: 基于Vue框架的交通流量时空演变特征可视分析系统
+
+## 结果展示
 
 ``` bash
 # install dependencies
@@ -27,4 +33,46 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 代码结构
+```
+DTVis-master
+│
+├── build  # 存放最终发布的代码的存放位置
+│ 
+├── config # 存放配置路径、端口号等一些信息
+│ 
+├── node_modules：#npm 加载的项目依赖模块,（整个项目需要的依赖资源）
+│ 
+├── src：#这里是我们开发的主要目录，里面包含了几个目录及文件：
+│   ├── assets  # 包含了css页面情况
+│   ├── components # 页面的各个模块分布，各自介绍在README中有所介绍
+│   ├── utils # 页面的可能需要的工具
+│   ├── views # 跳转页面的布局情况
+│   └── router # 页面Vue路由管理，用于进行网页链接
+│
+├── static # 该目录下的文件不会被WebPack处理：会被直接复制到最终的打包目录下 （绝对路径）
+│   ├── data  # 包含了可视化页面所用到的数据
+│   |     |──  Forecast # 订单预测结果数据源
+│   |     |──  Forecast # 订单预测结果数据源
+│   |     |──  Forecast # 订单预测结果数据源
+│   |     |──  Forecast # 订单预测结果数据源
+│   ├── img # 页面所需要的背景图片
+│   └── js # 作图所需要的库文件
+│
+├── test # 测试
+│
+├── BPmainOriginal.py # 不包含后端代码的原生实现，建议初学者阅读
+│
+└── readme.md # 此说明文件
+```
+
+## 环境
+
+* `Python 3.8 `
+
+* 依赖：`Echarts` `D3.js`
+
+* 系统支持：`Win10` 
+
+* 编程环境:`pycharm、Vcode`
+
