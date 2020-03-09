@@ -59,11 +59,10 @@ DTVis-master
 │   ├── img # 页面所需要的背景图片
 │   └── js # 作图所需要的库文件
 │
-├── test # 测试
+├── test # 测试文件夹
 │
-├── BPmainOriginal.py # 不包含后端代码的原生实现，建议初学者阅读
 │
-└── readme.md # 此说明文件
+└── README.md # 此说明文件
 ```
 
 ## 环境
