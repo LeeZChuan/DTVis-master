@@ -13,7 +13,7 @@
 2. Tadpole chart 蝌蚪图（热力图）
 3. 3Dhot chart (3D热力图）
 4. Control 控制面板
-5. 
+5. multiputeMap 用于展示海口市地区订单情况散点雷达图
 
 
 
