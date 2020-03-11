@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: resolve => require(['./view/dashboard.vue'], resolve),
+      name: 'Dashboard',
+      component: resolve => require(['./views/Dashboard.vue'], resolve),
     },
   ],
 });
