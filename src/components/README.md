@@ -9,6 +9,7 @@
 
 ## 可视化组件内容详细介绍
 
+0. exp.vue 例子模块部分代码（作为参考项目）
 1. Forecast 预测界面
 2. Tadpole chart 蝌蚪图（热力图）
 3. 3Dhot chart (3D热力图）
