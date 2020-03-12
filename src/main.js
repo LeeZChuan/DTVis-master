@@ -1,5 +1,5 @@
-import Vue from 'vue';
 // main文件
+import Vue from 'vue';
 // import Vuex from 'vuex'
 import App from './App.vue';
 import router from './router';
@@ -7,6 +7,9 @@ import axios from 'axios';
 import echarts from 'echarts';
 // import iView from 'iview';
 import 'echarts-gl';
+import'./assets/css/default.css';
+
+
 // import 'iview/dist/styles/iview.css';
 // import './assets/dark';
 

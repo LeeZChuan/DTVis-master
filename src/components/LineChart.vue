@@ -6,13 +6,14 @@
 
 
 <script type="text/javascript">
+import axios from "axios"; //获取本地数据
 var echarts = require("echarts");
 // 引入 ECharts 主模块
 require("echarts/lib/component/tooltip");
 require("echarts/lib/component/title");
 // 引入提示框和标题组件
 export default {
-  name: "LineChart",
+  name: "LineChart1",
   mounted() {
     /*ECharts图表*/
     var myChart1 = echarts.init(document.getElementById("LineChart"));
@@ -20,17 +21,12 @@ export default {
     var app = {};
     app.title = "海口市滴滴订单数量/以及出行相关情况折线图";
     var fontColor = "#cdddf7";
-        $.ajax({
-      // 读取json文件到didiData
-      url: "../static/data/LineChart/2017-05-13_lineChart.json",
-      async: false,
-      success: function(data1) {
-        data = data1;
+    $.ajax("../../static/data/LineChart/2017-05-13_lineChart.json").then(
+      res => {
+        console.log("json数据为:" + res.body); //此处的res对象包含了json的文件信息和数据
       }
-    });
-    // $.get('../LineChart/'+temp+'_lineChart.json', function (data) {
-
-    console.log(data);
+    );
+    // console.log(data);
     var colors = ["rgba(76,180,231,0.4)", "#d14a61", "#675bba"]; //修改颜色
     myChart1.setOption(
       (option = {
