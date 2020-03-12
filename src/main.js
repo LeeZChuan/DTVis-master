@@ -3,7 +3,7 @@ import Vue from 'vue';
 // import Vuex from 'vuex'
 import App from './App.vue';
 import router from './router';
-// import axios from 'axios';
+import axios from 'axios';
 import echarts from 'echarts';
 // import iView from 'iview';
 import 'echarts-gl';
@@ -11,7 +11,7 @@ import 'echarts-gl';
 // import './assets/dark';
 
 Vue.config.productionTip = false;
-// Vue.prototype.$axios = axios;
+Vue.prototype.$axios = axios;
 Vue.prototype.$bus = new Vue();
 Vue.use(echarts);
 // Vue.use(iView);
