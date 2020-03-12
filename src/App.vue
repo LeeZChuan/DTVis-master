@@ -5,7 +5,7 @@
 </template>
 
 <script>
-//App整体网页大小设计
+// App整体网页大小设计
 export default {
   name: "App"
 };

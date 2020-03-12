@@ -1,5 +1,5 @@
-//main文件
 import Vue from 'vue';
+// main文件
 // import Vuex from 'vuex'
 import App from './App.vue';
 import router from './router';
