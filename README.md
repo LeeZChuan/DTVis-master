@@ -8,6 +8,8 @@
 
 >Description: 基于Vue框架的交通流量时空演变特征可视分析系统
 
+>UI设计：Element UI
+
 ## 结果展示
 
 ``` bash
