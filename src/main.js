@@ -5,9 +5,10 @@ import App from './App.vue';
 import router from './router';
 import axios from 'axios';
 import echarts from 'echarts';
+import ElementUI from 'element-ui';//引入element-ui
+import 'element-ui/lib/theme-chalk/index.css';
 // import iView from 'iview';
 import 'echarts-gl';
-import'./assets/css/default.css';
 
 
 // import 'iview/dist/styles/iview.css';
@@ -16,6 +17,7 @@ import'./assets/css/default.css';
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
 Vue.prototype.$bus = new Vue();
+Vue.use(ElementUI);
 Vue.use(echarts);
 // Vue.use(iView);
 new Vue({
