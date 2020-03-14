@@ -16,8 +16,6 @@ import 'echarts-gl';
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
 Vue.prototype.$bus = new Vue();
-require('./static/js/common.js')
-require('./static/js/jquery-1.8.3.min.js')
 Vue.use(ElementUI);
 Vue.use(echarts);
 // Vue.use(iView);

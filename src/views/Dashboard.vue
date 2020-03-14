@@ -1,19 +1,18 @@
 <script>
 import exp from "../components/exp.vue"; //样例图
-import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
-import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
+// import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
+// import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 // 网页界面设计
 // import dashboardVue from '../view/dashboard.vue';
 // export 作用
-import "../assets/css/style.css";
 export default {
   components: {
-    exp,
-    TadpoleChart,
-    LineChart
+    exp
+    // TadpoleChart,
+    // LineChart,
     // ForecastChart,
     // HeatMapChart,
     // multiputeMap
@@ -21,6 +20,10 @@ export default {
 };
 </script>
 
+<script src="../../static/js/jquery_and_jqueryui.js"></script>
+<script src="../../static/js/index.js"></script>
+<script type="text/javascript" src="../../static/js/common.js"></script>
+<script type="text/javascript" src="../../static/js/jquery-1.8.3.min.js"></script>
 <template>
   <div>
     <div id="wrapper">
@@ -139,7 +142,7 @@ export default {
           </li>
         </ul>
       </div>
-
+<exp></exp>
       <!-- <div class="center-area">
             <div class="pandect-area">
                 <h3>
@@ -428,12 +431,9 @@ export default {
     </div>
   </div>
 </template>
-          <script src="./static/js/jquery_and_jqueryui.js"></script>
-          <script src="./static/js/index.js"></script>
-<script type="text/javascript" src="./static/js/common.js"></script>
-<script type="text/javascript" src="./static/js/jquery-1.8.3.min.js"></script>
+
 <style scoped>
-@import "./src/assets/css/default.css";
-@import "./src/assets/css/mobile.css";
-@import "./src/assets/css/jquery-ui.css";
+@import "../assets/css/default.css";
+@import "../assets/css/mobile.css";
+@import "../assets/css/jquery-ui.css";
 </style>
