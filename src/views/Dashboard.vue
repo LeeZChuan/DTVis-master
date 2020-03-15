@@ -1,439 +1,301 @@
-<script>
-import exp from "../components/exp.vue"; //样例图
-// import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
-// import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
-// import ForecastChart from "../components/ForecastChart"; //预测界面
-// import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
-// import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
-// 网页界面设计
-// import dashboardVue from '../view/dashboard.vue';
-// export 作用
-export default {
-  components: {
-    exp
-    // TadpoleChart,
-    // LineChart,
-    // ForecastChart,
-    // HeatMapChart,
-    // multiputeMap
-  }
-};
-</script>
-
-<script src="../../static/js/jquery_and_jqueryui.js"></script>
-<script src="../../static/js/index.js"></script>
-<script type="text/javascript" src="../../static/js/common.js"></script>
-<script type="text/javascript" src="../../static/js/jquery-1.8.3.min.js"></script>
 <template>
-  <div>
-    <div id="wrapper">
-      <h1>交通流量轨迹可视化</h1>
-      <h2>
-        <strong>重点关注</strong>
-        <sub>Focus on the indicators</sub>
-        <b class="logoline"></b>
-        <b class="logoline1"></b>
-        <b class="logoline2"></b>
-        <b class="logoline3"></b>
-        <b class="logoline4"></b>
-      </h2>
-      <!--时间区-->
-      <div class="date-timer">
-        <p>
-          <strong id="H"></strong>
-          <strong>:</strong>
-          <strong id="M"></strong>
-          <strong id="S" class="hide"></strong>
-        </p>
-        <em id="D"></em>
-        <ul>
-          <li id="Y"></li>
-          <li id="MH"></li>
-          <li id="TD"></li>
-        </ul>
-      </div>
-
-      <!-- 用于交通流量可视化情况所使用的订单情况展示 -->
-      <div class="big-index-1">
-        <ul>
-          <li>
-            <b class="animation-1"></b>
-            <b class="animation-2"></b>
-            <b class="animation-3"></b>
-            <p>VLR登记用户数</p>
-            <strong>174.6069</strong>
-          </li>
-          <li>
-            <b class="animation-1"></b>
-            <b class="animation-2"></b>
-            <b class="animation-3"></b>
-            <p>VLR登记用户数</p>
-            <strong>174.6069</strong>
-          </li>
-          <li>
-            <b class="animation-1"></b>
-            <b class="animation-2"></b>
-            <b class="animation-3"></b>
-            <p>VLR登记用户数</p>
-            <strong>174.6069</strong>
-          </li>
-          <li>
-            <b class="animation-1"></b>
-            <b class="animation-2"></b>
-            <b class="animation-3"></b>
-            <p>VLR登记用户数</p>
-            <strong>174.6069</strong>
-          </li>
-          <li>
-            <b class="animation-1"></b>
-            <b class="animation-2"></b>
-            <b class="animation-3"></b>
-            <p>VLR登记用户数</p>
-            <strong>174.6069</strong>
-          </li>
-          <li>
-            <b class="animation-1"></b>
-            <b class="animation-2"></b>
-            <b class="animation-3"></b>
-            <p>VLR登记用户数</p>
-            <strong>174.6069</strong>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
-      <div class="submenu">
-        <ul>
-          <li>
-            <a href="#this" class="active">
-              <b>1</b>
-              <span>
-                交通流量蝌蚪图
-                <em></em>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#this" class="active">
-              <b>2</b>
-              <span>
-                交通流量热力图
-                <em></em>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#this" class="active">
-              <b>3</b>
-              <span>
-                交通流量迁徙图
-                <em></em>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#this" class="active">
-              <b>4</b>
-              <span>
-                交通流量站点预测
-                <em></em>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </div>
-<exp></exp>
-      <!-- <div class="center-area">
-            <div class="pandect-area">
-                <h3>
-                    <p>当前08时<sub>8 points</sub></p>
-                    <strong>总览</strong>
-                    <em> 11时：29.742 Erl</em>
-                </h3>
-                <span class="pandect-area-left">
-                    <b></b>
-                </span>
-                <div class="pandect-area-center">
-                    <img src="images/charts.png" />
+  <div class="app-page">
+    <particles />
+    <indexbg />
+    <div
+      class="dropdown"
+      @mouseenter="showList = true"
+      @mouseleave="showList = false"
+    >
+      <span>{{ leng }}</span>
+      <ul v-if="showList">
+        <li @click="changLen(1)">中文</li>
+        <li @click="changLen(2)">English</li>
+      </ul>
+    </div>
+    <div class="container-fluid">
+      <div class="row text-container ">
+        <div class="tm-content col-md-6 col-sm-8 col-xs-12 ml-auto section">
+          <div class="content-box">
+            <header class="mb-5"><h1>GitDataV</h1></header>
+            <P class="mb-5">{{ $t("app.appIntroduce") }}</P>
+            <div class="subscribe-form">
+              <div class="row form-section">
+                <div class="col-sm-8 col-xs-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="username"
+                    @focus="onfocus"
+                    :placeholder="$t('app.inputPlaceholder')"
+                  />
+                  <div class="help-box">
+                    <strong v-if="namelg">{{ $t("app.namelg") }}</strong>
+                    <strong v-if="nousename"
+                      >{{ $t("app.account") }} ：<a>{{ errname }}</a
+                      >{{ $t("app.notFound") }}</strong
+                    >
+                    <p v-else>
+                      {{ $t("app.clickP")
+                      }}<button @click="showpm">
+                        {{ $t("app.clickB") }}
+                      </button>
+                    </p>
+                  </div>
                 </div>
-                <span class="pandect-area-right">
-                    <b></b>
-                </span>
-            </div>
-            <div class="details1-area">
-                <span class="detailsl-area-left"></span>
-                <div class="details1-area-center">
-                    <h3>VLR登录用户数</h3>
-                    <dl>
-                        <dt>上月平均值</dt>
-                        <dd>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li class="red"></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            448875
-                        </dd>
-                        <dt>昨日交通流量变化率</dt>
-                        <dd>
-                            <ul>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                            </ul>
-                            448875
-                        </dd>
-                        <dt>今日交通流量变化率 </dt>
-                        <dd>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            448875
-                        </dd>
-                    </dl>
-                    <b></b>
+                <div class="col-sm-4 col-xs-5">
+                  <button class="tm-btn-subscribe" @click="generate(username)">
+                    {{ $t("app.subscribe") }}
+                  </button>
                 </div>
-                <span class="detailsl-area-right"></span>
+              </div>
             </div>
-            <div class="details2-area">
-                <span class="details2-area-left"></span>
-                <div class="details2-area-center">
-                    <h3>A口话务量</h3>
-                    <dl>
-                        <dt>上月平均值</dt>
-                        <dd>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li class="red"></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            448875
-                        </dd>
-                        <dt>昨日交通流量变化率</dt>
-                        <dd>
-                            <ul>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="yellow"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                            </ul>
-                            448875
-                        </dd>
-                        <dt>今日交通流量变化率 </dt>
-                        <dd>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li class="red"></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            448875
-                        </dd>
-                    </dl>
-                    <b></b>
-                </div>
-                <span class="details2-area-right"></span>
-            </div>
-      </div>-->
-      <div class="right-area">
-        <h3>
-          交通流量变化率
-          <b></b>
-        </h3>
-        <div class="area-inbox-1">
-          <dl>
-            <dt>上月平均值</dt>
-            <dd class="font12">
-              <span>76.525%</span>
-              <b></b>
-            </dd>
-            <dt class="ml-20">今日交通流量变化率</dt>
-            <dd class="font-red ml-20">
-              <span>74.113%</span>
-              <b></b>
-            </dd>
-            <dt>今日交通流量变化率</dt>
-            <dd>
-              <span>68.113%</span>
-              <b></b>
-            </dd>
-          </dl>
-          <div class="round-1"></div>
-          <div class="round-2"></div>
-          <div class="round-3">30%</div>
-          <div class="round-4"></div>
-        </div>
-        <div class="area-inbox-2">
-          <ul>
-            <li>
-              <strong>12</strong>74.23%
-              <b></b>
-              <em></em>
-            </li>
-            <li>
-              <strong>16</strong>71.19%
-              <b></b>
-              <em></em>
-            </li>
-            <li>
-              <strong>18</strong>68.02%
-              <b></b>
-              <em></em>
-            </li>
-          </ul>
-          <div class="area-text">
-            <b class="animation-line1"></b>
-            <h4>口径说明：</h4>
-            <p class="text_container"></p>
-            <b class="animation-line2"></b>
           </div>
         </div>
       </div>
-      <div class="time-base-outer">
-        <b class="line1"></b>
-        <div class="time-base">
-          <!--  <div class="slider2"></div> -->
-        </div>
-        <b class="line2"></b>
-      </div>
+      <pmodal ref="pmodalChild" />
+      <foot />
     </div>
   </div>
 </template>
 
-<style scoped>
-@import "../assets/css/default.css";
-@import "../assets/css/mobile.css";
-@import "../assets/css/jquery-ui.css";
+<script>
+import pmodal from "./pmodal";
+import Cookies from "js-cookie";
+export default {
+  components: {
+    pmodal
+  },
+  data() {
+    return {
+      list: {},
+      username: "",
+      leng: "中文",
+      errname: "",
+      inputval: false,
+      nousename: false,
+      namelg: false,
+      checked: false,
+      showList: false
+    };
+  },
+  computed: {
+    getlang: {
+      get() {
+        return this.$store.state.language;
+      }
+    }
+  },
+  watch: {
+    getlang(val) {
+      if (val === "en") {
+        this.leng = "English";
+      } else {
+        this.leng = "中文";
+      }
+    }
+  },
+  created() {
+    const chooseLanguage = Cookies.get("language");
+    if (chooseLanguage === "en") {
+      this.leng = "English";
+    } else {
+      this.leng = "中文";
+    }
+  },
+  methods: {
+    checkebox() {
+      this.checked = !this.checked;
+    },
+    changLen(val) {
+      if (val === 1) {
+        this.leng = "中文";
+        this.$i18n.locale = "zh";
+        this.$store.dispatch("setLanguage", "zh");
+      } else {
+        this.leng = "English";
+        this.$i18n.locale = "en";
+        this.$store.dispatch("setLanguage", "en");
+      }
+      this.showList = false;
+    },
+    generate(username) {
+      let name = username;
+      if (name.length <= 0) {
+        this.namelg = true;
+        return;
+      } else {
+        this.$axios
+          .get("/api/users/" + name)
+          .then(response => {
+            let res = JSON.parse(JSON.stringify(response));
+            if (res.status === 200) {
+              this.$router.push({
+                name: "data",
+                params: { user: name }
+              });
+            }
+            return;
+          })
+          .catch(err => {
+            this.nousename = true;
+            this.errname = name;
+            console.log(err.message);
+          });
+      }
+    },
+    onfocus() {
+      this.namelg = false;
+      this.nousename = false;
+    },
+    showpm() {
+      this.$refs.pmodalChild.isShow = true;
+    }
+  }
+};
+</script>
+
+<style lang="scss">
+.app-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .dropdown {
+    position: fixed;
+    z-index: 9999888;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    span {
+      padding-right: 15px;
+      font-size: 2rem;
+      &:after {
+        padding-left: 10px;
+        content: "▽";
+      }
+    }
+    ul {
+      padding: 5px 0;
+      margin: 5px 0;
+      border: 1px solid #ebeef5;
+      border-radius: 4px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      li {
+        font-size: 1.5rem;
+        text-align: center;
+        &:hover {
+          background: rgba(175, 238, 238, 0.2);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .text-container {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    .tm-content {
+      z-index: 1001;
+      &.ml-auto {
+        margin-left: auto !important;
+        padding-bottom: 20px;
+      }
+      .content-box {
+        padding: 15px;
+        .subscribe-form {
+          .form-section {
+            color: #ffffff;
+            background-color: transparent;
+          }
+        }
+
+        .mb-5 {
+          margin-bottom: 3rem !important;
+          color: #ffffff;
+          font-size: large;
+          h1 {
+            color: #ffffff;
+            font-size: 4rem;
+          }
+        }
+        .subscribe-form {
+          .form-section {
+            color: #ffffff;
+            background-color: transparent;
+            .form-control {
+              height: 50px;
+              color: #ffffff;
+              border-radius: 0.5rem;
+              background-color: transparent;
+              border: 1px solid #ffffff;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              font-size: 1.5rem;
+              font-weight: 300;
+              padding: 0.75rem 1.2rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              &::-webkit-input-placeholder {
+                color: #ffffff;
+                font-size: 1.5rem;
+              }
+            }
+            .tm-btn-subscribe {
+              height: 50px;
+              background-color: #006699;
+              border-radius: 0.5rem;
+              border-color: white;
+              padding: 0.75rem 1.6rem;
+              font-weight: 300;
+              font-size: 1.5rem;
+              cursor: pointer;
+              @media screen and (max-width: 768px) {
+                margin-top: 20px;
+              }
+            }
+            .help-box {
+              padding: 10px 0 20px 10px;
+              color: #843534;
+              font-size: 1.5rem;
+              strong {
+                position: absolute;
+                background: #fff;
+                border-radius: 5px;
+                padding: 0 8px 0 8px;
+                font-size: 1.5rem;
+                line-height: 3rem;
+
+                &:before {
+                  z-index: 999;
+                  content: "";
+                  display: block;
+                  position: relative;
+                  width: 0;
+                  height: 0;
+                  border-left: 10px solid transparent;
+                  border-right: 10px solid transparent;
+                  border-bottom: 10px solid #fff;
+                  margin: -9px 0 0 20px;
+                }
+                a {
+                  color: #bd2c00;
+                }
+              }
+              p {
+                color: #fff;
+                button {
+                  background: none;
+                  color: #e6e6fa;
+                  cursor: pointer;
+                  border-bottom: 1px solid #e6e6fa;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>
