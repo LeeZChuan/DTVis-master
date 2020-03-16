@@ -8,6 +8,9 @@ import echarts from 'echarts';
 import ElementUI from 'element-ui';//引入element-ui
 import 'element-ui/lib/theme-chalk/index.css';
 import 'echarts-gl';
+import "./assets/css/default.css";
+import "./assets/css/mobile.css";
+import "./assets/css/jquery-ui.css";
 
 // import 'iview/dist/styles/iview.css';
 // import './assets/dark';

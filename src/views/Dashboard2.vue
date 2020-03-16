@@ -20,12 +20,10 @@ export default {
 };
 </script>
 
-<script src="../../static/js/jquery_and_jqueryui.js"></script>
-<script src="../../static/js/index.js"></script>
-<script type="text/javascript" src="../../static/js/common.js"></script>
-<script type="text/javascript" src="../../static/js/jquery-1.8.3.min.js"></script>
+
+
+
 <template>
-  <div>
     <div id="wrapper">
       <h1>交通流量轨迹可视化</h1>
       <h2>
@@ -203,7 +201,6 @@ export default {
         <b class="line2"></b>
       </div>
     </div>
-  </div>
 </template>
 
 
