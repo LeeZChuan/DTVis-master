@@ -4,7 +4,7 @@ body{ font-size:0.75em;}
 code{ display:block;}
 
 a:link, a:visited{ text-decoration:none; color:#333;}
-a:hover, a:focus, a:active{ text-decoration:;}
+a:hover, a:focus, a:active{ text-decoration:none;}
 
 a, abbr, acronym, address, applet, article, aside, audio,
 b, blockquote, big, body,

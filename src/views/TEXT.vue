@@ -1,5 +1,6 @@
 <script>
-// import exp from "../components/exp.vue"; //样例图
+//该文件为网页效果的备份版本
+import exp from "../components/exp.vue"; //样例图
 // import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
 // import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
@@ -10,7 +11,7 @@
 // export 作用
 export default {
   components: {
-    // exp
+    exp
     // TadpoleChart,
     // LineChart,
     // ForecastChart,
@@ -20,12 +21,9 @@ export default {
 };
 </script>
 
-
-
-
 <template>
-  <div id="wrapper">
-    <h1>交通流量轨迹可视化</h1>
+  <div>
+    <h1 style="font-family: Helvetica Neue" justify="center">交通流量轨迹可视化</h1>
     <h2>
       <strong>重点关注</strong>
       <sub>Focus on the indicators</sub>
@@ -98,7 +96,6 @@ export default {
         </li>
       </ul>
     </div>
-
     <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
     <div class="submenu">
       <ul>
@@ -202,12 +199,68 @@ export default {
       <script src="./static/js/index.js"></script>
       <b class="line2"></b>
     </div>
+
+    <el-container>
+      <el-header>Header</el-header>
+      <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-container>
+          <el-main>Main</el-main>
+          <el-footer>Footer</el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
-
 <style scoped>
-@import "../assets/css/default.css";
 @import "../assets/css/mobile.css";
-@import "../assets/css/jquery-ui.css";
 </style>
+
+
+
+
+
+
+
+
+
+
+<style>
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+</style>
+
+

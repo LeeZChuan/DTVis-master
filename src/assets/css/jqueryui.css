@@ -786,17 +786,17 @@ button.ui-button:: -moz-focus-inner {
     font-weight: bold
 }
 
-/*.ui-state-hover,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus,.ui-widget-header .ui-state-focus {*/
+/* .ui-state-hover,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus,.ui-widget-header .ui-state-focus {
 
-/*border: 1px solid #999;*/
+border: 1px solid #999;
 
-/*background: #dadada url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;*/
+background: #dadada url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;
 
-/*font-weight: normal;*/
+font-weight: normal;
 
-/*color: #212121*/
+color: #212121
 
-/*}*/
+} */
 
 .ui-widget-content .ui-state-focus {
     opacity: 1;
@@ -826,7 +826,7 @@ button.ui-button:: -moz-focus-inner {
 
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
     border: 1px solid #fcefa1;
-    background: #fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
+    background: #fbf9ee url(/images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
     color: #363636
 }
 

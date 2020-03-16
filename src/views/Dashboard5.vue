@@ -24,13 +24,10 @@ export default {
 
 <template>
   <div>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
+  
     <exp></exp>
     <TadpoleChart></TadpoleChart>
     <LineChart></LineChart>
-    </el-container>
 
   </div>
 </template>

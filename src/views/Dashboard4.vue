@@ -1,0 +1,155 @@
+<script>
+//该文件为网页效果的备份版本
+import exp from "../components/exp.vue"; //样例图
+// import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
+// import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
+// import ForecastChart from "../components/ForecastChart"; //预测界面
+// import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
+// import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
+// 网页界面设计
+// import dashboardVue from '../view/dashboard.vue';
+// export 作用
+export default {
+  components: {
+    exp
+    // TadpoleChart,
+    // LineChart,
+    // ForecastChart,
+    // HeatMapChart,
+    // multiputeMap
+  }
+};
+</script>
+
+<template>
+<div>
+  <div class="canvas" style="opacity: .2">
+    <iframe frameborder="0" src="/DTVis-master/static/18/js/Dashboard.vue" style="width: 100%; height: 100%"></iframe>
+  </div>
+  <div class="loading">
+    <div class="loadbox">
+      <img src="/DTVis-master/static/18/picture/loading.gif" /> 页面加载中...
+    </div>
+  </div>
+  <div class="head">
+    <h1>大数据可视化展板通用模板</h1>
+    <div class="weather">
+      <!--<img src="picture/weather.png"><span>多云转小雨</span>-->
+      <span id="showTime"></span>
+    </div>
+  </div>
+  <div class="mainbox">
+    <ul class="clearfix">
+      <li>
+        <div class="boxall" style="height: 3.2rem">
+          <div class="alltitle">模块标题样式</div>
+          <div class="allnav" id="echart1"></div>
+          <div class="boxfoot"></div>
+        </div>
+        <div class="boxall" style="height: 3.2rem">
+          <div class="alltitle">模块标题样式</div>
+          <div class="allnav" id="echart2"></div>
+          <div class="boxfoot"></div>
+        </div>
+        <div class="boxall" style="height: 3.2rem">
+          <div style="height:100%; width: 100%;">
+            <div class="sy" id="fb1"></div>
+            <div class="sy" id="fb2"></div>
+            <div class="sy" id="fb3"></div>
+          </div>
+          <div class="boxfoot"></div>
+        </div>
+      </li>
+      <li>
+        <div class="bar">
+          <div class="barbox">
+            <ul class="clearfix">
+              <li class="pulll_left counter">12581189</li>
+              <li class="pulll_left counter">3912410</li>
+            </ul>
+          </div>
+          <div class="barbox2">
+            <ul class="clearfix">
+              <li class="pulll_left">2018年总收入情况</li>
+              <li class="pulll_left">2018年总支出情况</li>
+            </ul>
+          </div>
+        </div>
+        <div class="map">
+          <div class="map1">
+            <img src="/DTVis-master/static/18/picture/lbx.png" />
+          </div>
+          <div class="map2">
+            <img src="/DTVis-master/static/18/picture/jt.png" />
+          </div>
+          <div class="map3">
+            <img src="/DTVis-master/static/18/picture/map.png" />
+          </div>
+          <div class="map4" id="map_1"></div>
+        </div>
+      </li>
+      <li>
+        <div class="boxall" style="height:3.4rem">
+          <div class="alltitle">模块标题样式</div>
+          <div class="allnav" id="echart4"></div>
+          <div class="boxfoot"></div>
+        </div>
+        <div class="boxall" style="height: 3.2rem">
+          <div class="alltitle">模块标题样式</div>
+          <div class="allnav" id="echart5"></div>
+          <div class="boxfoot"></div>
+        </div>
+        <div class="boxall" style="height: 3rem">
+          <div class="alltitle">模块标题样式</div>
+          <div class="allnav" id="echart6"></div>
+          <div class="boxfoot"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="back"></div>
+  </div>
+</template>
+    
+
+<style scoped>
+@import "/DTVis-master/static/18/css/comon0.css";
+/* @import "../assets/css/jqueryui.css"; */
+</style>
+
+<script>
+var t = null;
+t = setTimeout(time, 1000); //開始运行
+function time() {
+  clearTimeout(t); //清除定时器
+  dt = new Date();
+  var y = dt.getFullYear();
+  var mt = dt.getMonth() + 1;
+  var day = dt.getDate();
+  var h = dt.getHours(); //获取时
+  var m = dt.getMinutes(); //获取分
+  var s = dt.getSeconds(); //获取秒
+  document.getElementById("showTime").innerHTML =
+    y + "年" + mt + "月" + day + "-" + h + "时" + m + "分" + s + "秒";
+  t = setTimeout(time, 1000); //设定定时器，循环运行
+}
+</script>
+
+
+<script>
+$(window).load(function() {
+  $(".loading").fadeOut();
+});
+
+/****/
+$(document).ready(function() {
+  var whei = $(window).width();
+  $("html").css({ fontSize: whei / 20 });
+  $(window).resize(function() {
+    var whei = $(window).width();
+    $("html").css({ fontSize: whei / 20 });
+  });
+});
+</script>
+
+

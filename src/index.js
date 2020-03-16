@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'Dashboard',
-      component: resolve => require(['./views/Dashboard2.vue'], resolve),
+      component: resolve => require(['./views/Dashboard.vue'], resolve),
     },
   ],
 });
