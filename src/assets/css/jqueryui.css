@@ -19,12 +19,12 @@
     list-style: none
 }
 
-.ui-helper-clearfix: before, .ui-helper-clearfix: after {
+.ui-helper-clearfix before, .ui-helper-clearfix after {
     content: "";
     display: table
 }
 
-.ui-helper-clearfix: after {
+.ui-helper-clearfix after {
     clear: both
 }
 
@@ -247,7 +247,7 @@ input.ui-button {
     margin-right: -0.3em
 }
 
-button.ui-button:: -moz-focus-inner {
+button.ui-button -moz-focus-inner {
     border: 0;
     padding: 0
 }
@@ -423,14 +423,14 @@ button.ui-button:: -moz-focus-inner {
     right: auto
 }
 
-.ui-datepicker-rtl .ui-datepicker-prev: hover {
+.ui-datepicker-rtl .ui-datepicker-prev hover {
     right: 1px;
-    left: auto
+    /* left: auto */
 }
 
-.ui-datepicker-rtl .ui-datepicker-next: hover {
+.ui-datepicker-rtl .ui-datepicker-next hover {
     left: 1px;
-    right: auto
+    /* right: auto */
 }
 
 .ui-datepicker-rtl .ui-datepicker-buttonpane {
@@ -501,7 +501,7 @@ button.ui-button:: -moz-focus-inner {
     margin: 1px
 }
 
-.ui-dialog .ui-dialog-titlebar-close: hover, .ui-dialog .ui-dialog-titlebar-close: focus {
+.ui-dialog .ui-dialog-titlebar-close hover, .ui-dialog .ui-dialog-titlebar-close focus {
     padding: 0
 }
 
@@ -806,7 +806,7 @@ color: #212121
     opacity: .9;
 }
 
-.ui-state-hover a, .ui-state-hover a: hover {
+.ui-state-hover a, .ui-state-hover a hover {
     opacity: 1;
 }
 
@@ -814,13 +814,13 @@ color: #212121
     opacity: 1;
 }
 
-.ui-state-active a, .ui-state-active a: link, .ui-state-active a: visited {
+.ui-state-active a, .ui-state-active a link, .ui-state-active a visited {
     color: #212121;
     text-decoration: none;
     opacity: 1;
 }
 
-.ui-widget: active {
+.ui-widget active {
     outline: none
 }
 

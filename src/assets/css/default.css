@@ -26,7 +26,7 @@ s, samp, section, small, span, source, strike, strong, sub, sup,
 table, tbody, tfoot, thead, th, tr, tdvideo, tt,
 u, ul, var{ margin:0; padding:0;}
 
-h1, h2, h3, h4, h5, h6, th, td, table, input, button, select, textarea{ font-size:1em;}
+h1, h2, h3, h4, h5, h6, th, td, table, input, button, select, textarea{ font-size:1.2em;}
 body, input, button, select, textarea{}
 em, cite, address, optgroup{ font-style:normal;}
 kbd, samp, code{ font-family:monospace;}

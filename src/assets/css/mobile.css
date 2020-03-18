@@ -50,9 +50,9 @@ body {
 #wrapper {
     float: left;
     width: 100%;
-    height: 100%;
-    background: url("../../../static/img/background.png") 50% 50% no-repeat;
-    background-size: 100%;
+    height: 100vh;
+    background: url("../../../static/img/background.png")  no-repeat  ;
+    background-size: 100% 100%;
 }
 
 /*时间区*/
@@ -75,6 +75,7 @@ body {
 
 .date-timer em {
     display: block;
+    color: white
 }
 
 .date-timer ul {
@@ -85,6 +86,7 @@ body {
 
 .date-timer ul li {
     display: inline-block;
+    color: white
 }
 
 /* 系统LOGO - 主LOGO - 副LOGO - 动画 */
@@ -163,9 +165,7 @@ h2 sub {
 
 h2 strong {
     font-weight: normal;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-name: bluePulse;
-    -webkit-animation-duration: 2s;
+    color: white
 }
 
 /* 顶部大指标 */
@@ -447,7 +447,7 @@ h2 {
 .submenu {
     -webkit-animation: bounceInLeft .1s 1s ease both;
     background: url("../../../static/img/bg01submenu.png") 0 50% no-repeat;
-    height: 564px;
+    height: 325px;
     position: absolute;
     left: 0;
     top: 160px;
@@ -891,6 +891,7 @@ h2 {
 }
 
 .area-inbox-1 dl dd span {
+    color: whitesmoke;
     font-family: 'electronicFont';
     position: relative;
     z-index: 1;
@@ -952,6 +953,7 @@ h2 {
 }
 
 .round-3 {
+    color: whitesmoke;
     position: absolute;
     left: 50px;
     top: 68px;
@@ -970,6 +972,7 @@ h2 {
 }
 
 .round-4 {
+    color: whitesmoke;
     position: absolute;
     left: 40px;
     top: 102px;

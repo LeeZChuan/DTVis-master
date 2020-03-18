@@ -1,6 +1,9 @@
 <script>
 //该文件为网页效果的备份版本
 import exp from "../components/exp.vue"; //样例图
+import "jquery-ui/ui/widgets/draggable";
+import "jquery-ui/ui/widgets/droppable";
+import "jquery-ui/ui/widgets/resizable";
 // import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
 // import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
@@ -23,7 +26,7 @@ export default {
 
 <template>
   <div id="wrapper">
-    <h1>交通流量轨迹可视化</h1>
+    <h1 style="color:rgb(255, 255, 255);">交通流量轨迹可视化</h1>
     <h2>
       <strong>重点关注</strong>
       <sub>Focus on the indicators</sub>
@@ -143,6 +146,7 @@ export default {
       <!-- 主图展示区 -->
       <!-- <div id="LineChart" style="width: 600px;height:400px;"></div> -->
       <exp style="width: 600px;height:400px;"></exp>
+      <!-- <div id="LineChart" style="width: 1200px;height:200px;"></div> -->
     </div>
 
     <div class="right-area">
@@ -152,7 +156,7 @@ export default {
       </h3>
       <div class="area-inbox-1">
         <dl>
-          <dt>上月平均值</dt>
+          <dt style="color:white">上月平均值</dt>
           <dd class="font12">
             <span>76.525%</span>
             <b></b>
@@ -173,33 +177,6 @@ export default {
         <div class="round-3">30%</div>
         <div class="round-4"></div>
       </div>
-      <div class="area-inbox-2">
-        <ul>
-          <li>
-            <strong></strong>74.23%
-            <b></b>
-            <em></em>
-          </li>
-          <li>
-            <strong></strong>71.19%
-            <b></b>
-            <em></em>
-          </li>
-          <li>
-            <strong></strong>68.02%
-            <b></b>
-            <em></em>
-          </li>
-        </ul>
-        <div class="area-text">
-          <b class="animation-line1"></b>
-          <h4>口径说明：</h4>
-          <p class="text_container">
-            <!-- 提示信息展示窗口 -->
-          </p>
-          <b class="animation-line2"></b>
-        </div>
-      </div>
     </div>
 
     <div class="time-base-outer">
@@ -217,7 +194,7 @@ export default {
 
 <style scoped>
 @import "../assets/css/mobile.css";
-@import "../assets/css/jqueryui.css";
+/* @import "../assets/css/jqueryui.css"; */
 @import "../assets/css/default.css";
 </style>
 
