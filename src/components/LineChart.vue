@@ -4,225 +4,389 @@
   </div>
 </template>
 
-
+<!--底部 柱状图-->
 <script type="text/javascript">
-import axios from "axios"; //获取本地数据
-var echarts = require("echarts");
-// 引入 ECharts 主模块
-require("echarts/lib/component/tooltip");
-require("echarts/lib/component/title");
-// 引入提示框和标题组件
-export default {
-  name: "LineChart1",
-  mounted() {
-    /*ECharts图表*/
-    var myChart1 = echarts.init(document.getElementById("LineChart"));
-    option = null;
-    var app = {};
-    app.title = "海口市滴滴订单数量/以及出行相关情况折线图";
-    var fontColor = "#cdddf7";
-    $.ajax("../../static/data/LineChart/2017-05-13_lineChart.json").then(
-      res => {
-        console.log("json数据为:" + res.body); //此处的res对象包含了json的文件信息和数据
-      }
-    );
-    // console.log(data);
-    var colors = ["rgba(76,180,231,0.4)", "#d14a61", "#675bba"]; //修改颜色
-    myChart1.setOption(
-      (option = {
-        color: colors,
-        tooltip: {
-          show: true,
-          trigger: "item"
+import axios from "axios";
+var echarts = require("echarts"); //引入echarts模块
+var dom = document.getElementById("LineChart");
+var myChart_line = echarts.init(dom);
+var app = {};
+option = null;
+var app = {};
+app.title = "海口市滴滴订单数量折线图 ";
+
+$.get("data/calendarHeatMap.json", function(data) {
+  var colors = ["rgb(72,137,251)", "#f69617", "#675bba"];
+  myChart_line.setOption(
+    (optionCalen = {
+      color: colors,
+      tooltip: {
+        trigger: "axis",
+        axisPointer: {
+          type: "cross"
+        }
+      },
+      grid: {
+        right: "15%"
+      },
+      legend: {
+        //还可以展现很多信息（例如，节假日，具体天气情况等等），在这里添加在series里添加数据调用即可
+        top: 15,
+        textStyle: {
+          color: "#cdddf7"
+        }
+      },
+      xAxis: [
+        {
+          type: "category",
+          axisTick: {
+            alignWithLabel: true
+          },
+          data: data.map(function(item) {
+            return item[0];
+          }),
+          axisLine: {
+            lineStyle: {
+              color: "#cdddf7",
+              width: 1 //这里是为了突出显示加上的
+            }
+          }
+        }
+      ],
+      yAxis: [
+        {
+          // 左边坐标轴-订单数量
+          name: "订单数量",
+          type: "value",
+          axisLine: {
+            lineStyle: {
+              color: "rgb(72,137,251)",
+              width: 1 //这里是为了突出显示加上的
+            }
+          },
+          splitLine: {
+            show: true
+          }
         },
-        grid: {
-          left: "3%",
-          right: "0%",
-          top: "20%",
-          bottom: "0%",
-          containLabel: true
-        },
-        legend: {
-          //还可以展现很多信息（例如，节假日，具体天气情况等等），在这里添加在series里添加数据调用即可
-          show: true,
-          right: "0%",
-          icon: "stack",
-          itemWidth: 10,
-          itemHeight: 10,
+        {
+          // 右边坐标轴-平均温度
+          name: "平均温度",
+          type: "value",
+          max: 40,
+          position: "right",
+          offset: 15,
+          axisLine: {
+            lineStyle: {
+              color: "#A6C840",
+              width: 1 //这里是为了突出显示加上的
+            }
+          },
+          axisLabel: {
+            formatter: "{value} ℃"
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              type: "dashed"
+            }
+          }
+        }
+      ],
+      dataZoom: [
+        {
+          type: "slider",
+          start: 20,
+          end: 45,
+          dataBackground: {
+            lineStyle: {
+              color: "#fff",
+              width: 1
+            }
+          },
           textStyle: {
             color: "#cdddf7"
-          },
-          data: ["出行时间", "出行距离", "订单数量"]
+          }
         },
-        xAxis: [
-          {
-            type: "category",
-            boundaryGap: false,
-            axisLabel: {
-              color: fontColor
-            },
-            axisLine: {
-              show: true,
-              lineStyle: {
-                color: "#397cbc"
-              }
-            },
-            axisTick: {
-              show: false
-            },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "#57617B"
-              }
-            },
-            data: data.map(function(item) {
-              // 小时数据
-              return item[0];
-            })
+        {
+          type: "inside",
+          start: 0,
+          end: 100,
+          lineStyle: {
+            color: "#cdddf7"
           }
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "订单数量",
-            min: 0,
-            max: 15000,
-            axisLabel: {
-              formatter: "{value}",
-              textStyle: {
-                color: "rgb(97,165,207)"
-              }
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgb(97,165,207)"
-              }
-            },
-            axisTick: {
-              show: false
-            },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "rgb(97,165,207)"
-              }
+        },
+        {
+          show: true,
+          yAxisIndex: 0,
+          filterMode: "empty",
+          width: 30,
+          height: "60%",
+          showDataShadow: false,
+          left: "93%",
+          textStyle: {
+            color: "#cdddf7"
+          }
+        }
+      ],
+      series: [
+        //这里是数据读取
+        {
+          name: "订单数量",
+          type: "bar",
+          areaStyle: {
+            color: "rgba(5,140,255, 0.2)"
+          },
+          itemStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                1,
+                0,
+                0,
+                [
+                  {
+                    offset: 0,
+                    color: "rgba(72,137,251,1)" // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(72,137,251,0.5)" // 100% 处的颜色
+                  }
+                ],
+                false
+              )
             }
           },
-          {
-            type: "value",
-            name: "出行距离",
-            min: 0,
-            max: 25,
-            axisLabel: {
-              formatter: "{value} km",
-              textStyle: {
-                color: "rgb(246,150,23)"
-              }
-            },
-            axisLine: {
-              lineStyle: {
-                color: "rgb(246,150,23)"
-              }
-            },
-            axisTick: {
-              show: false
-            },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "#11366e",
-                type: "dashed"
-              }
-            }
-          }
-        ],
-        series: [
-          {
-            name: "出行距离",
-            type: "line",
-            stack: "总量",
-            symbol: "circle",
-            symbolSize: 8,
-            yAxisIndex: 1,
-            itemStyle: {
-              emphasis: {
-                color: "rgb(246,150,23)",
-                borderColor: "rgba(246,150,23,0.2)",
-                extraCssText: "box-shadow: 8px 8px 8px rgba(0, 0, 0, 1);",
-                borderWidth: 10
-              },
-              normal: {
-                color: "rgb(246,150,23)",
-                lineStyle: {
-                  color: "rgb(246,150,23)",
-                  width: 1
-                },
-                areaStyle: {
-                  //color: '#94C9EC'
-                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                    {
-                      offset: 0,
-                      color: "rgba(7,44,90,0.1)"
-                    },
-                    {
-                      offset: 1,
-                      color: "rgba(246,150,23,0.9)"
-                    }
-                  ])
-                }
-              }
-            },
-            data: data.map(function(item) {
-              //添加出行距离数据
-              return item[2];
-            })
+          data: data.map(function(item) {
+            return item[1];
+          })
+        },
+        {
+          name: "最高温度",
+          type: "line",
+          yAxisIndex: [1],
+          itemStyle: {
+            color: "#f69617"
           },
-          {
-            name: "订单数量",
-            type: "line",
-            stack: "总量",
-            symbol: "circle",
-            symbolSize: 8,
-            itemStyle: {
-              emphasis: {
-                color: "rgb(97,165,207)",
-                borderColor: "rgba(97,165,207,0.2)",
-                extraCssText: "box-shadow: 8px 8px 8px rgba(0, 0, 0, 1);",
-                borderWidth: 10
-              },
-              normal: {
-                color: "rgb(97,165,207)",
-                lineStyle: {
-                  color: "rgb(97,165,207)",
-                  width: 1
-                },
-                areaStyle: {
-                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                    {
-                      offset: 0,
-                      color: "rgba(7,44,90,0.1)"
-                    },
-                    {
-                      offset: 1,
-                      color: "rgba(97,165,207,0.9)"
-                    }
-                  ])
-                }
-              }
-            },
-            data: data.map(function(item) {
-              //添加订单数量数据
-              return item[1];
-            })
+          data: data.map(function(item) {
+            return item[4];
+          })
+        },
+        {
+          name: "最低温度",
+          type: "line",
+          yAxisIndex: [1],
+          data: data.map(function(item) {
+            return item[5];
+          }),
+          itemStyle: {
+            color: "#6ec5cf"
           }
-        ]
-      })
-    );
-    if (option && typeof option === "object") {
-      myChart1.setOption(option, true);
-    }
-    myChart1.setOption(option, true);
-  }
-};
+        },
+        {
+          name: "平均温度",
+          type: "line",
+          yAxisIndex: [1],
+          data: data.map(function(item) {
+            return item[6];
+          }),
+          itemStyle: {
+            color: "#A6C840"
+          }
+        }
+      ]
+    })
+  );
+});
+
+$.get("data/prediction.json", function(data) {
+  //显示预测订单
+  // console.log(data[1][1]);
+  optionYuce = {
+    title: {
+      top: "4%",
+      left: "2%",
+      text: "海口市订单数量预测",
+      textStyle: {
+        color: "#cdddf7"
+      },
+      subtext: "根据算法进行合理预测"
+    },
+    tooltip: {
+      trigger: "axis"
+    },
+    legend: {
+      top: 15,
+      textStyle: {
+        color: "#cdddf7"
+      },
+      data: ["实际订单", "预测订单"]
+    },
+    grid: {
+      top: "28%"
+    },
+    toolbox: {
+      top: "2%",
+      show: true,
+      feature: {
+        dataView: { show: true, readOnly: false },
+        magicType: { show: true, type: ["line", "bar"] },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    calculable: true,
+    xAxis: [
+      {
+        type: "category",
+        axisLine: {
+          lineStyle: {
+            color: "#cdddf7",
+            width: 1 //这里是为了突出显示加上的
+          }
+        },
+        data: data.map(function(item) {
+          //日期数据导入
+          return item[0];
+        })
+      }
+    ],
+    yAxis: [
+      {
+        type: "value",
+        axisLine: {
+          lineStyle: {
+            color: "rgb(72,137,251)",
+            width: 1 //这里是为了突出显示加上的
+          }
+        }
+      }
+    ],
+    dataZoom: [
+      {
+        show: true,
+        start: 80,
+        end: 100,
+        dataBackground: {
+          lineStyle: {
+            color: "#fff",
+            width: 1
+          }
+        },
+        textStyle: {
+          color: "#cdddf7"
+        }
+      },
+      {
+        type: "inside",
+        start: 80,
+        end: 100,
+        dataBackground: {
+          lineStyle: {
+            color: "#fff",
+            width: 1
+          }
+        },
+        textStyle: {
+          color: "#cdddf7"
+        }
+      },
+      {
+        show: true,
+        yAxisIndex: 0,
+        filterMode: "empty",
+        width: 30,
+        height: "60%",
+        showDataShadow: false,
+        left: "93%",
+        textStyle: {
+          color: "#cdddf7"
+        }
+      }
+    ],
+    series: [
+      {
+        name: "实际订单", //实际滴滴订单数量
+        type: "bar",
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(72,137,251,1)" // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "rgba(72,137,251,0.5)" // 100% 处的颜色
+                }
+              ],
+              false
+            )
+          }
+        },
+        data: data.map(function(item) {
+          return item[1];
+        }),
+        markPoint: {
+          data: [
+            { type: "max", name: "最大值" },
+            { type: "min", name: "最小值" }
+          ]
+        },
+        markLine: {
+          lineStyle: {
+            color: "rgba(72,137,251,1)"
+          },
+          data: [{ type: "average", name: "平均值" }]
+        }
+      },
+      {
+        name: "预测订单",
+        type: "bar",
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: "rgb(246,150,23)" // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "rgba(246,150,23,0.5)" // 100% 处的颜色
+                }
+              ],
+              false
+            )
+          }
+        },
+        data: data.map(function(item) {
+          //预测订单数量
+          return item[2];
+        }),
+        markPoint: {
+          data: [
+            { type: "max", name: "最大值" },
+            { type: "min", name: "最小值" }
+          ]
+        },
+        markLine: {
+          lineStyle: {
+            color: "rgb(246,150,23)"
+          },
+          data: [{ type: "average", name: "平均值" }]
+        }
+      }
+    ]
+  };
+});
 </script>

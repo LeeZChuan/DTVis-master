@@ -1,9 +1,6 @@
 <script>
 //该文件为网页效果的备份版本
 import exp from "../components/exp.vue"; //样例图
-import "jquery-ui/ui/widgets/draggable";
-import "jquery-ui/ui/widgets/droppable";
-import "jquery-ui/ui/widgets/resizable";
 // import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
 // import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
