@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="myChart" style="width: 1200px;height:800px;"></div>
+    <div id="3DhotChart" style="width: 1200px;height:800px;"></div>
   </div>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
   methods: {},
   mounted() {
     /*ECharts图表*/
-    var myChart = echarts.init(document.getElementById("myChart"));
+    var myChart = echarts.init(document.getElementById("3DhotChart"));
     myChart.setOption({
       series: [
         {
