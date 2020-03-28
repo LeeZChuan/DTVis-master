@@ -20,14 +20,14 @@ export default {
   methods: {
     drawLineChart: function() {
       //基于准备好的DOM，初始化Echarts实例
-      let myChart = echarts.init(document.getElementById("LineChart"));
-      let myChart_line = this.$echarts.init(myChart);
+      let myChart_line =  this.$echarts.init(document.getElementById("LineChart"),'dark');
+      // const myChart_line = this.$echarts.init(myChart);
       //绘制基本图表
       myChart_line.setOption(option);
       //没有加载出来使用加载动画
       myChart_line.showLoading();
       //获取数据
-      this.$ajax.get("../../static/data/calendarHeatMap.json").then(res => {
+      this.$axios.get("../../static/data/calendarHeatMap.json").then(res => {
         this.areaData = res.data; //res.data可根据你的数据格式来，看需求
         console.log(this.areaData); //打印看看数据吧
         let colors = ["rgb(72,137,251)", "#f69617", "#675bba"];
@@ -59,7 +59,7 @@ export default {
                   axisTick: {
                     alignWithLabel: true
                   },
-                  data: data.map(function(item) {
+                  data: this.areaData.map(function(item) {
                     return item[0];
                   }),
                   axisLine: {
