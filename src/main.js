@@ -19,7 +19,7 @@ import 'echarts-gl';
 // imnpmport iView from 'iview';
 
 Vue.config.productionTip = false;
-Vue.prototype.$axios = axios;
+Vue.prototype.$axios = axios;//本地数据读取
 Vue.prototype.$bus = new Vue();
 Vue.use(ElementUI);
 Vue.use(echarts);
