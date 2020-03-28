@@ -2,7 +2,7 @@
 //该文件为网页效果的备份版本
 // import exp from "../components/exp.vue"; //样例图
 // import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
-import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
+// import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
@@ -15,7 +15,7 @@ export default {
     // TadpoleChart,
     LineCharts,
     // ForecastChart,
-    HeatMapChart,
+    // HeatMapChart,
     // multiputeMap
   }
 };
@@ -143,7 +143,7 @@ export default {
       <!-- 主图展示区 -->
       <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
       LineCharts
-      <LineCharts></LineCharts>
+      <!-- <LineCharts></LineCharts> -->
       <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <HeatMapChart></HeatMapChart>
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->

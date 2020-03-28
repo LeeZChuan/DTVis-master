@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div id="myChart" style="width: 600px;height:400px;"></div>
+    <div id="TadpoleCharts" style="width: 600px;height:400px;"></div>
   </div>
 </template>
 
-<!--蝌蚪图-->
+<!--蝌蚪图：用于展示整体主图的效果-->
 <script>
 var echarts = require("echarts");
 // 引入 ECharts 主模块
@@ -16,7 +16,7 @@ require("echarts/lib/component/tooltip");
 require("echarts/lib/component/title");
 
 export default {
-  name: "TadpoleChart",
+  name: "TadpoleCharts",
   mounted() {
     /*ECharts图表*/
     // function kedoutu(f, g) {}
