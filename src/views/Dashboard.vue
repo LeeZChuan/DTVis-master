@@ -1,8 +1,8 @@
 <script>
 //该文件为网页效果的备份版本
-import exp from "../components/exp.vue"; //样例图
+// import exp from "../components/exp.vue"; //样例图
 // import email from "../components/email.vue"; //样例2图
-// import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
+import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
@@ -12,9 +12,9 @@ import LineCharts from "../components/LineCharts.vue"; //出行距离与出行�
 // export 作用
 export default {
   components: {
-    exp,
+    // exp,
     // email,
-    // TadpoleChart,
+    TadpoleChart,
     LineCharts,
     // ForecastChart,
     // HeatMapChart,
@@ -141,12 +141,13 @@ export default {
       </ul>
     </div>
 
-    <div class="center-area" style="background:white">
+    <div class="center-area">
       <!-- 主图展示区 -->
       <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
       <!-- LineCharts -->
-      <LineCharts></LineCharts>
-      <exp></exp>
+      <!-- <exp style="background:black"></exp> -->
+      <TadpoleChart></TadpoleChart>
+      <LineCharts style="background:black"></LineCharts>
       <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->
