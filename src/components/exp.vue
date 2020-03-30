@@ -22,6 +22,7 @@ export default {
   methods: {},
   mounted() {
     /*ECharts图表*/
+    // console.log("这是示例图")
     var myChart = echarts.init(document.getElementById("myChart"));
     myChart.setOption({
       series: [

@@ -7,35 +7,34 @@
 <!--底部柱状图，用于展示订单整体情况与天气之间的关系-->
 <script>
 var echarts = require("echarts"); // 引入 ECharts 主模块
-import axios from "axios"; //引入数据读取
 export default {
   name: "LineChart",
   data() {
-    return {};
+    return {
+      msg: "Welcome to LineCharts"
+    };
   },
   mounted() {
     //页面初始化函数
+    console.log("初始化成功");
     this.drawLineChart();
   },
   methods: {
-    drawLineChart: function() {
+    drawLineChart() {
       //基于准备好的DOM，初始化Echarts实例
-      let myChart_line =  this.$echarts.init(document.getElementById("LineChart"),'dark');
-      // const myChart_line = this.$echarts.init(myChart);
-      //绘制基本图表
-      myChart_line.setOption(option);
+      let myChart_line = echarts.init(
+        document.getElementById("LineChart")
+      );
       //没有加载出来使用加载动画
       myChart_line.showLoading();
       //获取数据
+      console.log("这是折线图");
       this.$axios.get("../../static/data/calendarHeatMap.json").then(res => {
         this.areaData = res.data; //res.data可根据你的数据格式来，看需求
         console.log(this.areaData); //打印看看数据吧
+        // let areaData=
         let colors = ["rgb(72,137,251)", "#f69617", "#675bba"];
-        setTimeout(() => {
-          //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
-          myChart_line.hideLoading(); //没有加载出来隐藏加载动画
-          myChart_line.setOption(
-            (optionCalen = {
+        let optionCalen = {
               color: colors,
               tooltip: {
                 trigger: "axis",
@@ -174,7 +173,7 @@ export default {
                       )
                     }
                   },
-                  data: data.map(function(item) {
+                  data: this.areaData.map(function(item) {
                     return item[1];
                   })
                 },
@@ -185,7 +184,7 @@ export default {
                   itemStyle: {
                     color: "#f69617"
                   },
-                  data: data.map(function(item) {
+                  data: this.areaData.map(function(item) {
                     return item[4];
                   })
                 },
@@ -193,7 +192,7 @@ export default {
                   name: "最低温度",
                   type: "line",
                   yAxisIndex: [1],
-                  data: data.map(function(item) {
+                  data: this.areaData.map(function(item) {
                     return item[5];
                   }),
                   itemStyle: {
@@ -204,7 +203,7 @@ export default {
                   name: "平均温度",
                   type: "line",
                   yAxisIndex: [1],
-                  data: data.map(function(item) {
+                  data: this.areaData.map(function(item) {
                     return item[6];
                   }),
                   itemStyle: {
@@ -212,8 +211,11 @@ export default {
                   }
                 }
               ]
-            })
-          );
+            }
+        setTimeout(() => {
+          //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
+          myChart_line.hideLoading(); //没有加载出来隐藏加载动画
+          myChart_line.setOption(optionCalen);
         }, 2000);
       });
     }
