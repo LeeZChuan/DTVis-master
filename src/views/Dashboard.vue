@@ -147,7 +147,7 @@ export default {
       <!-- LineCharts -->
       <!-- <exp style="background:black"></exp> -->
       <TadpoleChart></TadpoleChart>
-      <LineCharts style="background:black"></LineCharts>
+      <LineCharts></LineCharts>
       <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->

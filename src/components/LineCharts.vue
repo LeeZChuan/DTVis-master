@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="LineChart" style="width: 900px;height:300px;"></div>
+    <div id="LineChart" style="width: 1050px;height:300px;"></div>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
       //没有加载出来使用加载动画
       myChart_line.showLoading();
       //获取数据
-      console.log("这是折线图");
+      // console.log("这是折线图");
       this.$axios.get("../../static/data/calendarHeatMap.json").then(res => {
         this.areaData = res.data; //res.data可根据你的数据格式来，看需求
         // console.log(this.areaData); //打印看看数据吧

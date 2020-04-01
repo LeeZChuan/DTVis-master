@@ -52,20 +52,26 @@ export default {
   },
   methods: {
     drawTadpoleChart() {
+      // console.log(1);
       /*ECharts图表*/
-      // function kedoutu(f, g) {}
       var tempbusLinesk = new Array();
       var tempbusLinesk2 = new Array();
-      var myChartk = echarts.init(document.getElementById("TadpoleChart"));
+      let myChartk = echarts.init(document.getElementById("TadpoleChart"));
       var didiData = new Array();
+      //没有加载出来使用加载动画
+      myChartk.showLoading();
+      // console.log("这是蝌蚪图");
       this.$axios
         // 读取json文件到didiData
         .get("../../static/data/TadpoleChart/2017-05-13/0小时.json")
         .then(res => {
           didiData = res.data;
-          // console.log("这是蝌蚪图数据"+res.data); //打印看看数据吧
+          // console.log("这是蝌蚪图数据" + didiData); //打印看看数据吧
+          // console.log(didiData.type)
         });
+
       var hStep = 300 / (didiData.length - 1); //路径颜色
+      //*********************buslinesk这里出现问题了**************需要修正  */
       busLinesk = [].concat.apply(
         [],
         didiData.map(function(busLine, idx) {
@@ -73,6 +79,7 @@ export default {
           for (var i = 0; i < busLine[0].length; i += 2) {
             var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
             points.push([pt[0], pt[1]]); //存入points
+            // console.log(points);
           }
           return {
             //往buslines返回数据
@@ -88,9 +95,10 @@ export default {
           };
         })
       );
+      console.log("1"+busLinesk);
       tempbusLinesk = busLinesk;
 
-      let busLinesk2 = [].concat.apply(
+      var busLinesk2 = [].concat.apply(
         [],
         didiData.map(function(busLine, idx) {
           //用于蝌蚪图画线，数据处理待优化
@@ -156,13 +164,17 @@ export default {
           }
         ]
       };
-      //初始化蝌蚪图样例
-      myChartk.setOption(option);
+
+      setTimeout(() => {
+        //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
+        myChartk.hideLoading(); //没有加载出来隐藏加载动画
+        myChartk.setOption(option); //初始化蝌蚪图样例
+      }, 2000);
     }
   }
 };
-//模块一：使用订单类别分析功能
 
+//模块一：使用订单类别分析功能
 function analysis() {
   var g = document.getElementById("demo1").textContent.split("时")[0];
   var f = document.getElementById("demo").textContent;
@@ -175,7 +187,7 @@ function analysis() {
     .get("../../static/data/TadpoleChart/2017-05-13/0小时.json")
     .then(res => {
       didiData = res.data;
-      console.log(didiData); //打印看看数据吧
+      // console.log(didiData); //打印看看数据吧
     });
 
   var hStep = 300 / (didiData.length - 1); //路径颜色
