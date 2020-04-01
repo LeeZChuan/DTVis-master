@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="LineChart" style="width: 1000px;height:300px;"></div>
+    <div id="LineChart" style="width: 900px;height:300px;"></div>
   </div>
 </template>
 
