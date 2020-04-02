@@ -47,7 +47,7 @@ export default {
   },
   mounted() {
     //页面初始化函数
-    console.log("蝌蚪图初始化成功！");
+    // console.log("蝌蚪图初始化成功！");
     this.drawTadpoleChart();
   },
   methods: {
@@ -66,21 +66,29 @@ export default {
         .get("../../static/data/TadpoleChart/2017-05-13/0小时.json")
         .then(res => {
           didiData = res.data;
-          // console.log("这是蝌蚪图数据" + didiData); //打印看看数据吧
-          // console.log(didiData.type)
+          // console.log(res);
+          // console.log(1);
+          // console.log(didiData[0][0]);
         });
-        
+
       var hStep = 300 / (didiData.length - 1); //路径颜色
       //*********************buslinesk这里出现问题了**************需要修正  */
-      var busLinesk = [].concat.apply(
+      //busLinesk用于处理蝌蚪图所需的数据类型
+
+      var busLinesk = new Array();
+      busLinesk.concat.apply(
         [],
         didiData.map(function(busLine, idx) {
+          //数据处理逻辑：
+          //1.每条数据前两行为经纬度*1e4，后续数据为相对上一次的偏移量
+          //2.每条数据每次读取两行经纬度并赋给pt，然后push进points（点集合）
+          //3.并且更新prevPt（上次点坐标）
           var points = []; //每条轨迹的数据
           for (var i = 0; i < busLine[0].length; i += 2) {
             var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
             points.push([pt[0], pt[1]]); //存入points
-            // console.log(points);
           }
+          console.log(points);
           return {
             //往buslines返回数据
             coords: points,
@@ -95,10 +103,11 @@ export default {
           };
         })
       );
-      console.log("1"+busLinesk);
+      // console.log("1"+busLinesk);
       tempbusLinesk = busLinesk;
 
-      var busLinesk2 = [].concat.apply(
+      var busLines2 = new Array();
+      busLines2.concat.apply(
         [],
         didiData.map(function(busLine, idx) {
           //用于蝌蚪图画线，数据处理待优化
