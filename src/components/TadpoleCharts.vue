@@ -69,10 +69,10 @@ export default {
           // console.log("这是蝌蚪图数据" + didiData); //打印看看数据吧
           // console.log(didiData.type)
         });
-
+        
       var hStep = 300 / (didiData.length - 1); //路径颜色
       //*********************buslinesk这里出现问题了**************需要修正  */
-      busLinesk = [].concat.apply(
+      var busLinesk = [].concat.apply(
         [],
         didiData.map(function(busLine, idx) {
           var points = []; //每条轨迹的数据
