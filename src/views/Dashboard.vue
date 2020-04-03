@@ -4,6 +4,7 @@
 // import email from "../components/email.vue"; //样例2图
 import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
+import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
@@ -16,6 +17,7 @@ export default {
     // email,
     TadpoleChart,
     LineCharts,
+    CalendarChart,
     // ForecastChart,
     // HeatMapChart,
     // multiputeMap
@@ -148,6 +150,7 @@ export default {
       <!-- <exp style="background:black"></exp> -->
       <TadpoleChart></TadpoleChart>
       <LineCharts></LineCharts>
+      <CalendarChart></CalendarChart>
       <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->

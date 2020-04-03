@@ -75,10 +75,10 @@ export default {
       //*********************buslinesk这里出现问题了**************需要修正  */
       //busLinesk用于处理蝌蚪图所需的数据类型
 
-      var busLinesk = new Array();
-      busLinesk.concat.apply(
+      var busLinesk = [].concat.apply(
         [],
         didiData.map(function(busLine, idx) {
+        console.log(didiData);
           //数据处理逻辑：
           //1.每条数据前两行为经纬度*1e4，后续数据为相对上一次的偏移量
           //2.每条数据每次读取两行经纬度并赋给pt，然后push进points（点集合）
@@ -103,11 +103,11 @@ export default {
           };
         })
       );
+      // console.log(busLinesk.concat.apply);
       // console.log("1"+busLinesk);
       tempbusLinesk = busLinesk;
 
-      var busLines2 = new Array();
-      busLines2.concat.apply(
+       var busLines2 = [].concat.apply(
         [],
         didiData.map(function(busLine, idx) {
           //用于蝌蚪图画线，数据处理待优化
@@ -123,7 +123,7 @@ export default {
       );
       tempbusLinesk2 = busLinesk2;
       //初始化蝌蚪图属性
-      let option = {
+      var option = {
         //标题
         title: {
           text: "海口市车流量蝌蚪图",
