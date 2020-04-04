@@ -9,8 +9,6 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 // 网页界面设计
-// import dashboardVue from '../view/dashboard.vue';
-// export 作用
 export default {
   components: {
     // exp,
@@ -142,7 +140,8 @@ export default {
         </li>
       </ul>
     </div>
-
+<!-- 官网上说了router全部都要渲染到这里 -->
+<router-view></router-view>
     <div class="center-area">
       <!-- 主图展示区 -->
       <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
