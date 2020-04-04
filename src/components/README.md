@@ -9,15 +9,15 @@
 
 ## 可视化组件内容详细介绍
 
-0. exp.vue 例子模块部分代码（作为参考项目）
+0. exp.vue 例子模块部分代码（作为参考项目）√
 1. Forecast 预测界面
 2. TadpoleChart 蝌蚪图（热力图）
 3. 3DhotChart (3D热力图）
 4. Control 控制面板
 5. multiputeMap 用于展示海口市地区订单情况散点雷达图
-6. LineChart 出行距离与出行次数折线图
+6. LineChart 出行距离与出行次数折线图√
 7. map 出行订单数量散点图（花弦图）
-8. 
+8. CalendarChart 订单情况日期热力图√
 
 
 
