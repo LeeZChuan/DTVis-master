@@ -2,7 +2,7 @@
 //该文件为网页效果的备份版本
 // import exp from "../components/exp.vue"; //样例图
 // import email from "../components/email.vue"; //样例2图
-// import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
+import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //蝌蚪图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
@@ -14,7 +14,7 @@ export default {
   components: {
     // exp,
     // email,
-    // TadpoleChart,
+    TadpoleChart,
     MoveToChart,
     LineCharts,
     CalendarChart,
@@ -149,10 +149,10 @@ export default {
       <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
       <!-- LineCharts -->
       <!-- <exp style="background:black"></exp> -->
-      <!-- <TadpoleChart></TadpoleChart> -->
-      <MoveToChart></MoveToChart>
+      <TadpoleChart></TadpoleChart>
+      <!-- <MoveToChart></MoveToChart> -->
       <LineCharts></LineCharts>
-      <CalendarChart></CalendarChart>
+      <!-- <CalendarChart></CalendarChart> -->
       <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->

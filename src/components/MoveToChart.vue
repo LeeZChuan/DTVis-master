@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div id="MoveToChart" style="width: 1000px;height:450px;"></div>
+    <div id="MoveToChart" style="width: 1100px;height:450px;"></div>
   </div>
 </template>
 
-<!--操作台控制的街道情况迁徙图，用于展示订单整体情况与城市区域的关系-->
+<!--操作台控制的街道情况迁徙图，用于展示订单整体情况与城市区域的关系-finsh-->
 <script>
+require("echarts-extension-amap");
 var echarts = require("echarts"); // 引入 ECharts 主模块
 import geoCoordMap from "../../static/data/qianxitu/qianxitupoint.json"; //固定死数据读取
 export default {
