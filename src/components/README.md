@@ -18,6 +18,7 @@
 6. LineChart 出行距离与出行次数折线图√
 7. map 出行订单数量散点图（花弦图）
 8. CalendarChart 订单情况日期热力图√
+9. MoveToChart 区域迁徙图
 
 
 

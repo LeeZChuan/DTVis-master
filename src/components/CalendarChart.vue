@@ -68,7 +68,7 @@ export default {
         for (let i = 0; i < dailyData.length; i++) {
           weatherData.push([dailyData[i][0], dailyData[i][1]]);
         }
-        console.log(weatherData);
+        // console.log(weatherData);
 
         let option = {
           title: {
