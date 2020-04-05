@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "common": "^0.2.5",
     "echarts": "^4.6.0",
+    "echarts-extension-amap": "^1.0.0-rc.4",
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.13.0",
     "jquery": "^3.4.1",
