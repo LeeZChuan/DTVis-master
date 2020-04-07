@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<!--蝌蚪图：用于展示整体主图的效果-->
+<!--蝌蚪图：用于展示整体主图的效果,后面需要补充按钮功能效果-finsh-->
 <script>
 require("echarts-extension-amap");
 var echarts = require("echarts");
