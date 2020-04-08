@@ -151,7 +151,7 @@ export default {
             //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
             myChartk.hideLoading(); //没有加载出来隐藏加载动画
             myChartk.setOption(option, true); //初始化蝌蚪图样例
-          }, 2000);
+          }, 8000);
         });
     }
   }
