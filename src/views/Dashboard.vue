@@ -17,7 +17,7 @@ export default {
     TadpoleChart,
     MoveToChart,
     LineCharts,
-    CalendarChart,
+    CalendarChart
     // ForecastChart,
     // HeatMapChart,
     // multiputeMap
@@ -140,10 +140,19 @@ export default {
             </span>
           </a>
         </li>
+        <li>
+          <a href="#this" class="active">
+            <b>5</b>
+            <span>
+              具体街道情况交通流量和弦图
+              <em></em>
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
-<!-- 官网上说了router全部都要渲染到这里 -->
-<router-view></router-view>
+    <!-- 官网上说了router全部都要渲染到这里 -->
+    <router-view></router-view>
     <div class="center-area">
       <!-- 主图展示区 -->
       <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->

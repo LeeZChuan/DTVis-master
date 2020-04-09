@@ -20,6 +20,7 @@
     "echarts-extension-amap": "^1.0.0-rc.4",
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.13.0",
+    "highcharts": "^8.0.4",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "node-sass": "^4.13.1",
