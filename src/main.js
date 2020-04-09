@@ -12,9 +12,8 @@ import Index from'../static/js/index';//引入手写代码
 import layer from 'vue-layer'//引入layer弹窗样式
 import 'vue-layer/lib/vue-layer.css';
 import 'echarts-gl';
-// import "./assets/css/default.css";
-// import "./assets/css/mobile.css";
-// import "./assets/css/jquery-ui.css";
+import HighchartsVue from 'highcharts-vue'
+
 
 // import 'iview/dist/styles/iview.css';
 // import './assets/dark';
@@ -24,6 +23,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;//本地数据读取
 Vue.prototype.$bus = new Vue();
 Vue.prototype.$layer = layer(Vue);
+Vue.use(HighchartsVue);
 Vue.use(ElementUI);
 Vue.use(echarts);
 Vue.use(Vuex);

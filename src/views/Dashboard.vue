@@ -9,6 +9,7 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
+import hexiantu from"../components/hexiantu.vue";
 // 网页界面设计
 export default {
   components: {
@@ -17,10 +18,11 @@ export default {
     TadpoleChart,
     MoveToChart,
     LineCharts,
-    CalendarChart
+    CalendarChart,
     // ForecastChart,
     // HeatMapChart,
-    // multiputeMap
+    // multiputeMap,
+    hexiantu
   }
 };
 </script>
@@ -161,6 +163,7 @@ export default {
       <TadpoleChart></TadpoleChart>
       <!-- <MoveToChart></MoveToChart> -->
       <LineCharts></LineCharts>
+      <hexiantu></hexiantu>
       <!-- <CalendarChart></CalendarChart> -->
       <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <!-- <HeatMapChart></HeatMapChart> -->
