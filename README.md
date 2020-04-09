@@ -4,11 +4,15 @@
 
 > E-mail: cdutlzc@gmail.com
 
-> Date: 2020-02-29
+> PreDate: 2020-02-29
+
+> StartDate: 2020-03-15
+
+> PreEndDate: 2020-04-25
 
 >Description: 基于Vue框架的交通流量时空演变特征可视分析系统
 
->UI设计：Element UI
+>UI设计：自己手写设计的UI、弹窗使用的vue-layer
 
 ## 结果展示
 
@@ -55,13 +59,14 @@ DTVis-master
 ├── static # 该目录下的文件不会被WebPack处理：会被直接复制到最终的打包目录下 （绝对路径）
 │   ├── data  # 包含了可视化页面所用到的数据
 │   |     |──  Forecast # 订单预测结果数据源-散点图
-│   |     |──  3DHot # 订单情况分布热力图
+│   |     |──  3DhotChart # 订单情况分布热力图
 │   |     |──  Tadpole # 街道情况流量蝌蚪图
 │   |     |──  multiputeMap # 订单预测结果
+│   |     |──  MoveToChart # 订单情况整体区域迁徙图
 │   ├── img # 页面所需要的背景图片
 │   └── js # 作图所需要的库文件
 │
-├── test # 测试文件夹
+├── test.html # 测试效果样例网页
 │
 │
 └── README.md # 此说明文件
