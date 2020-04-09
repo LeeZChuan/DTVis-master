@@ -12,6 +12,7 @@ var echarts = require("echarts/lib/echarts");
 export default {
   name: "ForecastChart",
   data() {
+
     return {
       ThreeDhotChart:"",
       hotChartOption:{
