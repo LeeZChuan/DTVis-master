@@ -9,9 +9,10 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
-import hexiantu from"../components/hexiantu.vue";
+import hexiantu from "../components/hexiantu.vue";
 // 网页界面设计
 export default {
+  name: "menuChange",
   components: {
     // exp,
     // email,
@@ -23,6 +24,18 @@ export default {
     // HeatMapChart,
     // multiputeMap,
     hexiantu
+  },
+  methods: {
+    // meau=TadpoleChart
+    menuChange(meau) {
+      this.currentViews = meau;
+      console.log(this.currentVies);
+    },
+    data() {
+      return {
+        currentViews: currentViews
+      };
+    }
   }
 };
 </script>
@@ -108,45 +121,40 @@ export default {
       <ul>
         <li>
           <a href="#this" class="active">
-            <b>1</b>
-            <span>
-              交通流量蝌蚪图
+            <span v-on:click="menuChange(TadpoleChart)">
+              1.交通流量蝌蚪图
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>2</b>
-            <span>
-              交通流量热力图
+            <span v-on:click="menuChange(MoveToChart)">
+              2.交通流量热力图
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>3</b>
             <span>
-              交通流量迁徙图
+              3.交通流量迁徙图
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>4</b>
             <span>
-              交通流量站点预测
+              4.交通流量站点预测
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>5</b>
             <span>
-              具体街道情况交通流量和弦图
+              5.具体街道情况交通流量和弦图
               <em></em>
             </span>
           </a>
@@ -160,8 +168,18 @@ export default {
       <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
       <!-- LineCharts -->
       <!-- <exp style="background:black"></exp> -->
-      <TadpoleChart></TadpoleChart>
-      <!-- <MoveToChart></MoveToChart> -->
+      <!-- <div :is="currentView"><div> -->
+      <div v-show="TadpoleChart==currentViews">
+        <div>
+          <TadpoleChart></TadpoleChart>
+        </div>
+      </div>
+      <div v-show="MoveToChart==currentViews">
+        <div>
+          <MoveToChart></MoveToChart>
+        </div>
+      </div>
+
       <LineCharts></LineCharts>
       <hexiantu></hexiantu>
       <!-- <CalendarChart></CalendarChart> -->
