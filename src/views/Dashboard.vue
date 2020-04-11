@@ -31,11 +31,11 @@ export default {
       this.currentViews = meau;
       console.log(this.currentVies);
     },
-    data() {
-      return {
-        currentViews: currentViews
-      };
-    }
+    // data() {
+    //   return {
+    //     currentViews: currentViews
+    //   };
+    // }
   }
 };
 </script>
@@ -121,7 +121,7 @@ export default {
       <ul>
         <li>
           <a href="#this" class="active">
-            <span v-on:click="menuChange(TadpoleChart)">
+            <span v-on:click="menuChange('TadpoleChart')">
               1.交通流量蝌蚪图
               <em></em>
             </span>
@@ -129,7 +129,7 @@ export default {
         </li>
         <li>
           <a href="#this" class="active">
-            <span v-on:click="menuChange(MoveToChart)">
+            <span v-on:click="menuChange('MoveToChart')">
               2.交通流量热力图
               <em></em>
             </span>
@@ -169,12 +169,12 @@ export default {
       <!-- LineCharts -->
       <!-- <exp style="background:black"></exp> -->
       <!-- <div :is="currentView"><div> -->
-      <div v-show="TadpoleChart==currentViews">
+      <div v-show="TadpoleChart">
         <div>
           <TadpoleChart></TadpoleChart>
         </div>
       </div>
-      <div v-show="MoveToChart==currentViews">
+      <div v-show="MoveToChart">
         <div>
           <MoveToChart></MoveToChart>
         </div>
