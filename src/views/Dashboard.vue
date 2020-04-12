@@ -169,7 +169,7 @@ export default {
       <!-- LineCharts -->
       <!-- <exp style="background:black"></exp> -->
       <!-- <div :is="currentView"><div> -->
-      <div v-show="TadpoleChart">
+      <!-- <div v-show="TadpoleChart">
         <div>
           <TadpoleChart></TadpoleChart>
         </div>
@@ -178,7 +178,8 @@ export default {
         <div>
           <MoveToChart></MoveToChart>
         </div>
-      </div>
+      </div> -->
+      <TadpoleChart></TadpoleChart>
 
       <LineCharts></LineCharts>
       <hexiantu></hexiantu>

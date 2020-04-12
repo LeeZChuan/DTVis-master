@@ -7,6 +7,7 @@
 var echarts = require("echarts");
 // 引入 ECharts 主模块
 //ForecastChart (预测视图，分为整体预测柱状图，订单具体细化预测花型散点图）用于展示海口市订单整体分布情况
+//尚未完成
 var echarts = require("echarts/lib/echarts");
 
 
