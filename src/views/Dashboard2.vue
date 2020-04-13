@@ -1,31 +1,48 @@
 <script>
+//该文件为网页效果的备份版本
 // import exp from "../components/exp.vue"; //样例图
-// import TadpoleChart from "../components/TadpoleChart.vue"; //蝌蚪图
-// import LineChart from "../components/LineChart.vue"; //出行距离与出行次数折线图
+// import email from "../components/email.vue"; //样例2图
+import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
+import MoveToChart from "../components/MoveToChart.vue"; //蝌蚪图
+import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
+import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
+import hexiantu from "../components/hexiantu.vue";
 // 网页界面设计
-// import dashboardVue from '../view/dashboard.vue';
-// export 作用
 export default {
+  name: "menuChange",
   components: {
-    // exp
-    // TadpoleChart,
-    // LineChart,
+    // exp,
+    // email,
+    TadpoleChart,
+    MoveToChart,
+    LineCharts,
+    CalendarChart,
     // ForecastChart,
     // HeatMapChart,
-    // multiputeMap
+    // multiputeMap,
+    hexiantu
+  },
+  methods: {
+    // meau=TadpoleChart
+    menuChange(meau) {
+      this.currentViews = meau;
+      console.log(this.currentVies);
+    },
+    // data() {
+    //   return {
+    //     currentViews: currentViews
+    //   };
+    // }
   }
 };
 </script>
 
-
-
-
 <template>
   <div id="wrapper">
-    <h1>交通流量轨迹可视化</h1>
+    <h1 style="color:rgb(255, 255, 255);">交通流量轨迹可视化</h1>
     <h2>
       <strong>重点关注</strong>
       <sub>Focus on the indicators</sub>
@@ -58,42 +75,42 @@ export default {
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>VLR登记用户数</p>
+          <p>滴滴订单类型数量</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>VLR登记用户数</p>
+          <p>滴滴订单类型数量</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>VLR登记用户数</p>
+          <p>滴滴订单类型数量</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>VLR登记用户数</p>
+          <p>滴滴订单类型数量</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>VLR登记用户数</p>
+          <p>滴滴订单类型数量</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>VLR登记用户数</p>
+          <p>滴滴订单类型数量</p>
           <strong>174.6069</strong>
         </li>
       </ul>
@@ -104,41 +121,72 @@ export default {
       <ul>
         <li>
           <a href="#this" class="active">
-            <b>1</b>
-            <span>
-              交通流量蝌蚪图
+            <span v-on:click="menuChange('TadpoleChart')">
+              1.交通流量蝌蚪图
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>2</b>
-            <span>
-              交通流量热力图
+            <span v-on:click="menuChange('MoveToChart')">
+              2.交通流量热力图
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>3</b>
             <span>
-              交通流量迁徙图
+              3.交通流量迁徙图
               <em></em>
             </span>
           </a>
         </li>
         <li>
           <a href="#this" class="active">
-            <b>4</b>
             <span>
-              交通流量站点预测
+              4.交通流量站点预测
+              <em></em>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#this" class="active">
+            <span>
+              5.具体街道情况交通流量和弦图
               <em></em>
             </span>
           </a>
         </li>
       </ul>
+    </div>
+    <!-- 官网上说了router全部都要渲染到这里 -->
+    <router-view></router-view>
+    <div class="center-area">
+      <!-- 主图展示区 -->
+      <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
+      <!-- LineCharts -->
+      <!-- <exp style="background:black"></exp> -->
+      <!-- <div :is="currentView"><div> -->
+      <!-- <div v-show="TadpoleChart">
+        <div>
+          <TadpoleChart></TadpoleChart>
+        </div>
+      </div>
+      <div v-show="MoveToChart">
+        <div>
+          <MoveToChart></MoveToChart>
+        </div>
+      </div> -->
+      <TadpoleChart></TadpoleChart>
+
+      <LineCharts></LineCharts>
+      <hexiantu></hexiantu>
+      <!-- <CalendarChart></CalendarChart> -->
+      <!-- <exp style="width: 600px;height:400px;"></exp> -->
+      <!-- <HeatMapChart></HeatMapChart> -->
+      <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->
     </div>
 
     <div class="right-area">
@@ -148,7 +196,7 @@ export default {
       </h3>
       <div class="area-inbox-1">
         <dl>
-          <dt>上月平均值</dt>
+          <dt style="color:white">上月平均值</dt>
           <dd class="font12">
             <span>76.525%</span>
             <b></b>
@@ -169,45 +217,27 @@ export default {
         <div class="round-3">30%</div>
         <div class="round-4"></div>
       </div>
-      <div class="area-inbox-2">
-        <ul>
-          <li>
-            <strong>12</strong>74.23%
-            <b></b>
-            <em></em>
-          </li>
-          <li>
-            <strong>16</strong>71.19%
-            <b></b>
-            <em></em>
-          </li>
-          <li>
-            <strong>18</strong>68.02%
-            <b></b>
-            <em></em>
-          </li>
-        </ul>
-        <div class="area-text">
-          <b class="animation-line1"></b>
-          <h4>口径说明：</h4>
-          <p class="text_container"></p>
-          <b class="animation-line2"></b>
-        </div>
-      </div>
     </div>
+
     <div class="time-base-outer">
       <b class="line1"></b>
-      <div class="time-base"></div>
-      <script src="./static/js/jquery_and_jqueryui.js"></script>
-      <script src="./static/js/index.js"></script>
+      <div class="time-base">
+        <!--  <div class="slider2"></div> -->
+        <!-- <script src="./static/js/jquery_and_jqueryui.js"></script> -->
+        <!-- <script src="/DTVis-mastesr/static/js/index.js"></script> -->
+      </div>
       <b class="line2"></b>
     </div>
   </div>
 </template>
-
+    
 
 <style scoped>
-@import "../assets/css/default.css";
 @import "../assets/css/mobile.css";
-@import "../assets/css/jquery-ui.css";
+/* @import "../assets/css/jqueryui.css"; */
+@import "../assets/css/default.css";
 </style>
+
+
+
+

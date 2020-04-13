@@ -19,7 +19,7 @@
 7. map 出行订单数量散点图（花弦图）
 8. CalendarChart 订单情况日期热力图√-finsh
 9. MoveToChart 区域迁徙图 √-finsh
-10. hexiantu 和弦图 
+10. hexiantu 和弦图
 
 
 

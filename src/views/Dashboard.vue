@@ -12,7 +12,7 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 import hexiantu from "../components/hexiantu.vue";
 // 网页界面设计
 export default {
-  name: "menuChange",
+  name: "Home",
   components: {
     // exp,
     // email,
@@ -25,17 +25,25 @@ export default {
     // multiputeMap,
     hexiantu
   },
+  data() {
+    return {
+      isCollapse: false
+    };
+  },
   methods: {
-    // meau=TadpoleChart
-    menuChange(meau) {
-      this.currentViews = meau;
-      console.log(this.currentVies);
-    },
-    // data() {
-    //   return {
-    //     currentViews: currentViews
-    //   };
-    // }
+    changeCollapse() {
+      var mainCol = document.getElementsByClassName("main-col")[0];
+      this.isCollapse = !this.isCollapse;
+         if(this.isCollapse) {
+          mainCol.style.left = '90px';
+          mainCol.style.width='calc(100% - 110px)'
+        }
+        else {
+          mainCol.style.left = '220px';
+          mainCol.style.width = 'calc(100% - 240px)'
+        }
+      
+    }
   }
 };
 </script>
@@ -117,50 +125,55 @@ export default {
     </div>
 
     <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
-    <div class="submenu">
-      <ul>
-        <li>
-          <a href="#this" class="active">
-            <span v-on:click="menuChange('TadpoleChart')">
-              1.交通流量蝌蚪图
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span v-on:click="menuChange('MoveToChart')">
-              2.交通流量热力图
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span>
-              3.交通流量迁徙图
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span>
-              4.交通流量站点预测
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span>
-              5.具体街道情况交通流量和弦图
-              <em></em>
-            </span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <div class="aside-col">
+        <el-menu class="menu" :default-active="$route.path" router :collapse="isCollapse" background-color="#545c64"
+                 text-color="#fff"
+                 active-text-color="#ffd04b">
+          <el-menu-item @click="changeCollapse">
+          </el-menu-item>
+          <el-menu-item index="/Home/TadpoleCharts">
+            <i class="el-icon-menu"></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-tickets"></i>
+            <span slot="title">舆情文章</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-view"></i>
+            <span slot="title">我的监听</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-news"></i>
+            <span slot="title">舆情事件</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-document"></i>
+            <span slot="title">舆情报告</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-message"></i>
+            <span slot="title">导控任务</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-edit-outline"></i>
+            <span slot="title">知识库管理</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-setting"></i>
+            <span slot="title">系统管理</span>
+          </el-menu-item>
+          <el-menu-item index="/Home/MoveToChart">
+            <i class="el-icon-edit"></i>
+            <span slot="title">系统渠道管理</span>
+          </el-menu-item>
+          <el-menu-item index="/Home">
+            <i class="el-icon-search"></i>
+            <span slot="title">全文检索</span>
+          </el-menu-item>
+        </el-menu>
+      </div>
+
     <!-- 官网上说了router全部都要渲染到这里 -->
     <router-view></router-view>
     <div class="center-area">
@@ -178,13 +191,11 @@ export default {
         <div>
           <MoveToChart></MoveToChart>
         </div>
-      </div> -->
-      <TadpoleChart></TadpoleChart>
-
+      </div>-->
+      <!-- <TadpoleChart></TadpoleChart> -->
+      <router-view></router-view>
       <LineCharts></LineCharts>
-      <hexiantu></hexiantu>
       <!-- <CalendarChart></CalendarChart> -->
-      <!-- <exp style="width: 600px;height:400px;"></exp> -->
       <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->
     </div>
@@ -236,6 +247,25 @@ export default {
 @import "../assets/css/mobile.css";
 /* @import "../assets/css/jqueryui.css"; */
 @import "../assets/css/default.css";
+
+ .menu{
+    height: 100vh;
+  }
+.el-menu-item{
+  text-align: left;
+  border-bottom: 1px solid gray;
+}
+.aside-col{
+  display: inline-block;
+  float: left;
+  width: 200px;
+}
+.main-col{
+  position: fixed;
+  left: 220px;
+  display: inline-block;
+  width: calc(100% - 240px);
+}
 </style>
 
 

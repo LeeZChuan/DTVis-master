@@ -60,6 +60,7 @@ DTVis-master
 │   ├── data  # 包含了可视化页面所用到的数据
 │   |     |──  Forecast # 订单预测结果数据源-散点图
 │   |     |──  3DhotChart # 订单情况分布热力图
+│   |     |──  CalendarChart # 订单情况日历热力图
 │   |     |──  Tadpole # 街道情况流量蝌蚪图
 │   |     |──  multiputeMap # 订单预测结果
 │   |     |──  MoveToChart # 订单情况整体区域迁徙图
