@@ -1,12 +1,21 @@
 <template>
-  <div class="highcharts-container">
-    <highcharts :options="chartOptions" :callback="myCallback"></highcharts>
+  <div class="hello">
+    <div id="highcharts-container"></div>
   </div>
 </template>
 <script>
 
-var Highcharts = require("highcharts");
-require("highcharts/modules/exporting")(Highcharts);
+// var Highcharts = require("highcharts");
+// require("highcharts/modules/exporting")(Highcharts);
+
+import Highcharts from "highcharts/highstock";
+import HighchartsMore from "highcharts/highcharts-more";
+import HighchartsDrilldown from "highcharts/modules/drilldown";
+import Highcharts3D from "highcharts/highcharts-3d";
+
+HighchartsMore(Highcharts);
+HighchartsDrilldown(Highcharts);
+Highcharts3D(Highcharts);
 
 
 export default {
@@ -17,7 +26,6 @@ export default {
   },
   mounted() {
     //页面初始化函数
-    // console.log("折线图初始化成功");
     this.drawChart();
   },
   methods: {
@@ -78,7 +86,7 @@ export default {
             ]
           };
 
-          this.chart = new Highcharts.chart("container", chartOptions);
+          this.chart = new Highcharts.Chart("highcharts-container", chartOptions);
         });
     }
   },

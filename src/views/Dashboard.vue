@@ -192,9 +192,10 @@ export default {
           <MoveToChart></MoveToChart>
         </div>
       </div>-->
-      <!-- <TadpoleChart></TadpoleChart> -->
-      <router-view></router-view>
+      <TadpoleChart></TadpoleChart>
+      <!-- <router-view></router-view> -->
       <LineCharts></LineCharts>
+      <hexiantu></hexiantu>
       <!-- <CalendarChart></CalendarChart> -->
       <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->

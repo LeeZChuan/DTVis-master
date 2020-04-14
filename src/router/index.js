@@ -5,6 +5,8 @@ import Home from '../views/Dashboard'
 import TadpoleCharts from '../components/TadpoleCharts'
 import MoveToChart from '../components/MoveToChart'
 
+// vue框架路由管理功能
+
 Vue.use(Router)
 
 export default new Router({
