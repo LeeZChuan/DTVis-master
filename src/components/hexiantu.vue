@@ -1,26 +1,28 @@
 <template>
-    <div id="highcharts-container"></div>
+  <div>
+    <highcharts :options="chartOptions" :callback="myCallback"></highcharts>
+  </div>
 </template>
 <script>
+import { Chart } from "highcharts-vue";
+var Highcharts = require("highcharts");
 
-// var Highcharts = require("highcharts");
-// require("highcharts/modules/exporting")(Highcharts);
+// 在 Highcharts 加载之后加载功能模块
+require("highcharts/modules/exporting")(Highcharts);
 
-import Highcharts from "highcharts/highstock";
-import HighchartsMore from "highcharts/highcharts-more";
-import HighchartsDrilldown from "highcharts/modules/drilldown";
-import Highcharts3D from "highcharts/highcharts-3d";
+// import Highcharts from "highcharts/highstock";
+// import HighchartsMore from "highcharts/highcharts-more";
+// import HighchartsDrilldown from "highcharts/modules/drilldown";
+// import Highcharts3D from "highcharts/highcharts-3d";
 
-HighchartsMore(Highcharts);
-HighchartsDrilldown(Highcharts);
-Highcharts3D(Highcharts);
-
+// HighchartsMore(Highcharts);
+// HighchartsDrilldown(Highcharts);
+// Highcharts3D(Highcharts);
 
 export default {
   name: "SnakyChart",
   data() {
-    return {
-    };
+    return {};
   },
   mounted() {
     //页面初始化函数
@@ -36,7 +38,7 @@ export default {
         .get("../../static/data/hexiantu/2017-05-13_hexiantu.json")
         .then(res => {
           var sankeyData = res.data; //res.data可根据你的数据格式来，看需求
-          let chartOptions = {
+          var chartOptions = {
             title: {
               text: "订单情况和弦图"
             },
@@ -83,9 +85,8 @@ export default {
               }
             ]
           };
-
-          this.chart = new Highcharts.Chart("highcharts-container", chartOptions);
         });
+      this.chart = new Highcharts.chart("highcharts-container", chartOptions);
     }
   },
   computed: {
