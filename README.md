@@ -60,13 +60,13 @@ DTVis-master
 │
 ├── static # 该目录下的文件不会被WebPack处理：会被直接复制到最终的打包目录下 （绝对路径）
 │   ├── data  # 包含了可视化页面所用到的数据
-│   |     |──  Forecast # 订单预测结果数据源-散点图
-│   |     |──  3DhotChart # 订单情况分布热力图
-│   |     |──  CalendarChart # 订单情况日历热力图
-│   |     |──  Tadpole # 街道情况流量蝌蚪图
-│   |     |──  multiputeMap # 订单预测结果
-│   |     |──  qianxitu（MoveToChart） # 订单情况整体区域迁徙图
-│   |     |──  hexiantu # 订单情况整体街道和弦图
+│   │    |──  Forecast # 订单预测结果数据源-散点图
+│   │    |──  3DhotChart # 订单情况分布热力图
+│   │    |──  CalendarChart # 订单情况日历热力图
+│   │    |──  Tadpole # 街道情况流量蝌蚪图
+│   │    |──  multiputeMap # 订单预测结果
+│   │    |──  qianxitu（MoveToChart） # 订单情况整体区域迁徙图
+│   │    |──  hexiantu # 订单情况整体街道和弦图
 │   ├── img # 页面所需要的背景图片
 │   └── js # 作图所需要的库文件
 │
