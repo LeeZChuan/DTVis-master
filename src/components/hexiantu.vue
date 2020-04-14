@@ -1,7 +1,5 @@
 <template>
-  <div class="hello">
     <div id="highcharts-container"></div>
-  </div>
 </template>
 <script>
 

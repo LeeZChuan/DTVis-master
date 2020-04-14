@@ -63,7 +63,8 @@ DTVis-master
 │   |     |──  CalendarChart # 订单情况日历热力图
 │   |     |──  Tadpole # 街道情况流量蝌蚪图
 │   |     |──  multiputeMap # 订单预测结果
-│   |     |──  MoveToChart # 订单情况整体区域迁徙图
+│   |     |──  qianxitu（MoveToChart） # 订单情况整体区域迁徙图
+│   |     |──  hexiantu # 订单情况整体街道和弦图
 │   ├── img # 页面所需要的背景图片
 │   └── js # 作图所需要的库文件
 │
