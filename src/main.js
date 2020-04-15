@@ -7,8 +7,7 @@ import router from './router';
 import axios from 'axios';
 import echarts from 'echarts';
 import ElementUI from 'element-ui';//引入element-ui
-// import 'element-ui/lib/theme-chalk/index.css'
-// import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css'
 import layer from 'vue-layer'//引入layer弹窗样式
 import 'vue-layer/lib/vue-layer.css';
 import 'echarts-gl';

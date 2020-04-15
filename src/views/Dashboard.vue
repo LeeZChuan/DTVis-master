@@ -27,24 +27,40 @@ export default {
   },
   data() {
     return {
-      isCollapse: false
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+        shortcuts: [
+          {
+            text: "今天",
+            onClick(picker) {
+              picker.$emit("pick", new Date());
+            }
+          },
+          {
+            text: "昨天",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            }
+          },
+          {
+            text: "一周前",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            }
+          }
+        ]
+      },
+      value1: "",
+      value2: ""
     };
   },
-  methods: {
-    changeCollapse() {
-      var mainCol = document.getElementsByClassName("main-col")[0];
-      this.isCollapse = !this.isCollapse;
-         if(this.isCollapse) {
-          mainCol.style.left = '90px';
-          mainCol.style.width='calc(100% - 110px)'
-        }
-        else {
-          mainCol.style.left = '220px';
-          mainCol.style.width = 'calc(100% - 240px)'
-        }
-      
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -125,54 +141,55 @@ export default {
     </div>
 
     <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
-    <div class="aside-col">
-        <el-menu class="menu" :default-active="$route.path" router :collapse="isCollapse" background-color="#545c64"
-                 text-color="#fff"
-                 active-text-color="#ffd04b">
-          <el-menu-item @click="changeCollapse">
-          </el-menu-item>
-          <el-menu-item index="/Home/TadpoleCharts">
-            <i class="el-icon-menu"></i>
-            <span slot="title">首页</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-tickets"></i>
-            <span slot="title">舆情文章</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-view"></i>
-            <span slot="title">我的监听</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-news"></i>
-            <span slot="title">舆情事件</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-document"></i>
-            <span slot="title">舆情报告</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-message"></i>
-            <span slot="title">导控任务</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-edit-outline"></i>
-            <span slot="title">知识库管理</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-setting"></i>
-            <span slot="title">系统管理</span>
-          </el-menu-item>
-          <el-menu-item index="/Home/MoveToChart">
-            <i class="el-icon-edit"></i>
-            <span slot="title">系统渠道管理</span>
-          </el-menu-item>
-          <el-menu-item index="/Home">
-            <i class="el-icon-search"></i>
-            <span slot="title">全文检索</span>
-          </el-menu-item>
-        </el-menu>
-      </div>
+   <div class="submenu">
+      <ul>
+        <li>
+          <a href="#this" class="active">
+            <span v-on:click="menuChange('TadpoleChart')">
+              1.交通流量蝌蚪图
+              <em></em>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#this" class="active">
+            <span v-on:click="menuChange('MoveToChart')">
+              2.交通流量热力图
+              <em></em>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#this" class="active">
+            <span>
+              3.交通流量迁徙图
+              <em></em>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#this" class="active">
+            <span>
+              4.交通流量站点预测
+              <em></em>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#this" class="active">
+            <span>
+              5.具体街道情况交通流量和弦图
+              <em></em>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 时间选择器 -->
+    <div class="block">
+      <el-date-picker v-model="value1" type="date" placeholder="选择日期"></el-date-picker>
+    </div>
 
     <!-- 官网上说了router全部都要渲染到这里 -->
     <router-view></router-view>
@@ -249,23 +266,28 @@ export default {
 /* @import "../assets/css/jqueryui.css"; */
 @import "../assets/css/default.css";
 
- .menu{
-    height: 100vh;
-  }
-.el-menu-item{
+.menu {
+  height: 100vh;
+}
+.el-menu-item {
   text-align: left;
   border-bottom: 1px solid gray;
 }
-.aside-col{
+.aside-col {
   display: inline-block;
   float: left;
   width: 200px;
 }
-.main-col{
+.main-col {
   position: fixed;
   left: 220px;
   display: inline-block;
   width: calc(100% - 240px);
+}
+.block {
+  position: fixed;
+  right: 0;
+  text-align: center;
 }
 </style>
 
