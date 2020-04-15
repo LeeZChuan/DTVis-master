@@ -17,7 +17,6 @@ export default {
       hotChartOption:{
         
       }
-
     };
   },
   components: {},

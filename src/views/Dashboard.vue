@@ -9,7 +9,8 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
-import hexiantu from "../components/hexiantu.vue";
+import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
+import dialogEl from "../components/dialog.vue";
 // 网页界面设计
 export default {
   name: "Home",
@@ -27,6 +28,7 @@ export default {
   },
   data() {
     return {
+      dialogFlag: false,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
@@ -141,7 +143,7 @@ export default {
     </div>
 
     <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
-   <div class="submenu">
+    <div class="submenu">
       <ul>
         <li>
           <a href="#this" class="active">
@@ -176,13 +178,17 @@ export default {
           </a>
         </li>
         <li>
-          <a href="#this" class="active">
+          <a>
             <span>
               5.具体街道情况交通流量和弦图
               <em></em>
             </span>
           </a>
         </li>
+        <dialog-el :showWin.sync="show" @submit="submit" width="500" height="300">
+          <div slot="title">标题</div>
+          <div slot="content">按住头部可拖拽、右下角放大缩小、可最大化</div>
+        </dialog-el>
       </ul>
     </div>
 
