@@ -32,8 +32,6 @@ export default {
       var dailyData = new Array();
       this.$axios.get("../../static/data/calendarHeatMap.json").then(res => {
         dailyData = res.data; //res.data可根据你的数据格式来，看需求
-        // console.log(dailyData); //打印看看数据吧
-
         function getVirtulData(year) {
           var temp = 0;
           if (year == 2018) {
