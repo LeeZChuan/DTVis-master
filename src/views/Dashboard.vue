@@ -3,14 +3,13 @@
 // import exp from "../components/exp.vue"; //样例图
 // import email from "../components/email.vue"; //样例2图
 import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
-import MoveToChart from "../components/MoveToChart.vue"; //蝌蚪图
+import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
 // import HeatMapChart from "./components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
-import dialogEl from "../components/dialog.vue";
 // 网页界面设计
 export default {
   name: "Home",
@@ -28,41 +27,33 @@ export default {
   },
   data() {
     return {
-      dialogFlag: false,
-      pickerOptions: {
-        disabledDate(time) {
-          return time.getTime() > Date.now();
-        },
-        shortcuts: [
-          {
-            text: "今天",
-            onClick(picker) {
-              picker.$emit("pick", new Date());
-            }
-          },
-          {
-            text: "昨天",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit("pick", date);
-            }
-          },
-          {
-            text: "一周前",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", date);
-            }
-          }
-        ]
-      },
-      value1: "",
-      value2: ""
+      centerForcastVisible: false //预测部分界面弹窗
     };
   },
-  methods: {}
+  methods: {
+    open() {
+      this.$alert("这是一段内容", "标题名称", {
+        confirmButtonText: "确定",
+        callback: action => {
+          this.$message({
+            type: "info",
+            message: `action: ${action}`
+          });
+        }
+      });
+    },
+    Forecast() {
+      this.$alert(<MoveToChart />, "交通流量预测组图", {
+        confirmButtonText: "确定",
+        callback: action => {
+          this.$message({
+            type: "info",
+            message: `action: ${action}`
+          });
+        }
+      });
+    }
+  }
 };
 </script>
 
@@ -146,51 +137,42 @@ export default {
     <div class="submenu">
       <ul>
         <li>
-          <a href="#this" class="active">
-            <span v-on:click="menuChange('TadpoleChart')">
-              1.交通流量蝌蚪图
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span v-on:click="menuChange('MoveToChart')">
-              2.交通流量热力图
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span>
-              3.交通流量迁徙图
-              <em></em>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="#this" class="active">
-            <span>
-              4.交通流量站点预测
-              <em></em>
-            </span>
+          <a>
+            <el-button type="text" @click="open">交通流量蝌蚪图</el-button>
           </a>
         </li>
         <li>
           <a>
-            <span>
-              5.具体街道情况交通流量和弦图
-              <em></em>
-            </span>
+            <el-button type="text" @click="open">交通流量热力图</el-button>
           </a>
         </li>
-        <dialog-el :showWin.sync="show" @submit="submit" width="500" height="300">
-          <div slot="title">标题</div>
-          <div slot="content">按住头部可拖拽、右下角放大缩小、可最大化</div>
-        </dialog-el>
+        <li>
+          <a>
+            <el-button type="text" @click="open">交通流量迁徙图</el-button>
+          </a>
+        </li>
+        <li>
+          <a>
+            <el-button type="text" @click="centerForcastVisible = true">交通流量预测组合图</el-button>
+          </a>
+        </li>
+        <li>
+          <a>
+            <el-button type="text" @click="open">具体街道情况交通流量和弦图</el-button>
+          </a>
+        </li>
       </ul>
     </div>
+
+    <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="80%" center>
+      <span>
+        <MoveToChart></MoveToChart>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="centerForcastVisible = false">取 消</el-button>
+        <el-button type="primary" @click="centerForcastVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
 
     <!-- 时间选择器 -->
     <div class="block">
@@ -201,27 +183,12 @@ export default {
     <router-view></router-view>
     <div class="center-area">
       <!-- 主图展示区 -->
-      <!-- <div id="LineCharts" style="width: 600px;height:400px;"></div> -->
-      <!-- LineCharts -->
-      <!-- <exp style="background:black"></exp> -->
-      <!-- <div :is="currentView"><div> -->
-      <!-- <div v-show="TadpoleChart">
-        <div>
-          <TadpoleChart></TadpoleChart>
-        </div>
-      </div>
-      <div v-show="MoveToChart">
-        <div>
-          <MoveToChart></MoveToChart>
-        </div>
-      </div>-->
-      <TadpoleChart></TadpoleChart>
+      <!-- <TadpoleChart></TadpoleChart> -->
       <!-- <router-view></router-view> -->
       <LineCharts></LineCharts>
       <hexiantu></hexiantu>
       <!-- <CalendarChart></CalendarChart> -->
       <!-- <HeatMapChart></HeatMapChart> -->
-      <!-- <div id="LineCharts" style="width: 1200px;height:200px;"></div> -->
     </div>
 
     <div class="right-area">
