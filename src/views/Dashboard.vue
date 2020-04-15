@@ -27,7 +27,12 @@ export default {
   },
   data() {
     return {
-      centerForcastVisible: false //预测部分界面弹窗
+      centerForcastVisible: false, //预测部分界面弹窗
+      centerHotVisible: false,
+      centerTadpoleVisible: false,
+      //默认第一个选项卡
+      activeName: "first",
+      tabPosition: "left"
     };
   },
   methods: {
@@ -42,15 +47,20 @@ export default {
         }
       });
     },
-    Forecast() {
-      this.$alert(<MoveToChart />, "交通流量预测组图", {
-        confirmButtonText: "确定",
-        callback: action => {
-          this.$message({
-            type: "info",
-            message: `action: ${action}`
-          });
-        }
+    open1() {
+      const h = this.$createElement;
+
+      this.$notify({
+        title: "海口市交通流量蝌蚪图",
+        message: h("i", { style: "color: teal" }, "切换成为街道蝌蚪图")
+      });
+    },
+    open2() {
+      const h = this.$createElement;
+
+      this.$notify({
+        title: "海口市交通流量热力图",
+        message: h("i", { style: "color: teal" }, "切换成为街道热力图")
       });
     }
   }
@@ -143,7 +153,7 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="open">交通流量热力图</el-button>
+            <el-button type="text" @click="centerHotVisible = true">交通流量热力图</el-button>
           </a>
         </li>
         <li>
@@ -182,12 +192,25 @@ export default {
     <!-- 官网上说了router全部都要渲染到这里 -->
     <div class="center-area">
       <!-- 主图展示区 -->
-      <div>
-      <TadpoleChart></TadpoleChart>
-      <MoveToChart></MoveToChart>
-      </div>
-      <LineCharts></LineCharts>
-      <hexiantu></hexiantu>
+      <el-container>
+        <el-main style="height:400px;width: 950px;">
+          <el-tabs v-model="activeName" :tab-position="tabPosition">
+            <el-tab-pane label="交通流量蝌蚪图" name="first" :key="'first'">
+              <TadpoleChart></TadpoleChart>
+            </el-tab-pane>
+            <el-tab-pane label="交通流量热力图" name="second" :key="'second'">
+              <MoveToChart></MoveToChart>
+            </el-tab-pane>
+            <el-tab-pane label="交通流量花弦图" :key="'third'">交通流量花弦图</el-tab-pane>
+            <el-tab-pane label="交通流量散点图" :key="'fourth'">交通流量散点图</el-tab-pane>
+          </el-tabs>
+        </el-main>
+        <el-footer>
+          <LineCharts></LineCharts>
+        </el-footer>
+      </el-container>
+      <!-- <MoveToChart></MoveToChart> -->
+      <!-- <hexiantu></hexiantu> -->
       <!-- <CalendarChart></CalendarChart> -->
       <!-- <HeatMapChart></HeatMapChart> -->
     </div>

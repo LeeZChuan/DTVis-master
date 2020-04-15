@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="ForecastChart" style="width: 1200px;height:800px;"></div>
+    <div id="ForecastChart" style="width: 800px;height:600px;"></div>
   </div>
 </template>
 <script>
