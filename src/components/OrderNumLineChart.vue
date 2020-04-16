@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<!--学习使用 vue ： 画 订单数量折线图-->
+<!--订单的出行距离与该订单出行距离数量组合折线图-->
 
 <script>
 var echarts = require("echarts"); // 引入 ECharts 主模块
@@ -17,7 +17,6 @@ export default {
   },
   mounted() {
     //页面初始化函数
-    // console.log("订单数量折线图初始化成功");
     this.drawLineTest();
   },
   methods: {
@@ -27,7 +26,6 @@ export default {
       //没有加载出来使用加载动画
       myChart_line.showLoading();
       //获取数据
-      // console.log("这是订单数量折线图");
       this.$axios.get("../../static/data/LineChart/2017-05-13_lineChart.json").then(res => {
         this.orderData = res.data; //res.data可根据你的数据格式来，看需求res
         let colors = ['rgba(76,180,231,0.4)', '#d14a61', '#675bba'];

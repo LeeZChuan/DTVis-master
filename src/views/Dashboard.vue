@@ -10,7 +10,7 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 import HeatMapChart from "../components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
-import lineChartext from "../components/LineTest.vue"
+import centerOrderNumChart from "../components/OrderNumLineChart.vue"
 // 网页界面设计
 export default {
   name: "Home",
@@ -21,13 +21,14 @@ export default {
     CalendarChart,
     // ForecastChart,
     HeatMapChart,
-    lineChartext,
+    centerOrderNumChart,
     // multiputeMap,
     hexiantu
   },
   data() {
     return {
       centerForcastVisible: false, //预测部分界面弹窗
+      centerOrderNumVisible: false,//订单的出行距离与该订单出行距离数量组合折线图弹窗 
       centerHotVisible: false,
       centerTadpoleVisible: false,
       //默认第一个选项卡
@@ -171,9 +172,14 @@ export default {
             <el-button type="text" @click="open">具体街道情况交通流量和弦图</el-button>
           </a>
         </li>
+          <li>
+          <a>
+            <el-button type="text" @click="centerOrderNumVisible=true">订单的出行距离与该订单整体数量组合折线图</el-button>
+          </a>
+        </li>
       </ul>
     </div>
-
+<!-- 弹窗部分 -->
     <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="80%" center>
       <span>
         <MoveToChart></MoveToChart>
@@ -181,6 +187,16 @@ export default {
       <span slot="footer" class="dialog-footer">
         <el-button @click="centerForcastVisible = false">取 消</el-button>
         <el-button type="primary" @click="centerForcastVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+     <el-dialog title="该天订单的出行距离与该订单整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center>
+      <span>
+        <centerOrderNumChart></centerOrderNumChart>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="centerOrderNumVisible = false">取 消</el-button>
+        <el-button type="primary" @click="centerOrderNumVisible = false">确 定</el-button>
       </span>
     </el-dialog>
 
