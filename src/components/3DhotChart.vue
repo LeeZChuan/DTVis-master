@@ -47,26 +47,75 @@ export default {
           buildingAnimation: true // 楼块出现是否带动画
         }
       };
+      var flag = 0;
 
-      var layer = myChartks.getModel().getComponent('amap').getLayer();
-        var map = myChartks.getModel().getComponent('amap').getAMap();
-        layer.setzIndex(2019)
-        map.addControl(new AMap.ControlBar({
-            showZoomBar: false,
-            showControlButton: true,
-            position: {
-                right: '10px',
-                top: '10px'
-            }
-        }))
+      if (flag == 1) {
+        location.reload();
+      }
 
-         var heatmap = new AMap.Heatmap(map, heatmapOpts);                                                               //初始化heatmap对象
-        var heatmap2 = new AMap.Heatmap(map, heatmapOpts2);
-        //获取数据json
-        var heatmapData = require('../../static/data/start/3DhotChart/2017-05-13/10.json')
-        var heatmapData2 = require('../../static/data/dest/3DhotChart/2017-05-13/10.json')
-        console.log(heatmapData);
-        console.log(heatmapData2);
+      var flag = 0;
+      var myChartks = echarts.init(document.getElementById("HeatMapChart"));
+      //没有加载出来使用加载动画
+      myChartks.showLoading();
+      var layer = myChartks
+        .getModel()
+        .getComponent("amap")
+        .getLayer();
+      var map = myChartks
+        .getModel()
+        .getComponent("amap")
+        .getAMap();
+      layer.setzIndex(2019);
+      map.addControl(
+        new AMap.ControlBar({
+          showZoomBar: false,
+          showControlButton: true,
+          position: {
+            right: "10px",
+            top: "10px"
+          }
+        })
+      );
+
+      var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
+      var heatmap2 = new AMap.Heatmap(map, heatmapOpts2);
+      //获取数据json
+      var heatmapData = require('../../static/data/3DhotChart/start/2017-05-13/10.json');
+      var heatmapData2 = require("../../static/data/3DhotChart/dest/2017-05-13/10.json");
+      console.log(heatmapData);
+      console.log(heatmapData2);
+      //*模块五：3d热力图
+      var heatmapOpts = {
+        //出发区域
+
+        gradient: {
+          0.5: "rgb(0,255,0)",
+          0.65: "rgb(0,255,127)",
+          0.7: "rgb(0,255,255)",
+          0.9: "rgb(0,127,255)",
+          1.0: "rgb(0,0,255)"
+        }
+      };
+      var heatmapOpts2 = {
+        //到达区域
+
+        gradient: {
+          0.5: "rgb(255,255,0)",
+          0.65: "rgb(255,180,0)",
+          0.7: "rgb(255,200,0)",
+          0.9: "rgb(255,80,0)",
+          1.0: "rgb(255,0,0)"
+        }
+      };
+
+      heatmap2.setDataSet({
+        data: heatmapData2,
+        max: 20
+      });
+      heatmap.setDataSet({
+        data: heatmapData,
+        max: 20
+      });
     }
   }
 };

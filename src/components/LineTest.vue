@@ -30,9 +30,8 @@ export default {
       // console.log("这是订单数量折线图");
       this.$axios.get("../../static/data/LineChart/2017-05-13_lineChart.json").then(res => {
         this.areaData = res.data; //res.data可根据你的数据格式来，看需求res
-        console.log(this.areaData); //打印看看数据吧
-        // let areaData=
         let colors = ['rgba(76,180,231,0.4)', '#d14a61', '#675bba'];
+        var fontColor = '#cdddf7';
         let optionCalen = {
           color: colors,
           // tooltip: {
@@ -216,6 +215,12 @@ export default {
             })
           }]
         };
+
+        setTimeout(() => {
+          //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
+          myChart_line.hideLoading(); //没有加载出来隐藏加载动画
+          myChart_line.setOption(optionCalen);
+        }, 2000);
       },
     )}
   },
