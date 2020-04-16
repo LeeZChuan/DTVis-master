@@ -27,7 +27,6 @@ export default {
         //没有加载出来使用加载动画
         rateChart.showLoading();
         //获取数据
-        // console.log("这是变化率折线图");
         this.$axios.get("../../static/data/increament/2017-05-13.json").then(res => {
         this.rateData = res.data; //res.data为数据
         let colors = ['rgba(76,180,231,0.4)', '#d14a61', '#675bba'];

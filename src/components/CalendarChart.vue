@@ -4,9 +4,7 @@
   </div>
 </template>
 
-<!--弹窗出现的日历热力图，用于展示订单整体情况与天气之间的关系-finsh
-时间选取功能按钮还没完成
--->
+<!--弹窗出现的日历热力图，用于展示订单整体情况与天气之间的关系时间选取功能按钮还没完成-->
 <script>
 var echarts = require("echarts"); // 引入 ECharts 主模块
 export default {

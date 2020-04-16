@@ -1,7 +1,5 @@
 <script>
 //该文件为网页效果的备份版本
-// import exp from "../components/exp.vue"; //样例图
-// import email from "../components/email.vue"; //样例2图
 import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
@@ -10,7 +8,8 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 import HeatMapChart from "../components/3DhotChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
-import centerOrderNumChart from "../components/OrderNumLineChart.vue"
+import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
+import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 // 网页界面设计
 export default {
   name: "Home",
@@ -22,13 +21,14 @@ export default {
     // ForecastChart,
     HeatMapChart,
     centerOrderNumChart,
+    RateLineChart,
     // multiputeMap,
     hexiantu
   },
   data() {
     return {
       centerForcastVisible: false, //预测部分界面弹窗
-      centerOrderNumVisible: false,//订单的出行距离与该订单出行距离数量组合折线图弹窗 
+      centerOrderNumVisible: false, //订单的出行距离与该订单出行距离数量组合折线图弹窗
       centerHotVisible: false,
       centerTadpoleVisible: false,
       //默认第一个选项卡
@@ -172,14 +172,14 @@ export default {
             <el-button type="text" @click="open">具体街道情况交通流量和弦图</el-button>
           </a>
         </li>
-          <li>
+        <li>
           <a>
             <el-button type="text" @click="centerOrderNumVisible=true">订单的出行距离与该订单整体数量组合折线图</el-button>
           </a>
         </li>
       </ul>
     </div>
-<!-- 弹窗部分 -->
+    <!-- 弹窗部分 -->
     <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="80%" center>
       <span>
         <MoveToChart></MoveToChart>
@@ -190,9 +190,10 @@ export default {
       </span>
     </el-dialog>
 
-     <el-dialog title="该天订单的出行距离与该订单整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center>
+    <el-dialog title="该天订单的出行距离与该订单整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center>
       <span>
         <centerOrderNumChart></centerOrderNumChart>
+        <RateLineChart></RateLineChart>
       </span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="centerOrderNumVisible = false">取 消</el-button>
@@ -233,7 +234,7 @@ export default {
     </div>
 
     <div class="right-area">
-      <h3>
+      <h3 style="color:white">
         交通流量变化率
         <b></b>
       </h3>
