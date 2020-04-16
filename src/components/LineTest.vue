@@ -18,29 +18,26 @@ export default {
   mounted() {
     //页面初始化函数
     // console.log("订单数量折线图初始化成功");
-    this.drawLineChart();
+    this.drawLineTest();
   },
   methods: {
-    drawLineChart() {
+    drawLineTest() {
       //基于准备好的DOM，初始化Echarts实例
       let myChart_line = echarts.init(document.getElementById("LineTest"));
       //没有加载出来使用加载动画
-      myChart_line.showLoading();
+        myChart_line.showLoading();
       //获取数据
       // console.log("这是订单数量折线图");
-      function Mychart1s(a) {
-      // 选择的日期
-      var temp = a
-      this.$axios.get("../../static/data/LineChart/"+ temp +"_lineChart.json").then(res => {
-        // this.areaData = res.data; //res.data可根据你的数据格式来，看需求
-        // console.log(this.areaData); //打印看看数据吧
+      this.$axios.get("../../static/data/LineChart/2017-05-13_lineChart.json").then(res => {
+        this.areaData = res.data; //res.data可根据你的数据格式来，看需求res
+        console.log(this.areaData); //打印看看数据吧
         // let areaData=
         let colors = ['rgba(76,180,231,0.4)', '#d14a61', '#675bba'];
         let optionCalen = {
           color: colors,
-          tooltip: {
-            trigger: "item",
-          },
+          // tooltip: {
+          //   trigger: "item",
+          // },
           grid: {
             left: '3%',
             right: '0%',
@@ -57,7 +54,7 @@ export default {
             itemWidth: 10,
             itemHeight: 10,
             textStyle: {
-              color: '#cdddf7'
+            color: '#cdddf7'
             },
             data: ['出行时间', '出行距离', '订单数量']
           },
@@ -84,11 +81,12 @@ export default {
                   color: '#57617B'
                 }
               },
-              data: data.map(function (item) {
+              data: this.areaData.map(function (item) {
                 return item[0];
               },)
             }
           ],
+          // y轴
           yAxis: [
             {
               // 左边坐标轴-订单数量
@@ -124,9 +122,9 @@ export default {
               max: 25,
               axisLabel: {
                 formatter: '{value} km',
-                  textStyle: {
-                    color: 'rgb(246,150,23)'
-                  }
+                textStyle: {
+                  color: 'rgb(246,150,23)'
+                }
               },
               axisLine: {
                 lineStyle: {
@@ -179,7 +177,7 @@ export default {
                  }
               }
             },
-            data: data.map(function (item) {
+            data: this.areaData.map(function (item) {
               return item[2];
             })
           },
@@ -213,18 +211,17 @@ export default {
                 }
               }
             },
-            data: data.map(function (item) { 
+            data: this.areaData.map(function (item) { 
               return item[1];
             })
           }]
         };
-        if (option && typeof option === "object") {
-            myChart1.setOption(option, true);
-        }
-        myChart1.setOption(option, true);
-       }
-    ,)}
-  }
-},
+      },
+    )}
+  },
+  computed: {
+    //计算属性 取存在状态库中的值
+  },
+  watch: {}
 }
 </script>
