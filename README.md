@@ -1,6 +1,6 @@
 
 # DTVis-master
-> Author: Lee ZChuan\
+> Author: Lee ZChuan\Qin Yangxin
 
 > E-mail: cdutlzc@gmail.com
 
@@ -12,7 +12,7 @@
 
 >Description: 基于Vue框架的交通流量时空演变特征可视分析系统
 
->UI设计：自己手写设计的UI、弹窗使用的vue-layer
+>UI设计：自己手写设计的UI、弹窗以及提示窗使用的element-ui
 
 
 

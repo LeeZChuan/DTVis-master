@@ -13,6 +13,7 @@
 
 0. exp.vue 例子模块部分代码（作为参考项目）√-finsh
 1. ForecastChart 预测界面
+   ForecastChart 预测界面包含整体订单预测与局部订单预测（散点花图）
 2. TadpoleChart 蝌蚪图（热力图）√-finsh
 3. 3DhotChart (3D热力图）
 4. Control 控制面板
