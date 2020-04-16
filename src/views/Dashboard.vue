@@ -212,8 +212,8 @@ export default {
       <!-- <MoveToChart></MoveToChart> -->
       <!-- <hexiantu></hexiantu> -->
       <!-- <CalendarChart></CalendarChart> -->
-      <!-- <HeatMapChart></HeatMapChart> -->
-      <lineChartext></lineChartext>
+      <HeatMapChart></HeatMapChart>
+      <!-- <lineChartext></lineChartext> -->
     </div>
 
     <div class="right-area">
