@@ -22,7 +22,7 @@
 8. CalendarChart 订单情况日期热力图√-finsh
 9. MoveToChart 区域迁徙图 √-finsh
 10. hexiantu 和弦图--用于展示该天整体订单街道流向情况
-11. 订单整体情况变化率折线图（用在弹窗展示部分）
+11. RateLineChart订单整体情况变化率折线图（用在弹窗展示部分）√-finsh
 12. OrderNumLineChart 订单的出行距离与该订单出行距离数量组合折线图（用在弹窗展示部分） √-finsh
 
 
