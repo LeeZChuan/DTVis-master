@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="LineTest" style="width: 1050px;height:300px;"></div>
+    <div id="OrderNumLineChart" style="width: 1050px;height:300px;"></div>
   </div>
 </template>
 
@@ -9,10 +9,10 @@
 <script>
 var echarts = require("echarts"); // 引入 ECharts 主模块
 export default {
-  name: "LineTest",
+  name: "OrderNumLineChart",
   data() {
     return {
-      msg: "Welcome to LineTest"
+      msg: "Welcome to OrderNumLineChart"
     };
   },
   mounted() {
@@ -23,20 +23,21 @@ export default {
   methods: {
     drawLineTest() {
       //基于准备好的DOM，初始化Echarts实例
-      let myChart_line = echarts.init(document.getElementById("LineTest"));
+      let myChart_line = echarts.init(document.getElementById("OrderNumLineChart"));
       //没有加载出来使用加载动画
-        myChart_line.showLoading();
+      myChart_line.showLoading();
       //获取数据
       // console.log("这是订单数量折线图");
       this.$axios.get("../../static/data/LineChart/2017-05-13_lineChart.json").then(res => {
-        this.areaData = res.data; //res.data可根据你的数据格式来，看需求res
+        this.orderData = res.data; //res.data可根据你的数据格式来，看需求res
         let colors = ['rgba(76,180,231,0.4)', '#d14a61', '#675bba'];
         var fontColor = '#cdddf7';
         let optionCalen = {
           color: colors,
-          // tooltip: {
-          //   trigger: "item",
-          // },
+          tooltip: {
+            trigger: "item",
+          },
+          // 网格
           grid: {
             left: '3%',
             right: '0%',
@@ -46,7 +47,6 @@ export default {
           },
           // 图例
           legend: {
-            //还可以展现很多信息（例如，节假日，具体天气情况等等），在这里添加在series里添加数据调用即可
             show: true,
             right: '0%',
             icon: 'stack',
@@ -57,7 +57,7 @@ export default {
             },
             data: ['出行时间', '出行距离', '订单数量']
           },
-          // 横轴
+          // 横轴 时间
           xAxis:[
             {
               type: 'category',
@@ -80,7 +80,7 @@ export default {
                   color: '#57617B'
                 }
               },
-              data: this.areaData.map(function (item) {
+              data: this.orderData.map(function (item) {
                 return item[0];
               },)
             }
@@ -142,8 +142,8 @@ export default {
               }
             }
           ],
+          // 两组数据：[出行距离， 订单数量]
           series: [{
-            //这里是数据读取
             name: '出行距离',
             type: 'line',
             stack: '总量',
@@ -176,7 +176,7 @@ export default {
                  }
               }
             },
-            data: this.areaData.map(function (item) {
+            data: this.orderData.map(function (item) {
               return item[2];
             })
           },
@@ -210,7 +210,7 @@ export default {
                 }
               }
             },
-            data: this.areaData.map(function (item) { 
+            data: this.orderData.map(function (item) { 
               return item[1];
             })
           }]
