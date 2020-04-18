@@ -1,5 +1,5 @@
 <script>
-//该文件为网页效果的备份版本
+//该文件为网页效果的页面布局整体网页
 import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
@@ -29,7 +29,7 @@ export default {
     return {
       centerForcastVisible: false, //预测部分界面弹窗
       centerOrderNumVisible: false, //订单的出行距离与该订单出行距离数量组合折线图弹窗
-      centerHotVisible: false,
+      centerHotVisible: false, //热力图的弹窗
       centerTadpoleVisible: false,
       //默认第一个选项卡
       activeName: "first",
