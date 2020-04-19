@@ -10,6 +10,7 @@ import HeatMapChart from "../components/3DhotChart.vue"; //热力图界面
 import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
+import PreBarChart from "../components/PreBarChart.vue";//预测界面的柱状图
 // 网页界面设计
 export default {
   name: "Home",
@@ -18,6 +19,7 @@ export default {
     MoveToChart,
     LineCharts,
     CalendarChart,
+    PreBarChart,
     // ForecastChart,
     HeatMapChart,
     centerOrderNumChart,
@@ -180,9 +182,11 @@ export default {
       </ul>
     </div>
     <!-- 弹窗部分 -->
-    <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="80%" center>
+    <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="75%" center>
       <span>
-        <MoveToChart></MoveToChart>
+        <!-- <MoveToChart></MoveToChart> -->
+        <!-- 整体预测柱状图 -->
+        <PreBarChart></PreBarChart>
       </span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="centerForcastVisible = false">取 消</el-button>
