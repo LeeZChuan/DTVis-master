@@ -5,7 +5,7 @@ import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 // import ForecastChart from "../components/ForecastChart"; //预测界面
-import HeatMapChart from "../components/3DhotChart.vue"; //热力图界面
+import HeatMapChart from "../components/HeatMapChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
