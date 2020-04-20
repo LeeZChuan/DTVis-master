@@ -11,6 +11,7 @@ import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue";//预测界面的柱状图
+import kmap from "../components/map"
 // 网页界面设计
 export default {
   name: "Home",
@@ -25,7 +26,8 @@ export default {
     centerOrderNumChart,
     RateLineChart,
     // multiputeMap,
-    hexiantu
+    hexiantu,
+    kmap
   },
   data() {
     return {
@@ -58,14 +60,6 @@ export default {
         message: h("i", { style: "color: teal" }, "切换成为街道蝌蚪图")
       });
     },
-    open2() {
-      const h = this.$createElement;
-
-      this.$notify({
-        title: "海口市交通流量热力图",
-        message: h("i", { style: "color: teal" }, "切换成为街道热力图")
-      });
-    }
   }
 };
 </script>
@@ -213,27 +207,28 @@ export default {
     <!-- 官网上说了router全部都要渲染到这里 -->
     <div class="center-area">
       <!-- 主图展示区 -->
-      <el-container>
+      <!-- <el-container>
         <el-main style="height:400px;width: 950px;">
           <el-tabs v-model="activeName" :tab-position="tabPosition">
             <el-tab-pane label="交通流量蝌蚪图" name="first" :key="'first'">
-              <!-- <TadpoleChart></TadpoleChart> -->
+              <TadpoleChart></TadpoleChart>
             </el-tab-pane>
             <el-tab-pane label="交通流量热力图" name="second" :key="'second'">
               <MoveToChart></MoveToChart>
             </el-tab-pane>
-            <el-tab-pane label="交通流量花弦图" :key="'third'">交通流量花弦图</el-tab-pane>
-            <el-tab-pane label="交通流量散点图" :key="'fourth'">交通流量散点图</el-tab-pane>
+            <el-tab-pane label="交通流量花弦图" name="third" :key="'third'">交通流量花弦图</el-tab-pane>
+            <el-tab-pane label="交通流量订单预测散点图" name="fourth" :key="'fourth'">交通流量散点图</el-tab-pane>
           </el-tabs>
         </el-main>
         <el-footer>
           <LineCharts></LineCharts>
         </el-footer>
-      </el-container>
+      </el-container> -->
+      <kmap></kmap>
       <!-- <MoveToChart></MoveToChart> -->
       <!-- <hexiantu></hexiantu> -->
       <!-- <CalendarChart></CalendarChart> -->
-      <HeatMapChart></HeatMapChart>
+      <!-- <HeatMapChart></HeatMapChart> -->
       <!-- <lineChartext></lineChartext> -->
     </div>
 

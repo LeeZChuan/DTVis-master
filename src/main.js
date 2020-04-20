@@ -13,8 +13,11 @@ import 'vue-layer/lib/vue-layer.css';
 import 'echarts-gl';
 import HighchartsVue from 'highcharts-vue'
 import VueResource from 'vue-resource';
+import AMap from  'vue-amap'  
 
 
+
+Vue.use(AMap);
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;//本地数据读取
 Vue.prototype.$bus = new Vue();
