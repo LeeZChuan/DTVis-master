@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <div id="TadpoleChart" style="width: 1100px;height:450px;">
+  <div id="container">
+    <el-amap id="TadpoleChart">
       <!-- <div class="input-card" id>
         <input
           id="analysis"
@@ -29,7 +29,7 @@
       <!--                <input id="hotmap3dd" class="btn" onclick="hotmap3dd()" type="button" style="margin-bottom: -20px;margin-left: 90px; width: 150px" value="删除3D热力图" />-->
 
       <!-- </div> -->
-    </div>
+    </el-amap>
     <!-- 添加图表的操作事件，添加点击事件 -->
   </div>
 </template>
@@ -66,86 +66,96 @@ export default {
         .then(res => {
           var didiData = res.data;
 
-          var hStep = 300 / (didiData.length - 1);                                                                        //路径颜色
-        let busLinesk = [].concat.apply([], didiData.map(function (busLine, idx) {
-            var points = [];                                                                                            //每条轨迹的数据
-            for (var i = 0; i < busLine[0].length; i += 2) {
-                var pt = [busLine[0][i], busLine[0][i + 1]];                                                            //初始化pt坐标
-                points.push([pt[0], pt[1]]);                                                                            //存入points
-            }
-            return {
-                                                                                                                        //往buslines返回数据
+          var hStep = 300 / (didiData.length - 1); //路径颜色
+          let busLinesk = [].concat.apply(
+            [],
+            didiData.map(function(busLine, idx) {
+              var points = []; //每条轨迹的数据
+              for (var i = 0; i < busLine[0].length; i += 2) {
+                var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
+                points.push([pt[0], pt[1]]); //存入points
+              }
+              return {
+                //往buslines返回数据
                 coords: points,
                 lineStyle: {
-                    normal: {
-                        color: echarts.color.modifyHSL('rgb(255,122,0)', Math.round(hStep * idx))//
-                    }
+                  normal: {
+                    color: echarts.color.modifyHSL(
+                      "rgb(255,122,0)",
+                      Math.round(hStep * idx)
+                    ) //
+                  }
                 }
-            };
-        }));
-        tempbusLinesk = busLinesk;
+              };
+            })
+          );
+          tempbusLinesk = busLinesk;
 
-        var busLinesk2 = [].concat.apply([], didiData.map(function (busLine, idx) {                                     //用于蝌蚪图画线，数据处理待优化
-            var points = [];
-            for (var i = 0; i < busLine[0].length; i += 2) {
+          var busLinesk2 = [].concat.apply(
+            [],
+            didiData.map(function(busLine, idx) {
+              //用于蝌蚪图画线，数据处理待优化
+              var points = [];
+              for (var i = 0; i < busLine[0].length; i += 2) {
                 var pt = [busLine[0][i], busLine[0][i + 1]];
-                points.push([pt[0], pt[1]]);                                                                            //存入points
-            }
-            return {
-                coords: points,                                                                                         //往buslines返回数据
-            };
-        }));
-        tempbusLinesk2 = busLinesk2;
+                points.push([pt[0], pt[1]]); //存入points
+              }
+              return {
+                coords: points //往buslines返回数据
+              };
+            })
+          );
+          tempbusLinesk2 = busLinesk2;
 
-        let option = {
-            title : {
-                text: "海口市车流量蝌蚪图",
-                left: 'center',
-                top: 20,
-                textStyle:{
-                    color: '#cdddf7',
-                    fontSize: 20
-                },
-                subtextStyle:{
-                    color: 'white',
-                    fontSize: 16
-                }
+          let option = {
+            title: {
+              text: "海口市车流量蝌蚪图",
+              left: "center",
+              top: 20,
+              textStyle: {
+                color: "#cdddf7",
+                fontSize: 20
+              },
+              subtextStyle: {
+                color: "white",
+                fontSize: 16
+              }
             },
-                                                                                                                        // 加载 amap 组件
-            amap: {                                                                                                     // 高德地图支持的初始化地图配置
-                center: [110.32835483551025, 20.01996791722277],                                                        // 高德地图初始中心经纬度
-                zoom: 13,                                                                                               // 高德地图初始缩放级别
-                resizeEnable: true,                                                                                     // 是否开启resize
-                mapStyle: "amap://styles/grey",                                                                         // 自定义地图样式主题
-                echartsLayerZIndex: 2019,                                                                               // 高德地图自定义EchartsLayer的zIndex，默认2000
-                // 说明：如果想要添加卫星、路网等图层
-                // 暂时先不要使用layers配置，因为存在Bug
-                // 建议使用amap.add的方式，使用方式参见最下方代码
-                viewMode: '3D',                                                                                         //开启3D视图,默认为关闭
-                buildingAnimation: true,                                                                                //楼块出现是否带动画
-
+            // 加载 amap 组件
+            amap: {
+              // 高德地图支持的初始化地图配置
+              center: [110.32835483551025, 20.01996791722277], // 高德地图初始中心经纬度
+              zoom: 13, // 高德地图初始缩放级别
+              resizeEnable: true, // 是否开启resize
+              mapStyle: "amap://styles/grey", // 自定义地图样式主题
+              echartsLayerZIndex: 2019, // 高德地图自定义EchartsLayer的zIndex，默认2000
+              // 说明：如果想要添加卫星、路网等图层
+              // 暂时先不要使用layers配置，因为存在Bug
+              // 建议使用amap.add的方式，使用方式参见最下方代码
+              viewMode: "3D", //开启3D视图,默认为关闭
+              buildingAnimation: true //楼块出现是否带动画
             },
             series: [
-                {
-                    type: 'lines',
-                    coordinateSystem: 'amap',
-                    polyline: true,
-                    data: busLinesk,
-                    lineStyle: {
-                        normal: {
-                            width: 0
-                        }
-                    },
-                    effect: {
-                        constantSpeed: 20,
-                        show: true,
-                        trailLength: 0.1,
-                        symbolSize: 1.5
-                    },
-                    zlevel: 1
-                }
-            ],
-        }
+              {
+                type: "lines",
+                coordinateSystem: "amap",
+                polyline: true,
+                data: busLinesk,
+                lineStyle: {
+                  normal: {
+                    width: 0
+                  }
+                },
+                effect: {
+                  constantSpeed: 20,
+                  show: true,
+                  trailLength: 0.1,
+                  symbolSize: 1.5
+                },
+                zlevel: 1
+              }
+            ]
+          };
 
           setTimeout(() => {
             //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
@@ -163,7 +173,6 @@ function analysis() {
   var f = document.getElementById("demo").textContent;
   var myChartk = echarts.init(document.getElementById("TadpoleChart"));
   myChartk.clear();
-  
 
   //数据读取需要改动
   this.$axios
@@ -461,3 +470,10 @@ function hotmap3d() {
   });
 }
 </script>
+
+<style>
+#TadpoleChart {
+  width: 950px;
+  height: 400px;
+}
+</style>

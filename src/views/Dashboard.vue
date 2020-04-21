@@ -11,8 +11,8 @@ import HeatMapChart from "../components/HeatMapChart.vue"; //热力图界面
 import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
-import PreBarChart from "../components/PreBarChart.vue";//预测界面的柱状图
-import kmap from "../components/map"
+import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
+import kmap from "../components/map";
 // 网页界面设计
 export default {
   name: "Home",
@@ -37,6 +37,7 @@ export default {
       centerOrderNumVisible: false, //订单的出行距离与该订单出行距离数量组合折线图弹窗
       centerHotVisible: false, //热力图的弹窗
       centerTadpoleVisible: false,
+      centerVisible: true, //热力图与蝌蚪图进行切换
       //默认第一个选项卡
       activeName: "first",
       tabPosition: "left"
@@ -61,7 +62,7 @@ export default {
         title: "海口市交通流量蝌蚪图",
         message: h("i", { style: "color: teal" }, "切换成为街道蝌蚪图")
       });
-    },
+    }
   }
 };
 </script>
@@ -147,12 +148,12 @@ export default {
       <ul>
         <li>
           <a>
-            <el-button type="text" @click="centerTadpoleVisible = true">交通流量蝌蚪图</el-button>
+            <el-button type="text" @click="centerVisible = true ; ">交通流量蝌蚪图</el-button>
           </a>
         </li>
         <li>
           <a>
-            <el-button type="text" @click="centerHotVisible = true">交通流量热力图</el-button>
+            <el-button type="text" @click="centerVisible = false ;">交通流量热力图</el-button>
           </a>
         </li>
         <li>
@@ -190,7 +191,12 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="该天订单的出行距离与该订单整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center>
+    <el-dialog
+      title="该天订单的出行距离与该订单整体数量组合折线图"
+      :visible.sync="centerOrderNumVisible"
+      width="75%"
+      center
+    >
       <span>
         <centerOrderNumChart></centerOrderNumChart>
         <RateLineChart></RateLineChart>
@@ -225,13 +231,44 @@ export default {
         <el-footer>
           <LineCharts></LineCharts>
         </el-footer>
-      </el-container> -->
-      <kmap></kmap>
-      <!-- <MoveToChart></MoveToChart> -->
-      <!-- <hexiantu></hexiantu> -->
-      <!-- <CalendarChart></CalendarChart> -->
-      <!-- <HeatMapChart></HeatMapChart> -->
-      <!-- <lineChartext></lineChartext> -->
+      </el-container>-->
+
+      <!-- 版本2 -->
+      <!-- <el-container>
+        <el-main style="height:400px;width: 950px;">
+            <el-main label="交通流量蝌蚪图" v-show="centerVisible" style="overflow:hidden">
+              <TadpoleChart></TadpoleChart>
+            </el-main>
+            <el-main label="交通流量热力图" v-show="!centerVisible" style="overflow:hidden">
+               <HeatMapChart></HeatMapChart>
+            </el-main>
+            <el-main label="交通流量花弦图" name="third" :key="'third'">交通流量花弦图</el-main>
+            <el-main label="交通流量订单预测散点图" name="fourth" :key="'fourth'">交通流量散点图</el-main>
+        </el-main>
+        <el-footer>
+          <LineCharts></LineCharts>
+        </el-footer>
+      </el-container>-->
+
+      <!-- 版本3 -->
+      <!-- <el-container>
+        <el-main style="height:400px;width: 950px;">
+          <TadpoleChart label="交通流量蝌蚪图" v-show="centerVisible" style="overflow:hidden"></TadpoleChart>
+          <HeatMapChart label="交通流量热力图" v-show="!centerVisible" style="overflow:hidden"></HeatMapChart>
+        </el-main>
+        <el-footer>
+          <LineCharts></LineCharts>
+        </el-footer>
+      </el-container>-->
+
+      <!-- 版本4 -->
+      <div style="width: 950px;height:400px;">
+      <TadpoleChart label="交通流量蝌蚪图" v-show="centerVisible" ></TadpoleChart>
+      <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart>
+      </div>
+      <div style="width: 950px;height:300px;">
+      <LineCharts></LineCharts>
+      </div>
     </div>
 
     <div class="right-area">
@@ -266,11 +303,7 @@ export default {
 
     <div class="time-base-outer">
       <b class="line1"></b>
-      <div class="time-base">
-        <!--  <div class="slider2"></div> -->
-        <!-- <script src="./static/js/jquery_and_jqueryui.js"></script> -->
-        <!-- <script src="/DTVis-mastesr/static/js/index.js"></script> -->
-      </div>
+      <div class="time-base"></div>
       <b class="line2"></b>
     </div>
   </div>
@@ -299,6 +332,7 @@ export default {
   left: 220px;
   display: inline-block;
   width: calc(100% - 240px);
+  overflow: hidden;
 }
 .block {
   position: fixed;
