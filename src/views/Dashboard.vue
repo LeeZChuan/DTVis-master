@@ -35,8 +35,9 @@ export default {
     return {
       centerForcastVisible: false, //预测部分界面弹窗
       centerOrderNumVisible: false, //订单的出行距离与该订单出行距离数量组合折线图弹窗
-      centerHotVisible: false, //热力图的弹窗
-      centerTadpoleVisible: false,
+      centerMoveToVisible: false, //订单情况区域迁徙图的弹窗
+      centerDepVisible:false,//订单情况街道流向和弦图
+      centerTadpoleVisible: false, //
       centerVisible: true, //热力图与蝌蚪图进行切换
       //默认第一个选项卡
       activeName: "first",
@@ -158,7 +159,7 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="open">交通流量迁徙图</el-button>
+            <el-button type="text" @click="centerMoveToVisible=true">交通流量迁徙图</el-button>
           </a>
         </li>
         <li>
@@ -168,7 +169,7 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="open">具体街道情况交通流量和弦图</el-button>
+            <el-button type="text" @click="centerDepVisible=true">具体街道情况交通流量和弦图</el-button>
           </a>
         </li>
         <li>
@@ -181,7 +182,6 @@ export default {
     <!-- 弹窗部分 -->
     <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="75%" center>
       <span>
-        <!-- <MoveToChart></MoveToChart> -->
         <!-- 整体预测柱状图 -->
         <PreBarChart></PreBarChart>
       </span>
@@ -191,12 +191,7 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog
-      title="该天订单的出行距离与该订单整体数量组合折线图"
-      :visible.sync="centerOrderNumVisible"
-      width="75%"
-      center
-    >
+    <el-dialog title="该天订单的出行距离与整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center>
       <span>
         <centerOrderNumChart></centerOrderNumChart>
         <RateLineChart></RateLineChart>
@@ -204,6 +199,26 @@ export default {
       <span slot="footer" class="dialog-footer">
         <el-button @click="centerOrderNumVisible = false">取 消</el-button>
         <el-button type="primary" @click="centerOrderNumVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="该天交通流量迁徙图" :visible.sync="centerMoveToVisible" width="75%" center>
+      <span>
+        <MoveToChart></MoveToChart>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="centerMoveToVisible = false">取 消</el-button>
+        <el-button type="primary" @click="centerMoveToVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="具体街道情况交通流量和弦图" :visible.sync="centerDepVisible" width="75%" center>
+      <span>
+        
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="centerDepVisible = false">取 消</el-button>
+        <el-button type="primary" @click="centerDepVisible = false">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -263,11 +278,11 @@ export default {
 
       <!-- 版本4 -->
       <div style="width: 950px;height:400px;">
-      <TadpoleChart label="交通流量蝌蚪图" v-show="centerVisible" ></TadpoleChart>
-      <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart>
+        <TadpoleChart label="交通流量蝌蚪图" v-show="centerVisible"></TadpoleChart>
+        <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart>
       </div>
       <div style="width: 950px;height:300px;">
-      <LineCharts></LineCharts>
+        <LineCharts></LineCharts>
       </div>
     </div>
 
