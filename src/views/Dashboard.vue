@@ -4,7 +4,7 @@ import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
-// import ForecastChart from "../components/ForecastChart"; //预测界面
+// import ForecastChart from "../components/ForecastChart"; //预测情况散点图界面
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
 import HeatMapChart from "../components/HeatMapChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
