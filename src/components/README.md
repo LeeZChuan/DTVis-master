@@ -12,11 +12,11 @@
 其中Pre文件是未定型的可视化组件文件
 
 0. exp.vue 例子模块部分代码（作为参考项目）√-finsh
-1. ForecastChart 预测界面
+1. ForecastChart 预测的订单整体情况折线图界面 √-finsh
    ForecastChart 预测界面包含整体订单预测与局部订单预测（散点花图）
 2. TadpoleChart 蝌蚪图（热力图）√-finsh
-3. 3DhotChart (3D热力图）
-4. Control 控制面板
+3. 3DhotChart (3D热力图）后续还可以添加一些交互功能 √-finsh
+4. Control 控制面板  unfinsh
 5. multiputeMap 用于展示海口市地区订单情况散点雷达图
 6. LineChart 出行距离与出行次数折线图√-finsh
 7. map 出行订单数量散点图（花弦图）

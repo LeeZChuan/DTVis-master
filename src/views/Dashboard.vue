@@ -8,7 +8,7 @@ import CalendarChart from "../components/CalendarChart.vue"; //日期订单情�
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
 import HeatMapChart from "../components/HeatMapChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
-import hexiantu from "../components/hexiantu.vue"; //订单情况街道和弦图
+import ChordChart from "../components/ChordChart.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
@@ -28,7 +28,7 @@ export default {
     centerOrderNumChart,
     RateLineChart,
     // multiputeMap,
-    hexiantu,
+    ChordChart,
     kmap
   },
   data() {
@@ -36,9 +36,10 @@ export default {
       centerForcastVisible: false, //预测部分界面弹窗
       centerOrderNumVisible: false, //订单的出行距离与该订单出行距离数量组合折线图弹窗
       centerMoveToVisible: false, //订单情况区域迁徙图的弹窗
-      centerDepVisible:false,//订单情况街道流向和弦图
+      centerDepVisible: false, //订单情况街道流向和弦图
       centerTadpoleVisible: false, //
       centerVisible: true, //热力图与蝌蚪图进行切换
+      dateTime: "2017-10-1",//默认时间展示为2017-10-01
       //默认第一个选项卡
       activeName: "first",
       tabPosition: "left"
@@ -63,8 +64,12 @@ export default {
         title: "海口市交通流量蝌蚪图",
         message: h("i", { style: "color: teal" }, "切换成为街道蝌蚪图")
       });
+    },
+    getNowDate(val) {
+      this.nowTime = val;
+      console.log("这是在Dashboard里面的时间"+this.nowTime);
     }
-  }
+  },
 };
 </script>
 
@@ -212,19 +217,26 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="具体街道情况交通流量和弦图" :visible.sync="centerDepVisible" width="75%" center>
+    <el-dialog  :visible.sync="centerDepVisible" width="75%" fullscreen=true center>
       <span>
-        
+        <ChordChart></ChordChart>
       </span>
-      <span slot="footer" class="dialog-footer">
+      <!-- <span slot="footer" class="dialog-footer">
         <el-button @click="centerDepVisible = false">取 消</el-button>
         <el-button type="primary" @click="centerDepVisible = false">确 定</el-button>
-      </span>
+      </span> -->
     </el-dialog>
 
     <!-- 时间选择器 -->
     <div class="block">
-      <el-date-picker v-model="value1" type="date" placeholder="选择日期"></el-date-picker>
+      <!-- <el-date-picker v-model="value1" type="date"  placeholder="选择日期"></el-date-picker> -->
+      <el-date-picker
+        v-model="dateTime"
+        type="date"
+        value-format="yyyy-MM-dd"
+        placeholder="选择日期"
+        @change="getNowDate"
+      ></el-date-picker>
     </div>
 
     <!-- 官网上说了router全部都要渲染到这里 -->

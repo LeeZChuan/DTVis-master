@@ -52,14 +52,12 @@ export default {
   },
   methods: {
     drawTadpoleChart() {
-      // console.log(1);
       /*ECharts图表*/
       var tempbusLinesk = new Array();
       var tempbusLinesk2 = new Array();
       let myChartk = echarts.init(document.getElementById("TadpoleChart"));
       //没有加载出来使用加载动画
       myChartk.showLoading();
-      // console.log("这是蝌蚪图");
       this.$axios
         // 读取json文件到didiData
         .get("../../static/data/TadpoleChart/2017-05-13/0小时.json")
