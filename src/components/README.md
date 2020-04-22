@@ -22,7 +22,7 @@
 7. map 出行订单数量散点图（花弦图）
 8. CalendarChart 订单情况日期热力图√-finsh
 9. MoveToChart 区域迁徙图 √-finsh
-10. hexiantu 和弦图--用于展示该天整体订单街道流向情况
+10. ChordChart 和弦图--用于展示该天整体订单街道流向情况 √-finsh
 11. RateLineChart订单整体情况变化率折线图（用在弹窗展示部分）√-finsh
 12. OrderNumLineChart 订单的出行距离与该订单出行距离数量组合折线图（用在弹窗展示部分） √-finsh
 13. ParallelChart 平行坐标系--分析多个因素对出行量的影响（日期x1、天气x2、距离x3、时间x4、地区x5、订单数量x6）

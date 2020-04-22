@@ -40,10 +40,9 @@ export default {
         this.chart.destroy();
       }
       this.$axios
-        .get("../../static/data/hexiantu/2017-05-13_hexiantu.json")
+        .get("../../static/data/ChordChart/2017-05-13_ChordChart.json")
         .then(res => {
-          var chData = res.data; //res.data可根据你的数据格式来，看需求
-          console.log(chData);
+          var chData = res.data; //chData可根据你的数据格式来，看需求
           // 具体图表设置
           let optionchord = {
             title: {
@@ -92,10 +91,6 @@ export default {
                 size: "95%"
               }
             ]
-            // subtitle: {
-            //   text: "测试..."
-            // },
-            //*************************************************************/
           };
           // 初始化 Highcharts 图表
           this.chart = new Highcharts.Chart("container", optionchord);

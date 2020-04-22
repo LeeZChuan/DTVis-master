@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <!-- 宽度很合适，实现了地图的旋转以及放大缩小 -->
+    <!-- 订单起点情况热力图，宽度很合适，实现了地图的旋转以及放大缩小 -->
     <el-amap id="HeatMapChart"></el-amap>
 
     <!-- <div class="input-card">
