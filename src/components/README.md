@@ -15,7 +15,8 @@
 1. ForecastChart 预测的订单整体情况折线图界面 √-finsh
    ForecastChart 预测界面包含整体订单预测与局部订单预测（散点花图）
 2. TadpoleChart 蝌蚪图（热力图）√-finsh
-3. 3DhotChart (3D热力图）后续还可以添加一些交互功能 √-finsh
+3. Start3DhotChart (3D热力图）后续还可以添加一些交互功能 √-finsh
+   End3DhotChart 终点订单情况热力图
 4. Control 控制面板  unfinsh
 5. multiputeMap 用于展示海口市地区订单情况散点雷达图
 6. LineChart 出行距离与出行次数折线图√-finsh
