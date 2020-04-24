@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <!-- 订单终点情况热力图，宽度很合适，实现了地图的旋转以及放大缩小 -->
+    <!-- 订单起点情况热力图，宽度很合适，实现了地图的旋转以及放大缩小 -->
     <el-amap id="HeatMapChart"></el-amap>
   </div>
 </template>
@@ -26,13 +26,15 @@ export default {
     }
   },
   mounted() {
+    //执行方法
     this.drawHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {
     drawHeatMapChart(Date) {
+      //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/dest/"+Date+"/10.json")
+        .get("../../static/data/3DhotChart/dest/" + Date + "/10.json")
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;
@@ -94,7 +96,7 @@ export default {
   position: relative;
   min-width: 12rem;
   padding: 0;
-  background:white;
+  background: white;
 }
 
 .context_menu p {
