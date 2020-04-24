@@ -69,7 +69,7 @@ export default {
       this.nowTime = val;
       console.log("这是在Dashboard里面的时间" + this.nowTime);
       this.$store.state.TimeDate=this.nowTime;
-      // console.log(dateTime);
+      console.log("修改state"+this.$store.state.TimeDate);
     }
   }
 };

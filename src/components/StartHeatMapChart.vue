@@ -64,11 +64,12 @@ export default {
   },
   methods: {
     drawHeatMapChart() {
-      // console.log("这是热力图的数据"+TimeDate);
+      var TimeDate=this.$store.state.TimeDate;
+      console.log("relitu"+TimeDate);
       //   var HeatmapChart = echarts.init(document.getElementById("HeatMapChart"));
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/start/"+{{msg2}}+"/10.json")
+        .get("../../static/data/3DhotChart/start/"+TimeDate+"/10.json")
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;
