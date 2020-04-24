@@ -6,7 +6,7 @@ import LineCharts from "../components/LineCharts.vue"; //出行距离与出行�
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 // import ForecastChart from "../components/ForecastChart"; //预测情况散点图界面
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
-import HeatMapChart from "../components/HeatMapChart.vue"; //热力图界面
+import HeatMapChart from "../components/StartHeatMapChart.vue"; //热力图界面
 // import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 import ChordChart from "../components/ChordChart.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
@@ -39,7 +39,7 @@ export default {
       centerDepVisible: false, //订单情况街道流向和弦图
       centerTadpoleVisible: false, //
       centerVisible: true, //热力图与蝌蚪图进行切换
-      dateTime: "2017-10-1",//默认时间展示为2017-10-01
+      dateTime: "2017-10-1", //默认时间展示为2017-10-01
       //默认第一个选项卡
       activeName: "first",
       tabPosition: "left"
@@ -65,11 +65,13 @@ export default {
         message: h("i", { style: "color: teal" }, "切换成为街道蝌蚪图")
       });
     },
-    getNowDate(val) {
+    getNowDate:function(val) {
       this.nowTime = val;
-      console.log("这是在Dashboard里面的时间"+this.nowTime);
+      console.log("这是在Dashboard里面的时间" + this.nowTime);
+      this.$store.state.TimeDate=this.nowTime;
+      // console.log(dateTime);
     }
-  },
+  }
 };
 </script>
 
@@ -164,7 +166,7 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="centerMoveToVisible=true">交通流量迁徙图</el-button>
+            <el-button type="text" @click="centerMoveToVisible = true">交通流量迁徙图</el-button>
           </a>
         </li>
         <li>
@@ -174,12 +176,12 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="centerDepVisible=true">具体街道情况交通流量和弦图</el-button>
+            <el-button type="text" @click="centerDepVisible = true">具体街道情况交通流量和弦图</el-button>
           </a>
         </li>
         <li>
           <a>
-            <el-button type="text" @click="centerOrderNumVisible=true">订单的出行距离与该订单整体数量组合折线图</el-button>
+            <el-button type="text" @click="centerOrderNumVisible = true">订单的出行距离与该订单整体数量组合折线图</el-button>
           </a>
         </li>
       </ul>
@@ -217,14 +219,14 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog  :visible.sync="centerDepVisible" width="75%" fullscreen=true center>
+    <el-dialog :visible.sync="centerDepVisible" width="75%" fullscreen="true" center>
       <span>
         <ChordChart></ChordChart>
       </span>
       <!-- <span slot="footer" class="dialog-footer">
         <el-button @click="centerDepVisible = false">取 消</el-button>
         <el-button type="primary" @click="centerDepVisible = false">确 定</el-button>
-      </span> -->
+      </span>-->
     </el-dialog>
 
     <!-- 时间选择器 -->

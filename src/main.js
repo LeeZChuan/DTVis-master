@@ -1,6 +1,7 @@
 // main文件
 import Vue from 'vue';
 import Vuex from 'vuex';
+import store from './vuex/store'
 import VueRouter from'vue-router';
 import App from './App.vue';
 import router from './router';
@@ -51,6 +52,7 @@ Vue.use(VueResource);
 
 new Vue({
   router,
+  store,
   render: h => h(App),
   components: { App },
   template: '<App/>'
