@@ -13,14 +13,26 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
+      this.drawHeatMapChart(curVal, this.$store.state.TimeDate);
+    }
+  },
   mounted() {
-    this.drawHeatMapChart();
+    this.drawHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {
-    drawHeatMapChart() {
+    drawHeatMapChart(Date) {
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/dest/2017-05-13/10.json")
+        .get("../../static/data/3DhotChart/dest/"+Date+"/10.json")
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;

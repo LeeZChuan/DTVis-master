@@ -15,18 +15,30 @@ export default {
       msg: "Welcome to OrderNumLineChart"
     };
   },
+  computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
+      this.drawOrderLine(curVal, this.$store.state.TimeDate);
+    }
+  },
   mounted() {
     //页面初始化函数
-    this.drawLineTest();
+    this.drawOrderLine(this.$store.state.TimeDate);
   },
   methods: {
-    drawLineTest() {
+    drawOrderLine(Date) {
       //基于准备好的DOM，初始化Echarts实例
       let myChart_line = echarts.init(document.getElementById("OrderNumLineChart"));
       //没有加载出来使用加载动画
       myChart_line.showLoading();
       //获取数据
-      this.$axios.get("../../static/data/LineChart/2017-05-13_lineChart.json").then(res => {
+      this.$axios.get("../../static/data/LineChart/"+Date+"_lineChart.json").then(res => {
         this.orderData = res.data; //res.data可根据你的数据格式来，看需求res
         let colors = ['rgba(76,180,231,0.4)', '#d14a61', '#675bba'];
         var fontColor = '#cdddf7';

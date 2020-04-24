@@ -46,12 +46,24 @@ export default {
       msg: "Welcome to TadpoleCharts"
     };
   },
+   computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
+      this.drawTadpoleChart(curVal, this.$store.state.TimeDate);
+    }
+  },
   mounted() {
     //页面初始化函数
-    this.drawTadpoleChart();
+    this.drawTadpoleChart(this.$store.state.TimeDate);
   },
   methods: {
-    drawTadpoleChart() {
+    drawTadpoleChart(Date) {
       /*ECharts图表*/
       var tempbusLinesk = new Array();
       var tempbusLinesk2 = new Array();
@@ -60,7 +72,7 @@ export default {
       myChartk.showLoading();
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/TadpoleChart/2017-05-13/0小时.json")
+        .get("../../static/data/TadpoleChart/"+Date+"/0小时.json")
         .then(res => {
           var didiData = res.data;
 

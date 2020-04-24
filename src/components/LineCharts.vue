@@ -16,7 +16,6 @@ export default {
   },
   mounted() {
     //页面初始化函数
-    // console.log("折线图初始化成功");
     this.drawLineChart();
   },
   methods: {

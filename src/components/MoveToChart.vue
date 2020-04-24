@@ -16,12 +16,24 @@ export default {
       msg: "Welcome to MoveToChart"
     };
   },
+  computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
+      this.drawqianxituChart(curVal, this.$store.state.TimeDate);
+    }
+  },
   mounted() {
     //页面初始化函数
-    this.drawqianxituChart();
+    this.drawqianxituChart(this.$store.state.TimeDate);
   },
   methods: {
-    drawqianxituChart() {
+    drawqianxituChart(Date) {
       //基于准备好的DOM，初始化Echarts实例
       let myChartqianxitu = echarts.init(
         document.getElementById("MoveToChart")
@@ -29,18 +41,8 @@ export default {
       //没有加载出来使用加载动画
       myChartqianxitu.showLoading();
       //获取数据
-      //读取数据
-      // var geoCoordMap = new Array();
-      // var GZData = new Array();
-
-      // this.$axios
-      //   .get("../../static/data/qianxitu/" + a + "qianxitu.json")
-      //   .then(res => {
-      //     GZData = res.data; //res.data可根据你的数据格式来，看需求
-      //     // console.log(dailyData); //打印看看数据吧
-      //   });
       this.$axios
-        .get("../../static/data/qianxitu/2017-05-13qianxitu.json")
+        .get("../../static/data/qianxitu/"+Date+"qianxitu.json")
         .then(respone => {
           var GZData = respone.data; //res.data可根据你的数据格式来，看需求
 

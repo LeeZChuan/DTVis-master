@@ -66,10 +66,9 @@ export default {
       });
     },
     getNowDate:function(val) {
+      //获取当前展示天数的方法
       this.nowTime = val;
-      console.log("这是在Dashboard里面的时间" + this.nowTime);
       this.$store.state.TimeDate=this.nowTime;
-      console.log("修改state"+this.$store.state.TimeDate);
     }
   }
 };

@@ -53,23 +53,29 @@ export default {
   data() {
     return {};
   },
-  comptude:{
-    TimeDate()
-    {
-      return this.$store.state.TimeDate
+  computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      // console.log("这是起点热力图的监听" + curVal);
+      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
+      this.drawHeatMapChart(curVal, this.$store.state.TimeDate);
     }
   },
   mounted() {
-    this.drawHeatMapChart();
+    //执行方法
+    this.drawHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {
-    drawHeatMapChart() {
-      var TimeDate=this.$store.state.TimeDate;
-      console.log("relitu"+TimeDate);
-      //   var HeatmapChart = echarts.init(document.getElementById("HeatMapChart"));
+    drawHeatMapChart(Date) {
+      //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/start/"+TimeDate+"/10.json")
+        .get("../../static/data/3DhotChart/start/" + Date + "/10.json")
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;
@@ -131,7 +137,7 @@ export default {
   position: relative;
   min-width: 12rem;
   padding: 0;
-  background:white;
+  background: white;
 }
 
 .context_menu p {

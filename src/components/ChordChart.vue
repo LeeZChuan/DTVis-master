@@ -31,16 +31,27 @@ export default {
   props: {
     msg: String
   },
+  computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      this.ChordChart(curVal, this.$store.state.TimeDate);
+    }
+  },
   mounted() {
-    this.moreChart();
+    this.ChordChart(this.$store.state.TimeDate);
   },
   methods: {
-    moreChart() {
+    ChordChart(Date) {
       if (this.chart) {
         this.chart.destroy();
       }
       this.$axios
-        .get("../../static/data/ChordChart/2017-05-13_ChordChart.json")
+        .get("../../static/data/ChordChart/"+Date+"_ChordChart.json")
         .then(res => {
           var chData = res.data; //chData可根据你的数据格式来，看需求
           // 具体图表设置
