@@ -46,7 +46,7 @@ export default {
       msg: "Welcome to TadpoleCharts"
     };
   },
-   computed: {
+  computed: {
     TimeDate() {
       return this.$store.state.TimeDate;
     }
@@ -72,7 +72,7 @@ export default {
       myChartk.showLoading();
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/TadpoleChart/"+Date+"/0小时.json")
+        .get("../../static/data/TadpoleChart/" + Date + "/0小时.json")
         .then(res => {
           var didiData = res.data;
 
@@ -178,7 +178,7 @@ export default {
 };
 
 //模块一：使用订单类别分析功能
-function analysis() {
+function analysis(Date) {
   var g = document.getElementById("demo1").textContent.split("时")[0];
   var f = document.getElementById("demo").textContent;
   var myChartk = echarts.init(document.getElementById("TadpoleChart"));
@@ -186,130 +186,128 @@ function analysis() {
 
   //数据读取需要改动
   this.$axios
-    .get("../../static/data/TadpoleChart/2017-05-13/0小时.json")
+    .get("../../static/data/TadpoleChart/" + Date + "/0小时.json")
     .then(res => {
       var didiData = res.data;
-      // console.log(didiData); //打印看看数据吧
-    });
-
-  var hStep = 300 / (didiData.length - 1); //路径颜色
-  let busLinesk = [].concat.apply(
-    [],
-    didiData.map(function(busLine, idx) {
-      var points = [];
-      for (var i = 0; i < busLine[0].length; i += 2) {
-        //每条轨迹的数据
-        var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
-        points.push([pt[0], pt[1]]); //存入points
-      }
-
-      return {
-        //往buslines返回数据
-        coords: points,
-        lineStyle: {
-          normal: {
-            color: echarts.color.modifyHSL(
-              "rgb(255,122,0)",
-              Math.round(hStep * idx)
-            )
+      var hStep = 300 / (didiData.length - 1); //路径颜色
+      let busLinesk = [].concat.apply(
+        [],
+        didiData.map(function(busLine, idx) {
+          var points = [];
+          for (var i = 0; i < busLine[0].length; i += 2) {
+            //每条轨迹的数据
+            var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
+            points.push([pt[0], pt[1]]); //存入points
           }
-        }
-      };
-    })
-  );
-  tempbusLinesk = busLinesk;
-  //用于蝌蚪图画线，数据处理待优化
-  let busLinesk2 = [].concat.apply(
-    [],
-    didiData.map(function(busLine, idx) {
-      var points = [];
-      for (var i = 0; i < busLine[0].length; i += 2) {
-        var pt = [busLine[0][i], busLine[0][i + 1]];
-        points.push([pt[0], pt[1]]); //存入points
-      }
-      return {
-        //往buslines返回数据
-        coords: points
-      };
-    })
-  );
-  tempbusLinesk2 = busLinesk2;
-  let option = {
-    // 加载 amap 组件
-    amap: {
-      // 高德地图支持的初始化地图配置
-      center: [110.32835483551025, 20.01996791722277], // 高德地图初始中心经纬度
-      zoom: 13, // 高德地图初始缩放级别
-      resizeEnable: true, // 是否开启resize
-      mapStyle: "amap://styles/grey", // 自定义地图样式主题
-      echartsLayerZIndex: 2019, // 高德地图自定义EchartsLayer的zIndex，默认2000
-      // 说明：如果想要添加卫星、路网等图层
-      // 暂时先不要使用layers配置，因为存在Bug
-      // 建议使用amap.add的方式，使用方式参见最下方代码
-      viewMode: "3D", //开启3D视图,默认为关闭
-      buildingAnimation: true //楼块出现是否带动画
-    },
-    series: [
-      {
-        type: "lines",
-        // coordinateSystem: 'bmap',
-        coordinateSystem: "amap",
-        polyline: true,
-        data: busLinesk,
-        lineStyle: {
-          normal: {
-            width: 0
+
+          return {
+            //往buslines返回数据
+            coords: points,
+            lineStyle: {
+              normal: {
+                color: echarts.color.modifyHSL(
+                  "rgb(255,122,0)",
+                  Math.round(hStep * idx)
+                )
+              }
+            }
+          };
+        })
+      );
+      tempbusLinesk = busLinesk;
+      //用于蝌蚪图画线，数据处理待优化
+      let busLinesk2 = [].concat.apply(
+        [],
+        didiData.map(function(busLine, idx) {
+          var points = [];
+          for (var i = 0; i < busLine[0].length; i += 2) {
+            var pt = [busLine[0][i], busLine[0][i + 1]];
+            points.push([pt[0], pt[1]]); //存入points
           }
+          return {
+            //往buslines返回数据
+            coords: points
+          };
+        })
+      );
+      tempbusLinesk2 = busLinesk2;
+      let option = {
+        // 加载 amap 组件
+        amap: {
+          // 高德地图支持的初始化地图配置
+          center: [110.32835483551025, 20.01996791722277], // 高德地图初始中心经纬度
+          zoom: 13, // 高德地图初始缩放级别
+          resizeEnable: true, // 是否开启resize
+          mapStyle: "amap://styles/grey", // 自定义地图样式主题
+          echartsLayerZIndex: 2019, // 高德地图自定义EchartsLayer的zIndex，默认2000
+          // 说明：如果想要添加卫星、路网等图层
+          // 暂时先不要使用layers配置，因为存在Bug
+          // 建议使用amap.add的方式，使用方式参见最下方代码
+          viewMode: "3D", //开启3D视图,默认为关闭
+          buildingAnimation: true //楼块出现是否带动画
         },
-        effect: {
-          constantSpeed: 20,
-          show: true,
-          trailLength: 0.1,
-          symbolSize: 1.5
-        },
-        zlevel: 1
+        series: [
+          {
+            type: "lines",
+            // coordinateSystem: 'bmap',
+            coordinateSystem: "amap",
+            polyline: true,
+            data: busLinesk,
+            lineStyle: {
+              normal: {
+                width: 0
+              }
+            },
+            effect: {
+              constantSpeed: 20,
+              show: true,
+              trailLength: 0.1,
+              symbolSize: 1.5
+            },
+            zlevel: 1
+          }
+        ]
+      };
+      //初始化订单类型分析
+      myChartk.setOption(option);
+      var series = [
+        {
+          type: "lines",
+          coordinateSystem: "amap",
+          polyline: true,
+          data: busLinesk,
+          lineStyle: {
+            normal: {
+              width: 0
+            }
+          },
+          effect: {
+            constantSpeed: 20,
+            show: true,
+            trailLength: 0.1,
+            symbolSize: 1.5
+          },
+          zlevel: 1
+        }
+      ];
+      if (document.getElementById("pushData").value === "订单类别") {
+        series.push({
+          type: "lines",
+          coordinateSystem: "amap",
+          polyline: true,
+          data: busLinesk2,
+          silent: true,
+          lineStyle: {
+            normal: {
+              opacity: 0.2,
+              width: 1
+            }
+          },
+          progressiveThreshold: 500,
+          progressive: 200
+        });
       }
-    ]
-  };
-  //初始化订单类型分析
-  myChartk.setOption(option);
-  var series = [
-    {
-      type: "lines",
-      coordinateSystem: "amap",
-      polyline: true,
-      data: busLinesk,
-      lineStyle: {
-        normal: {
-          width: 0
-        }
-      },
-      effect: {
-        constantSpeed: 20,
-        show: true,
-        trailLength: 0.1,
-        symbolSize: 1.5
-      },
-      zlevel: 1
-    }
-  ];
-  if (document.getElementById("pushData").value === "订单类别") {
-    series.push({
-      type: "lines",
-      coordinateSystem: "amap",
-      polyline: true,
-      data: busLinesk2,
-      silent: true,
-      lineStyle: {
-        normal: {
-          opacity: 0.2,
-          width: 1
-        }
-      },
-      progressiveThreshold: 500,
-      progressive: 200
     });
-  }
 }
 
 //*模块二：添加/删除线

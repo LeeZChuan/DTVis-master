@@ -187,6 +187,7 @@ export default {
             <el-button type="text" @click="centerOrderNumVisible = true">订单的出行距离与该订单整体数量组合折线图</el-button>
           </a>
         </li>
+        <div>
         <li>
           <a>
             <el-switch
@@ -199,6 +200,7 @@ export default {
             ></el-switch>
           </a>
         </li>
+        </div>
       </ul>
     </div>
     <!-- 弹窗部分 -->
