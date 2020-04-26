@@ -50,7 +50,20 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+// //路由跳转时的顶部路有条
+// router.beforeEach((to, from, next) => {
+//   document.title = to.meta.title;
+//   iView.LoadingBar.start();
+//   next();
+// });
+
+// router.afterEach(route => {
+//   iView.LoadingBar.finish();
+// });
+// /* eslint-disable no-new */
+
 new Vue({
+  el: "#app",
   router,
   store,
   render: h => h(App),

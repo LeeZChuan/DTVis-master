@@ -1,35 +1,34 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import login from '../components/login'
-import Home from '../views/Dashboard'
-import TadpoleCharts from '../components/TadpoleCharts'
-import MoveToChart from '../components/MoveToChart'
-
-// vue框架路由管理功能
-
-Vue.use(Router)
+import Vue from "vue";
+import Router from "vue-router";
+import home from "../pages/home";
+const ControlMap = () =>
+    import ("../pages/ControlMap");
+const notfound = () =>
+    import ("../pages/notfound");
+p
+Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'login',
-      component: login
-    },
-    {
-      path: '/Home',
-      name: 'Home',
-      component: Home,
-      children:[{
-        path:'/Home/TadpoleCharts',
-        name:'TadpoleCharts',
-        component:TadpoleCharts
-      },
+    mode: "history",
+    routes: [{
+            path: "/",
+            component: home,
+            meta: { title: '交通流量时空演变特征可视分析' }
+        },
         {
-          path:'/Home/MoveToChart',
-          name:'MoveToChart',
-          component:MoveToChart
-        }]
-    }
-  ]
-})
+            path: "/home",
+            component: home,
+            meta: { title: '交通流量时空演变特征可视分析' }
+        },
+        {
+            path: "/ControlMap",
+            component: ControlMap,
+            meta: { title: '地图整体操控界面' }
+        },
+        {
+            path: "*",
+            component: notfound,
+            meta: { title: '页面走丢了...' }
+        }
+    ]
+});

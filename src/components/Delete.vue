@@ -21,7 +21,7 @@ export default {
   },
   watch: {
     TimeDate: function(curVal, oldVal) {
-      this.drawTadpoleChart(curVal, this.$store.state.TimeDate);
+      this.GaodeMap(curVal, this.$store.state.TimeDate);
     },
   },
   methods: {
@@ -46,12 +46,6 @@ export default {
             pitchEnable: true,
             resizeEnable: true
           });
-
-          //3D罗盘控制
-          AMap.plugin(["AMap.ControlBar"], function() {
-            map.addControl(new AMap.ControlBar());
-          });
-
           // 定义标记点 和 聚类 数组
           var cluster, markers = [];
           // 生成标记点

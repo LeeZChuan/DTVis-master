@@ -164,7 +164,7 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="centerVisible = false " >交通流量热力图</el-button>
+            <el-button type="text" @click="centerVisible = false ">交通流量热力图</el-button>
           </a>
         </li>
         <li>
@@ -188,18 +188,18 @@ export default {
           </a>
         </li>
         <div>
-        <li>
-          <a>
-            <el-switch
-              style="display: block"
-              v-model="StartOrEnd"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="起点热力图"
-              inactive-text="终点热力图"
-            ></el-switch>
-          </a>
-        </li>
+          <li>
+            <a>
+              <el-switch
+                style="display: block"
+                v-model="StartOrEnd"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                active-text="起点热力图"
+                inactive-text="终点热力图"
+              ></el-switch>
+            </a>
+          </li>
         </div>
       </ul>
     </div>
@@ -258,10 +258,20 @@ export default {
     <div class="center-area">
       <!-- 主图展示区 -->
       <div style="width: 950px;height:400px;">
-        <TadpoleChart label="交通流量蝌蚪图" v-show="centerVisible"></TadpoleChart>
+        <div label="交通流量蝌蚪图" v-show="centerVisible">
+        <el-carousel :autoplay=false>
+          <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
+            <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
+          </el-carousel-item>
+        </el-carousel>
+        </div>
         <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
-          <StartHeatMapChart label="交通流量起点热力图" v-show="StartOrEnd"></StartHeatMapChart>
+          <el-carousel v-show="StartOrEnd" :autoplay=false>
+            <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
+              <StartHeatMapChart label="交通流量起点热力图"></StartHeatMapChart>
+            </el-carousel-item>
+          </el-carousel>
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>
         </div>
       </div>
