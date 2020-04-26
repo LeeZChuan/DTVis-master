@@ -49,7 +49,7 @@ body {
 
 #wrapper {
     float: left;
-    width: 100%;
+    width: 106%;
     height: 100vh;
     background: url("../../../static/img/background.png")  no-repeat  ;
     background-size: 100% 100%;

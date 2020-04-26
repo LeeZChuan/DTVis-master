@@ -40,7 +40,7 @@ export default {
       centerMoveToVisible: false, //订单情况区域迁徙图的弹窗
       centerDepVisible: false, //订单情况街道流向和弦图
       centerTadpoleVisible: false, //
-      centerVisible: true, //热力图与蝌蚪图进行切换
+      centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       // disabled:true,//切换按钮是否使用
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
@@ -257,19 +257,21 @@ export default {
     <!-- 官网上说了router全部都要渲染到这里 -->
     <div class="center-area">
       <!-- 主图展示区 -->
-      <div style="width: 950px;height:400px;">
-        <div label="交通流量蝌蚪图" v-show="centerVisible">
-        <el-carousel :autoplay=false>
+      <div>
+        <div label="交通流量蝌蚪图" v-show="centerVisible" >
+        <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px" >
           <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
             <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
+            <h3>{{ Nowhour }}</h3>
           </el-carousel-item>
         </el-carousel>
         </div>
         <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
-          <el-carousel v-show="StartOrEnd" :autoplay=false>
-            <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
+          <el-carousel v-show="StartOrEnd" :autoplay="false" indicator-position="none" height="400px" width="950px" >
+            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
               <StartHeatMapChart label="交通流量起点热力图"></StartHeatMapChart>
+              <h3>{{ Nowhour }}</h3>
             </el-carousel-item>
           </el-carousel>
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>

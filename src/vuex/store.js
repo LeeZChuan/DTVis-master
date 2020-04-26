@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-         TimeDate : "2017-10-1"//日期存储
+         TimeDate : "2017-10-1",//日期存储
+         Nowhour :0
     }
 })
 
