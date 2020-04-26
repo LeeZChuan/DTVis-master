@@ -44,9 +44,8 @@ export default {
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       // disabled:true,//切换按钮是否使用
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
-      //默认第一个选项卡
-      activeName: "first",
-      tabPosition: "left"
+      drawer: false,
+      direction: "rtl" //左开
     };
   },
   methods: {
@@ -73,6 +72,13 @@ export default {
       //获取当前展示天数的方法
       this.nowTime = val;
       this.$store.state.TimeDate = this.nowTime;
+    },
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
     }
   }
 };
@@ -188,18 +194,7 @@ export default {
           </a>
         </li>
         <div>
-          <li>
-            <a>
-              <el-switch
-                style="display: block"
-                v-model="StartOrEnd"
-                active-color="#13ce66"
-                inactive-color="#ff4949"
-                active-text="起点热力图"
-                inactive-text="终点热力图"
-              ></el-switch>
-            </a>
-          </li>
+          <el-button @click="drawer = true" type="text" style="margin-left: 16px;">主图操控台</el-button>
         </div>
       </ul>
     </div>
@@ -242,6 +237,35 @@ export default {
       </span>
     </el-dialog>
 
+    <!-- 抽屉
+    <el-radio-group v-model="direction">
+      <el-radio label="ltr">从左往右开</el-radio>
+    </el-radio-group>-->
+
+    <el-drawer
+      title="主图操控台"
+      :visible.sync="drawer"
+      :direction="direction"
+      :before-close="handleClose"
+    >
+      <span>
+        <el-collapse v-model="activeNames" accordion>
+          <el-collapse-item title="订单情况起终点热力图控制台" name="1">
+            <el-switch
+              style="display: block"
+              v-model="StartOrEnd"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="起点热力图"
+              inactive-text="终点热力图"
+            ></el-switch>
+          </el-collapse-item>
+          <el-collapse-item title="订单预测情况散点图" name="2"></el-collapse-item>
+          <el-collapse-item title="订单情况流量蝌蚪图" name="3"></el-collapse-item>
+        </el-collapse>
+      </span>
+    </el-drawer>
+
     <!-- 时间选择器 -->
     <div class="block">
       <!-- <el-date-picker v-model="value1" type="date"  placeholder="选择日期"></el-date-picker> -->
@@ -258,17 +282,23 @@ export default {
     <div class="center-area">
       <!-- 主图展示区 -->
       <div>
-        <div label="交通流量蝌蚪图" v-show="centerVisible" >
-        <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px" >
-          <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
-            <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
-            <h3>{{ Nowhour }}</h3>
-          </el-carousel-item>
-        </el-carousel>
+        <div label="交通流量蝌蚪图" v-show="centerVisible">
+          <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px">
+            <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
+              <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
+              <h3>{{ Nowhour }}</h3>
+            </el-carousel-item>
+          </el-carousel>
         </div>
         <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
-          <el-carousel v-show="StartOrEnd" :autoplay="false" indicator-position="none" height="400px" width="950px" >
+          <el-carousel
+            v-show="StartOrEnd"
+            :autoplay="false"
+            indicator-position="none"
+            height="400px"
+            width="950px"
+          >
             <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
               <StartHeatMapChart label="交通流量起点热力图"></StartHeatMapChart>
               <h3>{{ Nowhour }}</h3>

@@ -63,7 +63,7 @@ Vue.use(VueResource);
 // /* eslint-disable no-new */
 
 new Vue({
-  el: "#app",
+  // el: "#app",
   router,
   store,
   render: h => h(App),
