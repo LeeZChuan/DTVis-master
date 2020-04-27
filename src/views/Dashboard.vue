@@ -63,13 +63,11 @@ export default {
         }
       });
     },
-    open1() {
-      const h = this.$createElement;
-
-      this.$notify({
-        title: "海口市交通流量蝌蚪图",
-        message: h("i", { style: "color: teal" }, "切换成为街道蝌蚪图")
-      });
+    getNowhour:function(val) {
+      //获取当前展示具体天数的准确时间
+      this.nowhour=val;
+      this.$store.state.Timehour=this.nowhour;
+      console.log("dangqianshijian"+this.nowhour);
     },
     getNowDate: function(val) {
       //获取当前展示天数的方法
@@ -234,7 +232,7 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog :visible.sync="centerDepVisible" width="75%" fullscreen="true" center>
+    <el-dialog :visible.sync="centerDepVisible" width="75%" fullscreen:true center>
       <span>
         <ChordChart></ChordChart>
       </span>
@@ -287,7 +285,7 @@ export default {
       <div>
         <div label="交通流量蝌蚪图" v-show="centerVisible">
           <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px">
-            <el-carousel-item v-for="Nowhour in 4" :key="Nowhour">
+            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
               <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
               <h3>{{ Nowhour }}</h3>
             </el-carousel-item>
@@ -302,9 +300,9 @@ export default {
             height="400px"
             width="950px"
           >
-            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
+            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour" @modelChange="getNowhour">
               <StartHeatMapChart label="交通流量起点热力图"></StartHeatMapChart>
-              <h3>{{ Nowhour }}</h3>
+              <h3 style="white">{{ Nowhour }}</h3>
             </el-carousel-item>
           </el-carousel>
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>

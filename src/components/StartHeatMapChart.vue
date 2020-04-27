@@ -87,7 +87,7 @@ export default {
 };
 </script>
 <style>
-#HeatMapChart {
+#StartHeatMapChart {
   width: 950px;
   height: 400px;
 }
