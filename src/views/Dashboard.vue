@@ -46,8 +46,10 @@ export default {
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       // disabled:true,//切换按钮是否使用
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
-      drawer: false,
+      drawer: false,//右侧抽屉
+      Controldrawer:false,//下方抽屉
       direction: "rtl", //左开
+      direction1:"btt",
       activeNames: '1'//手风琴展示初始化
     };
   },
@@ -63,11 +65,16 @@ export default {
         }
       });
     },
-    getNowhour:function(val) {
+    upNowhour:function() {
       //获取当前展示具体天数的准确时间
-      this.nowhour=val;
-      this.$store.state.Timehour=this.nowhour;
-      console.log("dangqianshijian"+this.nowhour);
+      // this.$store.state.TimeHour++
+      this.$store.commit()
+      console.log("dangqianshijian"+this.$store.state.TimeHour);
+    },
+    downNowhour:function() {
+      //获取当前展示具体天数的准确时间
+      this.$store.state.TimeHour--
+      console.log("dangqianshijian"+this.$store.state.TimeHour);
     },
     getNowDate: function(val) {
       //获取当前展示天数的方法
@@ -194,9 +201,16 @@ export default {
             <el-button type="text" @click="centerOrderNumVisible = true">订单的出行距离与该订单整体数量组合折线图</el-button>
           </a>
         </li>
-        <div>
+        <li>
+          <a>
           <el-button @click="drawer = true" type="text" style="margin-left: 16px;">主图操控台</el-button>
-        </div>
+          </a>
+        </li>
+         <li>
+          <a>
+          <el-button @click="Controldrawer = true" type="text" style="margin-left: 16px;">该天交通流量切换控制台</el-button>
+          </a>
+        </li>
       </ul>
     </div>
     <!-- 弹窗部分 -->
@@ -242,12 +256,28 @@ export default {
     <el-radio-group v-model="direction">
       <el-radio label="ltr">从左往右开</el-radio>
     </el-radio-group>-->
+<!-- 下方抽屉 -->
+<el-drawer
+      title="该天交通流量切换控制台"
+      :visible.sync="Controldrawer"
+      :direction="direction1"
+      :before-close="handleClose"
+      :modal="false"
+      :with-header="false"
+    >
+      <span>
+       <el-button plain @click="upNowhour()" >下一小时</el-button>
+       <el-button plain @click="downNowhour()">上一小时</el-button>
+      </span>
+    </el-drawer>
 
+<!-- 右边抽屉 -->
     <el-drawer
       title="主图操控台"
       :visible.sync="drawer"
       :direction="direction"
       :before-close="handleClose"
+      
     >
       <span>
         <el-collapse v-model="activeNames" accordion>
@@ -284,30 +314,34 @@ export default {
       <!-- 主图展示区 -->
       <div>
         <div label="交通流量蝌蚪图" v-show="centerVisible">
-          <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px">
+          <!-- <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px"  @onChange="getNowhour">
             <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
               <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
               <h3>{{ Nowhour }}</h3>
             </el-carousel-item>
-          </el-carousel>
+          </el-carousel> -->
+          <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
         </div>
         <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
-          <el-carousel
+          <!-- <el-carousel
             v-show="StartOrEnd"
             :autoplay="false"
             indicator-position="none"
             height="400px"
             width="950px"
+             @onChange="getNowhour"
           >
-            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour" @modelChange="getNowhour">
+            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
               <StartHeatMapChart label="交通流量起点热力图"></StartHeatMapChart>
               <h3 style="white">{{ Nowhour }}</h3>
             </el-carousel-item>
-          </el-carousel>
+          </el-carousel> -->
+          <StartHeatMapChart label="交通流量起点热力图" v-show="StartOrEnd"></StartHeatMapChart>
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>
         </div>
       </div>
+
       <div style="width: 950px;height:300px;">
         <LineCharts></LineCharts>
         <!-- <PointMap></PointMap> -->
