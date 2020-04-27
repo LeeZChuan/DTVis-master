@@ -29,7 +29,7 @@ export default {
   },
   mounted() {
     //执行方法
-    console.log("输出起点热力图");
+    // console.log("输出起点热力图");
     this.drawStartHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {

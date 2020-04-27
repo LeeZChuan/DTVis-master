@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     //执行方法
-    console.log("成功输出终点热力图");
+    // console.log("成功输出终点热力图");
     this.drawEndHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {
