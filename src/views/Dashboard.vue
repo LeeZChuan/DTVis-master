@@ -68,18 +68,24 @@ export default {
     upNowhour:function() {
       //获取当前展示具体天数的准确时间
       // this.$store.state.TimeHour++
-      this.$store.commit()
+      console.log(this.$store.state.TimeHour);
+      console.log(this.$store.state.TimeDate);
+      var i=this.$store.state.TimeHour;
+      this.$store.commit('updateTimeHour',++i);
       console.log("dangqianshijian"+this.$store.state.TimeHour);
     },
     downNowhour:function() {
       //获取当前展示具体天数的准确时间
-      this.$store.state.TimeHour--
+      // this.$store.state.TimeHour--
+      var i=this.$store.state.TimeHour;
+      this.$store.commit('updateTimeHour',--i);
       console.log("dangqianshijian"+this.$store.state.TimeHour);
     },
     getNowDate: function(val) {
       //获取当前展示天数的方法
       this.nowTime = val;
-      this.$store.state.TimeDate = this.nowTime;
+      // this.$store.state.TimeDate = this.nowTime;
+      this.$store.commit('updateTimeDate',this.nowTime);
     },
     handleClose(done) {
       this.$confirm("确认关闭？")

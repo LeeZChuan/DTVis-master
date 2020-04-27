@@ -10,9 +10,13 @@ const store = new Vuex.Store({
          
     },
     mutations:{
-        updateCount(state,num)
+        updateTimeDate(state,num)
         {
-            state.count=num;
+            state.TimeDate=num;
+        },
+        updateTimeHour(state,num)
+        {
+            state.TimeHour=num;
         }
 
     }
