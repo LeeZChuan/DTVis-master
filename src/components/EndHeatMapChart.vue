@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <!-- 订单起点情况热力图，宽度很合适，实现了地图的旋转以及放大缩小 -->
-    <el-amap id="HeatMapChart"></el-amap>
+    <el-amap id="EndHeatMapChart"></el-amap>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 require("echarts-extension-amap");
 var echarts = require("echarts");
 export default {
-  name: "HeatMapChart",
+  name: "EndHeatMapChart",
   data() {
     return {};
   },
@@ -22,15 +22,16 @@ export default {
     TimeDate: function(curVal, oldVal) {
       //需要执行的画图代码,用于时刻监听该图的日期更换
       // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
-      this.drawHeatMapChart(curVal, this.$store.state.TimeDate);
+      this.drawEndHeatMapChart(curVal, this.$store.state.TimeDate);
     }
   },
   mounted() {
     //执行方法
-    this.drawHeatMapChart(this.$store.state.TimeDate);
+    console.log("成功输出终点热力图");
+    this.drawEndHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {
-    drawHeatMapChart(Date) {
+    drawEndHeatMapChart(Date) {
       //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
@@ -39,7 +40,7 @@ export default {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;
           var lnglat = new AMap.LngLat(110.32835483551025, 20.01996791722277);
-          var map = new AMap.Map("HeatMapChart", {
+          var map = new AMap.Map("EndHeatMapChart", {
             viewMode: "3D",
             pitch: 0, //俯仰角度，默认0，[0,83]，2D地图下无效 。
             resizeEnable: true, //是否监控地图容器尺寸变化，默认值为false

@@ -13,8 +13,8 @@ import ChordChart from "../components/ChordChart.vue"; //订单情况街道和�
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
-import PointMap from "../components/PointMap.vue";
-import kmap from "../components/map";
+// import PointMap from "../components/PointMap.vue";
+// import kmap from "../components/map";
 // 网页界面设计
 export default {
   name: "Home",
@@ -33,7 +33,7 @@ export default {
     // multiputeMap,
     ChordChart,
     // kmap
-    PointMap
+    // PointMap
   },
   data() {
     return {
@@ -48,7 +48,7 @@ export default {
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
       drawer: false,
       direction: "rtl", //左开
-      activeName: '1'//手风琴展示初始化
+      activeNames: '1'//手风琴展示初始化
     };
   },
   methods: {
@@ -312,7 +312,7 @@ export default {
       </div>
       <div style="width: 950px;height:300px;">
         <LineCharts></LineCharts>
-        <PointMap></PointMap>
+        <!-- <PointMap></PointMap> -->
       </div>
     </div>
 

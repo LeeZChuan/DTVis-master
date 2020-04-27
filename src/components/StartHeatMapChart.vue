@@ -1,46 +1,7 @@
 <template>
   <div id="container">
     <!-- 订单起点情况热力图，宽度很合适，实现了地图的旋转以及放大缩小 -->
-    <el-amap id="HeatMapChart"></el-amap>
-
-    <!-- <div class="input-card">
-      <div class="input-item">
-        <input type="checkbox" onclick="toggleScale(this)" />比例尺
-      </div>
-
-      <div class="input-item">
-        <input type="checkbox" id="toolbar" onclick="toggleToolBar(this)" />工具条
-      </div>
-
-      <div class="input-item">
-        <input
-          type="checkbox"
-          id="toolbarDirection"
-          disabled
-          onclick="toggleToolBarDirection(this)"
-        />工具条方向盘
-      </div>
-
-      <div class="input-item">
-        <input type="checkbox" id="toolbarRuler" disabled onclick="toggleToolBarRuler(this)" />工具条标尺
-      </div>
-
-      <div class="input-item">
-        <input type="checkbox" id="overview" onclick="toggleOverViewShow(this)" />显示鹰眼
-      </div>
-
-      <div class="input-item">
-        <input type="checkbox" id="overviewOpen" disabled onclick="toggleOverViewOpen(this)" />展开鹰眼
-      </div>
-    </div>-->
-    <!-- <div class="input-card" style="width: auto;">
-      <div class="input-item">
-        <button class="btn" onclick="map.show()">显示热力图</button>
-      </div>
-      <div class="input-item">
-        <button class="btn" onclick="map.hide()">关闭热力图</button>
-      </div>
-    </div>-->
+    <el-amap id="StartHeatMapChart"></el-amap>
   </div>
 </template>
 
@@ -49,7 +10,7 @@
 require("echarts-extension-amap");
 var echarts = require("echarts");
 export default {
-  name: "HeatMapChart",
+  name: "StartHeatMapChart",
   data() {
     return {};
   },
@@ -63,15 +24,16 @@ export default {
       //需要执行的画图代码,用于时刻监听该图的日期更换
       // console.log("这是起点热力图的监听" + curVal);
       // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
-      this.drawHeatMapChart(curVal, this.$store.state.TimeDate);
+      this.drawStartHeatMapChart(curVal, this.$store.state.TimeDate);
     }
   },
   mounted() {
     //执行方法
-    this.drawHeatMapChart(this.$store.state.TimeDate);
+    console.log("输出起点热力图");
+    this.drawStartHeatMapChart(this.$store.state.TimeDate);
   },
   methods: {
-    drawHeatMapChart(Date) {
+    drawStartHeatMapChart(Date) {
       //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
@@ -80,7 +42,7 @@ export default {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;
           var lnglat = new AMap.LngLat(110.32835483551025, 20.01996791722277);
-          var map = new AMap.Map("HeatMapChart", {
+          var map = new AMap.Map("StartHeatMapChart", {
             viewMode: "3D",
             defaultCursor: "pointer",
             pitch: 0, //俯仰角度，默认0，[0,83]，2D地图下无效 。
