@@ -95,62 +95,6 @@ export default {
             resizeEnable: true
           });
 
-          // 气球点添加
-          var object3Dlayer = new AMap.Object3DLayer({
-            zIndex: 110,
-            opacity: 1
-          });
-          map.add(object3Dlayer);
-
-          function lnglatToG20(lnglat) {
-            lnglat = map.lngLatToGeodeticCoord(lnglat);
-            lnglat.x = AMap.Util.format(lnglat.x, 3);
-            lnglat.y = AMap.Util.format(lnglat.y, 3);
-            return lnglat;
-          }
-
-          var lines = new AMap.Object3D.Line();
-          var lineGeo = lines.geometry;
-
-          new AMap.DistrictSearch({
-            subdistrict: 1, //返回下一级行政区
-            extensions: "base"
-          }).search("中国", function(status, result) {
-            var provinces = result.districtList[0].districtList;
-            var points3D = new AMap.Object3D.RoundPoints();
-            points3D.transparent = true;
-            var pointsGeo = points3D.geometry;
-            // console.log(didiStartHotData);
-            //数据添加
-            for (var p = 0; p < didiStartHotData.length; p += 1) {
-              var center = lnglatToG20(provinces[p].center);
-              var size = Math.max(10, Math.round(Math.random() * 40));
-              var height = -size * 100000;
-
-              // 连线
-              lineGeo.vertices.push(center.x, center.y, 0);
-              lineGeo.vertexColors.push(0, 1, 1, 1);
-              lineGeo.vertices.push(center.x, center.y, height);
-              lineGeo.vertexColors.push(0, 1, 1, 1);
-
-              pointsGeo.vertices.push(center.x, center.y, 0); // 尾部小点
-              pointsGeo.pointSizes.push(5);
-              pointsGeo.vertexColors.push(0, 0, 1, 1);
-
-              pointsGeo.vertices.push(center.x, center.y, height); // 空中点
-              pointsGeo.pointSizes.push(size);
-              pointsGeo.vertexColors.push(p * 0.029, p * 0.015, p * 0.01, 1);
-            }
-
-            points3D.borderColor = [0.4, 0.8, 1, 1];
-            points3D.borderWeight = 3;
-            object3Dlayer.add(lines);
-            object3Dlayer.add(points3D);
-          });
-
-          var lines = new AMap.Object3D.Line();
-          var lineGeo = lines.geometry;
-
           //3D罗盘控制添加
           AMap.plugin(["AMap.ControlBar"], function() {
             // 添加 3D 罗盘控制
