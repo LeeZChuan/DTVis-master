@@ -63,9 +63,14 @@ DTVis-master
 │   │    |──  Forecast # 订单预测结果数据源-散点图
 │   │    |──  3DhotChart # 订单情况分布热力图
 │   │    |──  CalendarChart # 订单情况日历热力图
-│   │    |──  Tadpole # 街道情况流量蝌蚪图
+│   │    |──  TadpoleChart # 街道情况流量蝌蚪图
 │   │    |──  multiputeMap # 订单预测结果
 │   │    |──  qianxitu（MoveToChart） # 订单情况整体区域迁徙图
+│   │    |──  ChordChart # 订单情况整体街道和弦图
+│   │    |──  RateLineChart #订单整体情况变化率折线图（用在弹窗展示部分）
+│   │    |──  OrderNumLineChart #订单的出行距离与该订单出行距离数量组合折线图（用在弹窗展示部分）
+│   │    |──  LineCharts #订单情况变化折线图
+│   │    |──  hexiantu # 订单情况整体街道和弦图
 │   │    |──  hexiantu # 订单情况整体街道和弦图
 │   ├── img # 页面所需要的背景图片
 │   └── js # 作图所需要的库文件
