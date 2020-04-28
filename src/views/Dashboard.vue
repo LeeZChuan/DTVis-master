@@ -251,7 +251,7 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog :visible.sync="centerDepVisible" width="75%" fullscreen:true center>
+    <el-dialog :visible.sync="centerDepVisible" width="75%" fullscreen="true" center>
       <span>
         <ChordChart></ChordChart>
       </span>
