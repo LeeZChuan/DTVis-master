@@ -45,8 +45,10 @@ export default {
       centerTadpoleVisible: false, //
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
+      analysis:true,//蝌蚪图街道分析开关
       // disabled:true,//切换按钮是否使用
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
+      // NowTimeHour:"",//当前该天具体时间
       drawer: false, //右侧抽屉
       Controldrawer: false, //下方抽屉
       direction: "rtl", //左开
@@ -54,23 +56,19 @@ export default {
       activeNames: "1" //手风琴展示初始化
     };
   },
+  computed:{
+    NowTimeHour()
+    {
+      return this.$store.getters.NowTime;
+    }
+  },
   methods: {
-    open() {
-      this.$alert("这是一段内容", "标题名称", {
-        confirmButtonText: "确定",
-        callback: action => {
-          this.$message({
-            type: "info",
-            message: `action: ${action}`
-          });
-        }
-      });
-    },
     upNowhour: function() {
       //获取当前展示具体天数的准确时间
       // this.$store.state.TimeHour++
       var i = this.$store.state.TimeHour;
-      this.$store.commit("updateTimeHour", i++);
+      this.$store.commit("updateTimeHour", ++i);
+      console.log(this.$store.state.TimeHour);
     },
     downNowhour: function() {
       //获取当前展示具体天数的准确时间
@@ -271,6 +269,7 @@ export default {
       :before-close="handleClose"
       :modal="false"
       :with-header="false"
+      size="20%"
     >
       <span>
         <el-button plain @click="upNowhour()">下一小时</el-button>
@@ -284,6 +283,7 @@ export default {
       :visible.sync="drawer"
       :direction="direction"
       :before-close="handleClose"
+      size="20%"
     >
       <span>
         <el-collapse v-model="activeNames" accordion>
@@ -298,7 +298,16 @@ export default {
             ></el-switch>
           </el-collapse-item>
           <el-collapse-item title="订单预测情况散点图" name="2"></el-collapse-item>
-          <el-collapse-item title="订单情况流量蝌蚪图" name="3"></el-collapse-item>
+          <el-collapse-item title="订单情况流量蝌蚪图" name="3">
+            <el-switch
+              style="display: block"
+              v-model="analysis"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="分析关闭"
+              inactive-text="分析开启"
+            ></el-switch>
+          </el-collapse-item>
         </el-collapse>
       </span>
     </el-drawer>
@@ -325,9 +334,10 @@ export default {
         <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
           <StartHeatMapChart label="交通流量起点热力图" v-show="StartOrEnd"></StartHeatMapChart>
-          <h3 style="white">{{ Hour }}</h3>
+          <!-- <div class="img-tip">{{ this.$store.getters.NowTime }}点</div>  -->
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>
         </div>
+          <div class="img-tip">{{ NowTimeHour }}点</div>
       </div>
 
       <div style="width: 950px;height:300px;">
@@ -403,6 +413,14 @@ export default {
   position: fixed;
   right: 0;
   text-align: center;
+}
+.img-tip
+{
+  width:100%;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  opacity: 0.6;
 }
 </style>
 

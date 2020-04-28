@@ -58,7 +58,7 @@ export default {
       //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/dest/" + Date + "/"+Hour+".json")
+        .get("../../static/data/3DhotChart/dest/" + Date + "/"+ Hour +".json")
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;

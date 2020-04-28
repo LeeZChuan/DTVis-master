@@ -9,6 +9,7 @@ const store = new Vuex.Store({
          TimeHour :"0",
          
     },
+    //存放同步函数方法
     mutations:{
         updateTimeDate(state,num)
         {
@@ -19,6 +20,12 @@ const store = new Vuex.Store({
             state.TimeHour=num;
         }
 
+    },
+    //getters可以认为是store的计算属性
+	getters:{
+		NowTime(state){
+				return state.TimeHour;
+        }
     }
 })
 
