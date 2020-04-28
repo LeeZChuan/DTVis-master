@@ -47,23 +47,44 @@ export default {
     };
   },
   computed: {
-    TimeDate() {
+     TimeDate() {
       return this.$store.state.TimeDate;
+    },
+    TimeHour() {
+      return this.$store.state.TimeHour;
     }
   },
   watch: {
     TimeDate: function(curVal, oldVal) {
       //需要执行的画图代码,用于时刻监听该图的日期更换
-      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
-      this.drawTadpoleChart(curVal, this.$store.state.TimeDate);
+      if (true) {
+        if (curVal) {
+          this.drawTadpoleChart(curVal, this.$store.state.TimeHour);
+        } else {
+          this.drawTadpoleChart(oldVal, this.$store.state.TimeHour);
+        }
+      }
+    },
+    TimeHour: function(CurVal, OldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      if (true) {
+        if (CurVal) {
+          this.drawTadpoleChart(this.$store.state.TimeDate, CurVal);
+        } else {
+          this.drawTadpoleChart(this.$store.state.TimeDate, OldVal);
+        }
+      }
     }
   },
   mounted() {
     //页面初始化函数
-    this.drawTadpoleChart(this.$store.state.TimeDate);
+    this.drawTadpoleChart(
+      this.$store.state.TimeDate,
+      this.$store.state.TimeHour
+    );
   },
   methods: {
-    drawTadpoleChart(Date) {
+    drawTadpoleChart(Date, Hour) {
       /*ECharts图表*/
       var tempbusLinesk = new Array();
       var tempbusLinesk2 = new Array();
@@ -72,7 +93,9 @@ export default {
       myChartk.showLoading();
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/TadpoleChart/" + Date + "/0小时.json")
+        .get(
+          "../../static/data/TadpoleChart/" + Date + "/" + Hour + "小时.json"
+        )
         .then(res => {
           var didiData = res.data;
 

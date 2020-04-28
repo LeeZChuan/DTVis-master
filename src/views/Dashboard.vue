@@ -13,6 +13,7 @@ import ChordChart from "../components/ChordChart.vue"; //订单情况街道和�
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
+import { Hour } from "../components/StartHeatMapChart.vue";
 // import PointMap from "../components/PointMap.vue";
 // import kmap from "../components/map";
 // 网页界面设计
@@ -31,7 +32,7 @@ export default {
     centerOrderNumChart,
     RateLineChart,
     // multiputeMap,
-    ChordChart,
+    ChordChart
     // kmap
     // PointMap
   },
@@ -46,11 +47,11 @@ export default {
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       // disabled:true,//切换按钮是否使用
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
-      drawer: false,//右侧抽屉
-      Controldrawer:false,//下方抽屉
+      drawer: false, //右侧抽屉
+      Controldrawer: false, //下方抽屉
       direction: "rtl", //左开
-      direction1:"btt",
-      activeNames: '1'//手风琴展示初始化
+      direction1: "btt",
+      activeNames: "1" //手风琴展示初始化
     };
   },
   methods: {
@@ -65,27 +66,23 @@ export default {
         }
       });
     },
-    upNowhour:function() {
+    upNowhour: function() {
       //获取当前展示具体天数的准确时间
       // this.$store.state.TimeHour++
-      console.log(this.$store.state.TimeHour);
-      console.log(this.$store.state.TimeDate);
-      var i=this.$store.state.TimeHour;
-      this.$store.commit('updateTimeHour',++i);
-      console.log("dangqianshijian"+this.$store.state.TimeHour);
+      var i = this.$store.state.TimeHour;
+      this.$store.commit("updateTimeHour", i++);
     },
-    downNowhour:function() {
+    downNowhour: function() {
       //获取当前展示具体天数的准确时间
       // this.$store.state.TimeHour--
-      var i=this.$store.state.TimeHour;
-      this.$store.commit('updateTimeHour',--i);
-      console.log("dangqianshijian"+this.$store.state.TimeHour);
+      var i = this.$store.state.TimeHour;
+      this.$store.commit("updateTimeHour", --i);
     },
     getNowDate: function(val) {
       //获取当前展示天数的方法
       this.nowTime = val;
       // this.$store.state.TimeDate = this.nowTime;
-      this.$store.commit('updateTimeDate',this.nowTime);
+      this.$store.commit("updateTimeDate", this.nowTime);
     },
     handleClose(done) {
       this.$confirm("确认关闭？")
@@ -209,12 +206,16 @@ export default {
         </li>
         <li>
           <a>
-          <el-button @click="drawer = true" type="text" style="margin-left: 16px;">主图操控台</el-button>
+            <el-button @click="drawer = true" type="text" style="margin-left: 16px;">主图操控台</el-button>
           </a>
         </li>
-         <li>
+        <li>
           <a>
-          <el-button @click="Controldrawer = true" type="text" style="margin-left: 16px;">该天交通流量切换控制台</el-button>
+            <el-button
+              @click="Controldrawer = true"
+              type="text"
+              style="margin-left: 16px;"
+            >该天交通流量切换控制台</el-button>
           </a>
         </li>
       </ul>
@@ -262,8 +263,8 @@ export default {
     <el-radio-group v-model="direction">
       <el-radio label="ltr">从左往右开</el-radio>
     </el-radio-group>-->
-<!-- 下方抽屉 -->
-<el-drawer
+    <!-- 下方抽屉 -->
+    <el-drawer
       title="该天交通流量切换控制台"
       :visible.sync="Controldrawer"
       :direction="direction1"
@@ -272,18 +273,17 @@ export default {
       :with-header="false"
     >
       <span>
-       <el-button plain @click="upNowhour()" >下一小时</el-button>
-       <el-button plain @click="downNowhour()">上一小时</el-button>
+        <el-button plain @click="upNowhour()">下一小时</el-button>
+        <el-button plain @click="downNowhour()">上一小时</el-button>
       </span>
     </el-drawer>
 
-<!-- 右边抽屉 -->
+    <!-- 右边抽屉 -->
     <el-drawer
       title="主图操控台"
       :visible.sync="drawer"
       :direction="direction"
       :before-close="handleClose"
-      
     >
       <span>
         <el-collapse v-model="activeNames" accordion>
@@ -320,30 +320,12 @@ export default {
       <!-- 主图展示区 -->
       <div>
         <div label="交通流量蝌蚪图" v-show="centerVisible">
-          <!-- <el-carousel :autoplay="false" indicator-position="none" height="400px" width="950px"  @onChange="getNowhour">
-            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
-              <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
-              <h3>{{ Nowhour }}</h3>
-            </el-carousel-item>
-          </el-carousel> -->
           <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
         </div>
         <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
-          <!-- <el-carousel
-            v-show="StartOrEnd"
-            :autoplay="false"
-            indicator-position="none"
-            height="400px"
-            width="950px"
-             @onChange="getNowhour"
-          >
-            <el-carousel-item v-for="Nowhour in 24" :key="Nowhour">
-              <StartHeatMapChart label="交通流量起点热力图"></StartHeatMapChart>
-              <h3 style="white">{{ Nowhour }}</h3>
-            </el-carousel-item>
-          </el-carousel> -->
           <StartHeatMapChart label="交通流量起点热力图" v-show="StartOrEnd"></StartHeatMapChart>
+          <h3 style="white">{{ Hour }}</h3>
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>
         </div>
       </div>

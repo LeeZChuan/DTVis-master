@@ -16,26 +16,49 @@ export default {
   computed: {
     TimeDate() {
       return this.$store.state.TimeDate;
+    },
+    TimeHour() {
+      return this.$store.state.TimeHour;
     }
   },
   watch: {
     TimeDate: function(curVal, oldVal) {
       //需要执行的画图代码,用于时刻监听该图的日期更换
-      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
-      this.drawEndHeatMapChart(curVal, this.$store.state.TimeDate);
+          if(true)
+      {
+        if(curVal)
+        {
+          this.drawEndHeatMapChart(curVal, this.$store.state.TimeHour);
+        }
+        else{
+           this.drawEndHeatMapChart(oldVal, this.$store.state.TimeHour);
+        }
+      }
+    },
+       TimeHour: function(CurVal, OldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      if(true){
+        if(CurVal)
+        {
+          this.drawEndHeatMapChart(this.$store.state.TimeDate, CurVal);
+        }
+        else{
+          this.drawEndHeatMapChart(this.$store.state.TimeDate, OldVal);
+        }
+      }
     }
   },
   mounted() {
     //执行方法
     // console.log("成功输出终点热力图");
-    this.drawEndHeatMapChart(this.$store.state.TimeDate);
+    this.drawEndHeatMapChart(this.$store.state.TimeDate, this.$store.state.TimeHour);
   },
   methods: {
-    drawEndHeatMapChart(Date) {
+    drawEndHeatMapChart(Date,Hour) {
       //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/dest/" + Date + "/10.json")
+        .get("../../static/data/3DhotChart/dest/" + Date + "/"+Hour+".json")
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;

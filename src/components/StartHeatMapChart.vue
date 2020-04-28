@@ -18,40 +18,55 @@ export default {
     TimeDate() {
       return this.$store.state.TimeDate;
     },
-    TimeHour()
-    {
+    TimeHour() {
       return this.$store.state.TimeHour;
     }
-
   },
   watch: {
     TimeDate: function(curVal, oldVal) {
       //需要执行的画图代码,用于时刻监听该图的日期更换
-      console.log("这是起点热力图的监听" + curVal);
-      // console.log(curVal, oldVal, "watch监听事件"); //打印出结果isRed的前世和今生值
-      this.drawStartHeatMapChart(curVal, this.$store.state.TimeDate);
+      if(true)
+      {
+        if(curVal)
+        {
+          this.drawStartHeatMapChart(curVal, this.$store.state.TimeHour);
+        }
+        else{
+           this.drawStartHeatMapChart(oldVal, this.$store.state.TimeHour);
+        }
+      }
     },
     TimeHour: function(CurVal, OldVal) {
       //需要执行的画图代码,用于时刻监听该图的日期更换
-      console.log("这是起点热力图的监听" + CurVal);
-      this.drawStartHeatMapChart(CurVal, this.$store.state.TimeHour);
+      if(true){
+        if(CurVal)
+        {
+          this.drawStartHeatMapChart(this.$store.state.TimeDate, CurVal);
+        }
+        else{
+          this.drawStartHeatMapChart(this.$store.state.TimeDate, OldVal);
+        }
+      }
     }
   },
   mounted() {
     //执行方法
-    // console.log("输出起点热力图");
-    this.drawStartHeatMapChart(this.$store.state.TimeDate,this.$store.state.TimeHour);
+    this.drawStartHeatMapChart(
+      this.$store.state.TimeDate,
+      this.$store.state.TimeHour
+    );
   },
   methods: {
-    drawStartHeatMapChart(Date,Hour) {
+    drawStartHeatMapChart(Date, Hour) {
       //画起点热力图的方法
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/3DhotChart/start/" + Date + "/"+ Hour +".json")
+        .get(
+          "../../static/data/3DhotChart/start/" + Date + "/" + Hour + ".json"
+        )
         .then(res => {
           var heatmap = new AMap.Heatmap(map, heatmapOpts); //初始化heatmap对象
           var didiStartHotData = res.data;
-          Console.log(didiStartHotData);
           var lnglat = new AMap.LngLat(110.32835483551025, 20.01996791722277);
           var map = new AMap.Map("StartHeatMapChart", {
             viewMode: "3D",
@@ -96,6 +111,7 @@ export default {
     }
   }
 };
+// export default Hour;
 </script>
 <style>
 #StartHeatMapChart {
