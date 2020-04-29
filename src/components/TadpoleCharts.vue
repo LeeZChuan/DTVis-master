@@ -86,8 +86,8 @@ export default {
   methods: {
     drawTadpoleChart(Date, Hour) {
       /*ECharts图表*/
-      var tempbusLinesk = new Array();
-      var tempbusLinesk2 = new Array();
+      var tempbusLinesk = new Array();//这是普通蝌蚪图颜色保存
+      var tempbusLinesk2 = new Array();//这是预测分析按钮的颜色储存
       let myChartk = echarts.init(document.getElementById("TadpoleChart"));
       //没有加载出来使用加载动画
       myChartk.showLoading();
@@ -98,7 +98,6 @@ export default {
         )
         .then(res => {
           var didiData = res.data;
-
           var hStep = 300 / (didiData.length - 1); //路径颜色
           let busLinesk = [].concat.apply(
             [],
@@ -116,7 +115,7 @@ export default {
                     color: echarts.color.modifyHSL(
                       "rgb(255,122,0)",
                       Math.round(hStep * idx)
-                    ) //
+                    ) 
                   }
                 }
               };
@@ -201,15 +200,12 @@ export default {
 };
 
 //模块一：使用订单类别分析功能
-function analysis(Date) {
-  var g = document.getElementById("demo1").textContent.split("时")[0];
-  var f = document.getElementById("demo").textContent;
+function analysis(Date,Hour) {
   var myChartk = echarts.init(document.getElementById("TadpoleChart"));
   myChartk.clear();
-
   //数据读取需要改动
   this.$axios
-    .get("../../static/data/TadpoleChart/" + Date + "/0小时.json")
+    .get("../../static/data/TadpoleChart/" + Date + "/"+Hour+"小时.json")
     .then(res => {
       var didiData = res.data;
       var hStep = 300 / (didiData.length - 1); //路径颜色
@@ -222,7 +218,6 @@ function analysis(Date) {
             var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
             points.push([pt[0], pt[1]]); //存入points
           }
-
           return {
             //往buslines返回数据
             coords: points,
@@ -292,7 +287,12 @@ function analysis(Date) {
         ]
       };
       //初始化订单类型分析
-      myChartk.setOption(option);
+      setTimeout(() => {
+            //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
+            myChartk.hideLoading(); //没有加载出来隐藏加载动画
+            myChartk.setOption(option, true); //初始化蝌蚪图样例
+          }, 5000);
+      // myChartk.setOption(option,);
       var series = [
         {
           type: "lines",
@@ -329,6 +329,7 @@ function analysis(Date) {
           progressiveThreshold: 500,
           progressive: 200
         });
+
       }
     });
 }

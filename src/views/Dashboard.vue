@@ -15,7 +15,6 @@ import RateLineChart from "../components/RateLineChart.vue"; //订单情况每�
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
 import { Hour } from "../components/StartHeatMapChart.vue";
 // import PointMap from "../components/PointMap.vue";
-// import kmap from "../components/map";
 // 网页界面设计
 export default {
   name: "Home",
@@ -32,8 +31,7 @@ export default {
     centerOrderNumChart,
     RateLineChart,
     // multiputeMap,
-    ChordChart
-    // kmap
+    ChordChart,
     // PointMap
   },
   data() {
@@ -45,7 +43,8 @@ export default {
       centerTadpoleVisible: false, //
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
-      analysis:true,//蝌蚪图街道分析开关
+      analysis: true, //蝌蚪图街道分析开关
+      openBubble: false, //气泡图开关
       // disabled:true,//切换按钮是否使用
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
       // NowTimeHour:"",//当前该天具体时间
@@ -56,9 +55,8 @@ export default {
       activeNames: "1" //手风琴展示初始化
     };
   },
-  computed:{
-    NowTimeHour()
-    {
+  computed: {
+    NowTimeHour() {
       return this.$store.getters.NowTime;
     }
   },
@@ -81,6 +79,15 @@ export default {
       this.nowTime = val;
       // this.$store.state.TimeDate = this.nowTime;
       this.$store.commit("updateTimeDate", this.nowTime);
+    },
+    OpenAnalysis:function()
+    {
+      // let vm=this;
+      this.$refs.TadpoleChart.analysis();
+    },
+    EndAnalysis:function()
+    {
+      this.$refs.TadpoleChart.drawTadpoleChart();
     },
     handleClose(done) {
       this.$confirm("确认关闭？")
@@ -128,43 +135,43 @@ export default {
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单类型数量</p>
+          <p>滴滴订单长途占比</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单类型数量</p>
+          <p>滴滴订单快车占比</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单类型数量</p>
+          <p>滴滴订单高费用占比</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单类型数量</p>
+          <p>滴滴订单高时长占比</p>
           <strong>174.6069</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单类型数量</p>
-          <strong>174.6069</strong>
+          <p>滴滴订单整体情况占比</p>
+          <strong>99.9%</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单类型数量</p>
-          <strong>174.6069</strong>
+          <p>滴滴订单时长占比</p>
+          <strong>99.99%</strong>
         </li>
       </ul>
     </div>
@@ -213,7 +220,7 @@ export default {
               @click="Controldrawer = true"
               type="text"
               style="margin-left: 16px;"
-            >该天交通流量切换控制台</el-button>
+            >该天交通流量确切时间点切换控制台</el-button>
           </a>
         </li>
       </ul>
@@ -257,10 +264,7 @@ export default {
       </span>
     </el-dialog>
 
-    <!-- 抽屉
-    <el-radio-group v-model="direction">
-      <el-radio label="ltr">从左往右开</el-radio>
-    </el-radio-group>-->
+    <!-- 抽屉-->
     <!-- 下方抽屉 -->
     <el-drawer
       title="该天交通流量切换控制台"
@@ -272,8 +276,47 @@ export default {
       size="20%"
     >
       <span>
-        <el-button plain @click="upNowhour()">下一小时</el-button>
-        <el-button plain @click="downNowhour()">上一小时</el-button>
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple-light">
+            <el-button class="button" plain @click="downNowhour()">上一小时</el-button>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple">
+            <el-button class="button" plain @click="upNowhour()">下一小时</el-button>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple-light">
+            <div>三维气泡图标注开关</div>
+            <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple"></div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple-light"></div>
+        </el-col>
+
+        <!-- <el-button class="button" plain @click="downNowhour()">上一小时</el-button>
+        <el-button class="button" plain @click="upNowhour()">下一小时</el-button>
+        <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch>-->
       </span>
     </el-drawer>
 
@@ -307,6 +350,8 @@ export default {
               active-text="分析关闭"
               inactive-text="分析开启"
             ></el-switch>
+            <el-button @change="OpenAnalysis()">开启路况分析</el-button>
+            <el-button @change="EndAnalysis()">关闭路况分析</el-button>
           </el-collapse-item>
         </el-collapse>
       </span>
@@ -337,7 +382,7 @@ export default {
           <!-- <div class="img-tip">{{ this.$store.getters.NowTime }}点</div>  -->
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>
         </div>
-          <div class="img-tip">{{ NowTimeHour }}点</div>
+        <div class="img-tip">{{ NowTimeHour }}点</div>
       </div>
 
       <div style="width: 950px;height:300px;">
@@ -353,17 +398,17 @@ export default {
       </h3>
       <div class="area-inbox-1">
         <dl>
-          <dt style="color:white">上月平均值</dt>
+          <dt style="color:white">今日整体订单量</dt>
           <dd class="font12">
             <span>76.525%</span>
             <b></b>
           </dd>
-          <dt class="ml-20">今日交通流量变化率</dt>
+          <dt class="ml-20">今日订单高价占比率</dt>
           <dd class="font-red ml-20">
             <span>74.113%</span>
             <b></b>
           </dd>
-          <dt>今日交通流量变化率</dt>
+          <dt>今日订单高时长占比率</dt>
           <dd>
             <span>68.113%</span>
             <b></b>
@@ -414,13 +459,26 @@ export default {
   right: 0;
   text-align: center;
 }
-.img-tip
-{
-  width:100%;
+.img-tip {
+  width: 100%;
   text-align: center;
   background: #000;
   color: #fff;
   opacity: 0.6;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
+.el-row {
+  margin-bottom: 20px;
+}
+.el-col {
+  border-radius: 4px;
 }
 </style>
 
