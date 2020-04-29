@@ -13,7 +13,6 @@ import ChordChart from "../components/ChordChart.vue"; //订单情况街道和�
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
-import { Hour } from "../components/StartHeatMapChart.vue";
 // import PointMap from "../components/PointMap.vue";
 // 网页界面设计
 export default {
@@ -44,10 +43,8 @@ export default {
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       analysis: true, //蝌蚪图街道分析开关
-      openBubble: false, //气泡图开关
-      // disabled:true,//切换按钮是否使用
+      BubbleOpenorDown: false, //气泡图开关
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
-      // NowTimeHour:"",//当前该天具体时间
       drawer: false, //右侧抽屉
       Controldrawer: false, //下方抽屉
       direction: "rtl", //左开
@@ -59,6 +56,23 @@ export default {
     NowTimeHour() {
       return this.$store.getters.NowTime;
     },
+    GetNowLongRecent()
+    {
+      return this.$store .getters.GetNowRecentLong;
+    },
+    GetNowFastRecent()
+    {
+      return this.$store.getters.GetNowRecentFast;
+    },
+    GetNowHighRecent()
+    {
+      return this.$store.getters.GetNowRecentHigh;
+    },
+    GetNowLongTimeRecent()
+    {
+      return this.$store.getters.GetNowRecentLongTime;
+    },
+
   },
   methods: {
     upNowhour: function() {
@@ -78,6 +92,8 @@ export default {
       this.nowTime = val;
       // this.$store.state.TimeDate = this.nowTime;
       this.$store.commit("updateTimeDate", this.nowTime);
+      console.log(this.$store.getters.GetNowRecent[1]);
+      // return this.$store.getters.GetNowRecent;
     },
     OpenAnalysis:function()
     {
@@ -135,28 +151,28 @@ export default {
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单长途占比</p>
-          <strong>{{this.$store.getters.GetNowRecent[1]}}</strong>
+          <strong>{{GetNowLongRecent}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单快车占比</p>
-          <strong>{{this.$store.getters.GetNowRecent[2]}}</strong>
+          <strong>{{GetNowFastRecent}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单高费用占比</p>
-          <strong>{{this.$store.getters.GetNowRecent[3]}}</strong>
+          <strong>{{GetNowHighRecent}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单高时长占比</p>
-          <strong>{{this.$store.getters.GetNowRecent[4]}}</strong>
+          <strong>{{GetNowLongTimeRecent}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
@@ -398,7 +414,6 @@ export default {
 
       <div style="width: 950px;height:300px;">
         <LineCharts></LineCharts>
-        <!-- <PointMap></PointMap> -->
       </div>
     </div>
 
@@ -411,24 +426,24 @@ export default {
         <dl>
           <dt style="color:white">今日整体订单量</dt>
           <dd class="font12">
-            <span>{{this.$store.getters.GetNowRecent[2]}}</span>
+            <span>{{GetNowFastRecent}}</span>
             <b></b>
           </dd>
           <dt class="ml-20">今日订单高价占比率</dt>
           <dd class="font-red ml-20">
-            <span>{{this.$store.getters.GetNowRecent[3]}}</span>
+            <span>{{GetNowHighRecent}}</span>
             <b></b>
           </dd>
           <dt>今日订单高时长占比率</dt>
           <dd>
-            <span>{{this.$store.getters.GetNowRecent[4]}}</span>
+            <span>{{GetNowLongTimeRecent}}</span>
             <b></b>
           </dd>
         </dl>
         <div class="round-1"></div>
         <div class="round-2"></div>
-        <div class="round-3">{{this.$store.getters.GetNowRecent[2]}}</div>
-        <div class="round-4">10</div>
+        <div class="round-3">30%</div>
+        <div class="round-4"></div>
       </div>
     </div>
 
