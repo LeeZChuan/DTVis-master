@@ -58,7 +58,7 @@ export default {
   computed: {
     NowTimeHour() {
       return this.$store.getters.NowTime;
-    }
+    },
   },
   methods: {
     upNowhour: function() {
@@ -66,7 +66,6 @@ export default {
       // this.$store.state.TimeHour++
       var i = this.$store.state.TimeHour;
       this.$store.commit("updateTimeHour", ++i);
-      console.log(this.$store.state.TimeHour);
     },
     downNowhour: function() {
       //获取当前展示具体天数的准确时间
@@ -136,34 +135,34 @@ export default {
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单长途占比</p>
-          <strong>174.6069</strong>
+          <strong>{{this.$store.getters.GetNowRecent[1]}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单快车占比</p>
-          <strong>174.6069</strong>
+          <strong>{{this.$store.getters.GetNowRecent[2]}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单高费用占比</p>
-          <strong>174.6069</strong>
+          <strong>{{this.$store.getters.GetNowRecent[3]}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
           <p>滴滴订单高时长占比</p>
-          <strong>174.6069</strong>
+          <strong>{{this.$store.getters.GetNowRecent[4]}}</strong>
         </li>
         <li>
           <b class="animation-1"></b>
           <b class="animation-2"></b>
           <b class="animation-3"></b>
-          <p>滴滴订单整体情况占比</p>
+          <p>滴滴订单整体占比</p>
           <strong>99.9%</strong>
         </li>
         <li>
@@ -331,17 +330,27 @@ export default {
       <span>
         <el-collapse v-model="activeNames" accordion>
           <el-collapse-item title="订单情况起终点热力图控制台" name="1">
+            <strong style="line-height：20pt">订单起终点城区热力图:</strong>
             <el-switch
-              style="display: block"
+              style="display: block;line-height：20pt"
               v-model="StartOrEnd"
               active-color="#13ce66"
               inactive-color="#ff4949"
               active-text="起点热力图"
               inactive-text="终点热力图"
             ></el-switch>
+            <strong style="line-height：20pt">三维气泡图整体分析:</strong>
+            <el-switch
+              style="display: block;line-height：20pt"
+              v-model="BubbleOpenorDown"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
           </el-collapse-item>
-          <el-collapse-item title="订单预测情况散点图" name="2"></el-collapse-item>
-          <el-collapse-item title="订单情况流量蝌蚪图" name="3">
+          <el-collapse-item title="订单情况流量蝌蚪图" name="2">
+            <strong style="line-height：20pt">实时路况分析:</strong>
             <el-switch
               style="display: block"
               v-model="analysis"
@@ -350,9 +359,11 @@ export default {
               active-text="分析关闭"
               inactive-text="分析开启"
             ></el-switch>
+
             <el-button @change="OpenAnalysis()">开启路况分析</el-button>
             <el-button @change="EndAnalysis()">关闭路况分析</el-button>
           </el-collapse-item>
+             <el-collapse-item title="订单预测情况散点图" name="3"></el-collapse-item>
         </el-collapse>
       </span>
     </el-drawer>
@@ -400,24 +411,24 @@ export default {
         <dl>
           <dt style="color:white">今日整体订单量</dt>
           <dd class="font12">
-            <span>76.525%</span>
+            <span>{{this.$store.getters.GetNowRecent[2]}}</span>
             <b></b>
           </dd>
           <dt class="ml-20">今日订单高价占比率</dt>
           <dd class="font-red ml-20">
-            <span>74.113%</span>
+            <span>{{this.$store.getters.GetNowRecent[3]}}</span>
             <b></b>
           </dd>
           <dt>今日订单高时长占比率</dt>
           <dd>
-            <span>68.113%</span>
+            <span>{{this.$store.getters.GetNowRecent[4]}}</span>
             <b></b>
           </dd>
         </dl>
         <div class="round-1"></div>
         <div class="round-2"></div>
-        <div class="round-3">30%</div>
-        <div class="round-4"></div>
+        <div class="round-3">{{this.$store.getters.GetNowRecent[2]}}</div>
+        <div class="round-4">10</div>
       </div>
     </div>
 
