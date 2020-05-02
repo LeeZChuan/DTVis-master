@@ -4,17 +4,13 @@ import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
-// import sumerAndRun from "../components/ForecastChart"; //天气情况热力图界面
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
 import StartHeatMapChart from "../components/StartHeatMapChart.vue"; //起点订单情况热力图界面
 import EndHeatMapChart from "../components/EndHeatMapChart.vue"; //终点订单情况热力图界面
-// import multiputeMap from "./components/multiputeMap.vue"; //用于展示海口市地区订单情况散点雷达图
 import ChordChart from "../components/ChordChart.vue"; //订单情况街道和弦图
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
-// import PointMap from "../components/PointMap.vue";
-import del from "../components/Delete";
 // 网页界面设计
 export default {
   name: "Home",
@@ -24,15 +20,12 @@ export default {
     LineCharts,
     CalendarChart,
     PreBarChart,
-    // ForecastChart,
     ForecastPointChart,
     StartHeatMapChart,
     EndHeatMapChart,
     centerOrderNumChart,
     RateLineChart,
     ChordChart,
-    del
-    // PointMap
   },
   data() {
     return {
@@ -87,13 +80,9 @@ export default {
     getNowDate: function(val) {
       //获取当前展示天数的方法
       this.nowTime = val;
-      // this.$store.state.TimeDate = this.nowTime;
       this.$store.commit("updateTimeDate", this.nowTime);
-      console.log(this.$store.getters.GetNowRecent[1]);
-      // return this.$store.getters.GetNowRecent;
     },
     OpenAnalysis: function() {
-      // let vm=this;
       this.$refs.TadpoleChart.analysis();
     },
     EndAnalysis: function() {
@@ -340,10 +329,6 @@ export default {
         <el-col :span="4">
           <div class="grid-content bg-purple-light"></div>
         </el-col>
-
-        <!-- <el-button class="button" plain @click="downNowhour()">上一小时</el-button>
-        <el-button class="button" plain @click="upNowhour()">下一小时</el-button>
-        <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch>-->
       </span>
     </el-drawer>
 
@@ -398,7 +383,6 @@ export default {
 
     <!-- 时间选择器 -->
     <div class="block">
-      <!-- <el-date-picker v-model="value1" type="date"  placeholder="选择日期"></el-date-picker> -->
       <el-date-picker
         v-model="dateTime"
         type="date"
@@ -415,10 +399,8 @@ export default {
         <div label="交通流量蝌蚪图" v-show="centerVisible">
           <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
         </div>
-        <!-- <HeatMapChart label="交通流量热力图" v-show="!centerVisible"></HeatMapChart> -->
         <div label="交通流量热力图" v-show="!centerVisible">
           <StartHeatMapChart label="交通流量起点热力图" v-show="StartOrEnd"></StartHeatMapChart>
-          <!-- <div class="img-tip">{{ this.$store.getters.NowTime }}点</div>  -->
           <EndHeatMapChart label="交通流量终点热力图" v-show="!StartOrEnd"></EndHeatMapChart>
         </div>
         <div class="img-tip">{{ NowTimeHour }}点</div>
@@ -471,7 +453,6 @@ export default {
 
 <style scoped>
 @import "../assets/css/mobile.css";
-/* @import "../assets/css/jqueryui.css"; */
 @import "../assets/css/default.css";
 
 .menu {
