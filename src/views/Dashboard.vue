@@ -318,8 +318,8 @@ export default {
         </el-col>
         <el-col :span="4">
           <div class="grid-content bg-purple-light">
-            <div>三维气泡图标注开关</div>
-            <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+            <!-- <div>三维气泡图标注开关</div>
+            <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch> -->
           </div>
         </el-col>
         <el-col :span="4">

@@ -21,11 +21,6 @@ export default new Router({
             meta: { title: '交通流量时空演变特征可视分析' }
         },
         {
-            path: "/ControlMap",
-            component: ControlMap,
-            meta: { title: '地图整体操控界面' }
-        },
-        {
             path: "*",
             component: notfound,
             meta: { title: '页面走丢了...' }
