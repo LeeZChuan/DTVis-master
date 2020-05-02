@@ -2,14 +2,6 @@
   <div>
     <!-- 各天订单情况热力图，其中展示宽度很合适，实现了地图的旋转以及放大缩小 -->
     <el-amap id="HeatMapChart" style="width: 980px; height: 400px;"></el-amap>
-    <!-- <div class="input-card" style="width: auto;">
-      <div class="input-item">
-        <button class="btn" onclick="map.show()">显示热力图</button>
-      </div>
-      <div class="input-item">
-        <button class="btn" onclick="map.hide()">关闭热力图</button>
-      </div>
-    </div> -->
   </div>
 </template>
 

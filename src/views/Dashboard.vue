@@ -4,7 +4,7 @@ import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
-// import ForecastChart from "../components/ForecastChart"; //预测情况散点图界面
+// import sumerAndRun from "../components/ForecastChart"; //天气情况热力图界面
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
 import StartHeatMapChart from "../components/StartHeatMapChart.vue"; //起点订单情况热力图界面
 import EndHeatMapChart from "../components/EndHeatMapChart.vue"; //终点订单情况热力图界面
@@ -14,6 +14,7 @@ import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单�
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
 // import PointMap from "../components/PointMap.vue";
+import del from "../components/Delete";
 // 网页界面设计
 export default {
   name: "Home",
@@ -29,8 +30,8 @@ export default {
     EndHeatMapChart,
     centerOrderNumChart,
     RateLineChart,
-    // multiputeMap,
     ChordChart,
+    del
     // PointMap
   },
   data() {
@@ -42,6 +43,7 @@ export default {
       centerTadpoleVisible: false, //
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
+      sumerAndRun: false, //天气展示情况
       analysis: true, //蝌蚪图街道分析开关
       BubbleOpenorDown: false, //气泡图开关
       dateTime: "2017-10-1", //默认时间展示为2017-10-01
@@ -56,23 +58,18 @@ export default {
     NowTimeHour() {
       return this.$store.getters.NowTime;
     },
-    GetNowLongRecent()
-    {
-      return this.$store .getters.GetNowRecentLong;
+    GetNowLongRecent() {
+      return this.$store.getters.GetNowRecentLong;
     },
-    GetNowFastRecent()
-    {
+    GetNowFastRecent() {
       return this.$store.getters.GetNowRecentFast;
     },
-    GetNowHighRecent()
-    {
+    GetNowHighRecent() {
       return this.$store.getters.GetNowRecentHigh;
     },
-    GetNowLongTimeRecent()
-    {
+    GetNowLongTimeRecent() {
       return this.$store.getters.GetNowRecentLongTime;
-    },
-
+    }
   },
   methods: {
     upNowhour: function() {
@@ -95,13 +92,11 @@ export default {
       console.log(this.$store.getters.GetNowRecent[1]);
       // return this.$store.getters.GetNowRecent;
     },
-    OpenAnalysis:function()
-    {
+    OpenAnalysis: function() {
       // let vm=this;
       this.$refs.TadpoleChart.analysis();
     },
-    EndAnalysis:function()
-    {
+    EndAnalysis: function() {
       this.$refs.TadpoleChart.drawTadpoleChart();
     },
     handleClose(done) {
@@ -226,6 +221,11 @@ export default {
         </li>
         <li>
           <a>
+            <el-button type="text" @click="sumerAndRun = true">天气出行整体情况展示</el-button>
+          </a>
+        </li>
+        <li>
+          <a>
             <el-button @click="drawer = true" type="text" style="margin-left: 16px;">主图操控台</el-button>
           </a>
         </li>
@@ -241,7 +241,7 @@ export default {
       </ul>
     </div>
     <!-- 弹窗部分 -->
-    <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="75%" center>
+    <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="75%" center destroy-on-close="true">
       <span>
         <!-- 整体预测柱状图 -->
         <PreBarChart></PreBarChart>
@@ -252,7 +252,7 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="该天订单的出行距离与整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center>
+    <el-dialog title="该天订单的出行距离与整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center destroy-on-close="true" >
       <span>
         <centerOrderNumChart></centerOrderNumChart>
         <RateLineChart></RateLineChart>
@@ -263,7 +263,7 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="该天交通流量迁徙图" :visible.sync="centerMoveToVisible" width="75%" center>
+    <el-dialog title="该天交通流量迁徙图" :visible.sync="centerMoveToVisible" width="75%" center destroy-on-close="true">
       <span>
         <MoveToChart></MoveToChart>
       </span>
@@ -273,7 +273,17 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog :visible.sync="centerDepVisible" width="75%" fullscreen="true" center>
+    <el-dialog title="天气出行整体情况展示" :visible.sync="sumerAndRun" width="75%" center destroy-on-close="true">
+      <span>
+        <CalendarChart></CalendarChart>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="sumerAndRun = false">取 消</el-button>
+        <el-button type="primary" @click="sumerAndRun = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog :visible.sync="centerDepVisible" width="100%" fullscreen="true" center destroy-on-close="true">
       <span>
         <ChordChart></ChordChart>
       </span>
@@ -318,12 +328,14 @@ export default {
         </el-col>
         <el-col :span="4">
           <div class="grid-content bg-purple-light">
-            <!-- <div>三维气泡图标注开关</div>
-            <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch> -->
+            <div>三维气泡图标注开关</div>
+            <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
           </div>
         </el-col>
         <el-col :span="4">
-          <div class="grid-content bg-purple"></div>
+          <div class="grid-content bg-purple">
+             <el-button class="button" plain @click="centerDepVisible=true">订单流动情况和弦图</el-button>
+          </div>
         </el-col>
         <el-col :span="4">
           <div class="grid-content bg-purple-light"></div>
@@ -379,7 +391,7 @@ export default {
             <el-button @change="OpenAnalysis()">开启路况分析</el-button>
             <el-button @change="EndAnalysis()">关闭路况分析</el-button>
           </el-collapse-item>
-             <el-collapse-item title="订单预测情况散点图" name="3"></el-collapse-item>
+          <el-collapse-item title="订单预测情况散点图" name="3"></el-collapse-item>
         </el-collapse>
       </span>
     </el-drawer>
@@ -414,6 +426,7 @@ export default {
 
       <div style="width: 950px;height:300px;">
         <LineCharts></LineCharts>
+        <del></del>
       </div>
     </div>
 

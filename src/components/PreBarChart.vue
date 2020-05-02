@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="PreBarChart" style="width: 1000px;height:300px;"></div>
+    <div id="PreBarChart" style="width: 1100px;height:300px;"></div>
   </div>
 </template>
 

@@ -32,55 +32,43 @@ const store = new Vuex.Store({
             return state.TimeHour;
         },
         GetNowRecentLong(state) {
-            //获取当前时间
             for (let i = 0; i < 7; i++) {
                 if(state.TimeDate==state.Recent[i][0])
                 {
-                    // console.log(state.Recent[i]);
                     return state.Recent[i][1];
                 }
                 else{
                 }
-                // console.log(state.Recent[i]);
             }
         },
         GetNowRecentFast(state) {
-            //获取当前时间
             for (let i = 0; i < 7; i++) {
                 if(state.TimeDate==state.Recent[i][0])
                 {
-                    // console.log(state.Recent[i]);
                     return state.Recent[i][2];
                 }
                 else{
                 }
-                // console.log(state.Recent[i]);
             }
         },
         GetNowRecentHigh(state) {
-            //获取当前时间
             for (let i = 0; i < 7; i++) {
                 if(state.TimeDate==state.Recent[i][0])
                 {
-                    // console.log(state.Recent[i]);
                     return state.Recent[i][3];
                 }
                 else{
                 }
-                // console.log(state.Recent[i]);
             }
         },
         GetNowRecentLongTime(state) {
-            //获取当前时间
             for (let i = 0; i < 7; i++) {
                 if(state.TimeDate==state.Recent[i][0])
                 {
-                    // console.log(state.Recent[i]);
                     return state.Recent[i][4];
                 }
                 else{
                 }
-                // console.log(state.Recent[i]);
             }
         },
     }
