@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="CalendarChart" style="width: 600px;height:300px;"></div>
+    <div id="CalendarChart" style="width: 700px;height:300px;"></div>
   </div>
 </template>
 

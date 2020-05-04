@@ -3,6 +3,7 @@
 import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
+import DailyBarChart from"../components/DailyBarChart.vue";
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
 import StartHeatMapChart from "../components/StartHeatMapChart.vue"; //起点订单情况热力图界面
@@ -18,6 +19,7 @@ export default {
     TadpoleChart,
     MoveToChart,
     LineCharts,
+    DailyBarChart,//三维订单情况柱状图
     CalendarChart,
     PreBarChart,
     ForecastPointChart,
@@ -262,9 +264,10 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="天气出行整体情况展示" :visible.sync="sumerAndRun" width="75%" center destroy-on-close="true">
+    <el-dialog title="天气出行整体情况展示" :visible.sync="sumerAndRun" width="50%"  center destroy-on-close="true">
       <span>
         <CalendarChart></CalendarChart>
+        <DailyBarChart></DailyBarChart>
       </span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="sumerAndRun = false">取 消</el-button>
