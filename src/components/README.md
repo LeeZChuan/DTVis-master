@@ -13,11 +13,11 @@
 
 0. exp.vue 例子模块部分代码（作为参考项目）√-finsh
 1. ForecastChart 预测的订单整体情况折线图界面 √-finsh
-   ForecastChart 预测界面包含整体订单预测与局部订单预测（散点花图）
+   ForecastPointChart 预测界面包含整体订单预测与局部订单预测（散点花图）
 2. TadpoleChart 蝌蚪图（热力图）√-finsh
 3. StartHeatMapChart (3D热力图）后续还可以添加一些交互功能 √-finsh
    EndHeatMapChart 终点订单情况热力图 √-finsh
-4. Control 控制面板  unfinsh
+4. Control 控制面板  finsh
 5. multiputeMap 用于展示海口市地区订单情况散点雷达图
 6. LineChart 出行距离与出行次数折线图√-finsh
 7. map 出行订单数量散点图（花弦图）
@@ -28,7 +28,7 @@
 12. OrderNumLineChart 订单的出行距离与该订单出行距离数量组合折线图（用在弹窗展示部分） √-finsh
 13. ParallelChart 平行坐标系--分析多个因素对出行量的影响（日期x1、天气x2、距离x3、时间x4、地区x5、订单数量x6）
 14. FinishChart （柱状/折线图）--订单完成率，以周/月为单位，分析不同时间的订单完成率
-15. 
+15. DailyBarChart 每天订单情况数量柱状图 √-finsh
 
 
 
