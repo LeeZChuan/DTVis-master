@@ -47,7 +47,7 @@ export default {
     };
   },
   computed: {
-     TimeDate() {
+    TimeDate() {
       return this.$store.state.TimeDate;
     },
     TimeHour() {
@@ -86,13 +86,13 @@ export default {
   methods: {
     drawTadpoleChart(Date, Hour) {
       /*ECharts图表*/
-      var tempbusLinesk = new Array();//这是普通蝌蚪图颜色保存
-      var tempbusLinesk2 = new Array();//这是预测分析按钮的颜色储存
-      let myChartk = echarts.init(document.getElementById("TadpoleChart"));
-      //没有加载出来使用加载动画
+      var tempbusLinesk = new Array(); //这是普通蝌蚪图颜色保存
+      var tempbusLinesk2 = new Array(); //这是预测分析按钮的颜色储存
+      var myChartk = echarts.init(document.getElementById("TadpoleChart"));
+      myChartk.clear();
       myChartk.showLoading();
+      //数据读取需要改动
       this.$axios
-        // 读取json文件到didiData
         .get(
           "../../static/data/TadpoleChart/" + Date + "/" + Hour + "小时.json"
         )
@@ -102,57 +102,51 @@ export default {
           let busLinesk = [].concat.apply(
             [],
             didiData.map(function(busLine, idx) {
-              var points = []; //每条轨迹的数据
+              var points = [];
               for (var i = 0; i < busLine[0].length; i += 2) {
+                //每条轨迹的数据
                 var pt = [busLine[0][i], busLine[0][i + 1]]; //初始化pt坐标
                 points.push([pt[0], pt[1]]); //存入points
               }
               return {
-                //往buslines返回数据
+                //往buslines返回数据，多种颜色
+                // coords: points,
+                // lineStyle: {
+                //   normal: {
+                //     color: echarts.color.modifyHSL(
+                //       "rgb(255,122,0)",
+                //       Math.round(hStep * idx)
+                //     )
+                //   }
+                // }
+                //这里就只有一种颜色添加（红色）
                 coords: points,
                 lineStyle: {
-                  normal: {
-                    color: echarts.color.modifyHSL(
-                      "rgb(255,122,0)",
-                      Math.round(hStep * idx)
-                    ) 
-                  }
+                    normal: {
+                        color: 'rgb(255,0,0)'
+                    }
                 }
               };
             })
           );
           tempbusLinesk = busLinesk;
-
-          var busLinesk2 = [].concat.apply(
+          //用于蝌蚪图画线，数据处理待优化
+          let busLinesk2 = [].concat.apply(
             [],
             didiData.map(function(busLine, idx) {
-              //用于蝌蚪图画线，数据处理待优化
               var points = [];
               for (var i = 0; i < busLine[0].length; i += 2) {
                 var pt = [busLine[0][i], busLine[0][i + 1]];
                 points.push([pt[0], pt[1]]); //存入points
               }
               return {
-                coords: points //往buslines返回数据
+                //往buslines返回数据
+                coords: points
               };
             })
           );
           tempbusLinesk2 = busLinesk2;
-
           let option = {
-            title: {
-              text: "海口市车流量蝌蚪图",
-              left: "center",
-              top: 20,
-              textStyle: {
-                color: "#cdddf7",
-                fontSize: 20
-              },
-              subtextStyle: {
-                color: "white",
-                fontSize: 16
-              }
-            },
             // 加载 amap 组件
             amap: {
               // 高德地图支持的初始化地图配置
@@ -170,6 +164,7 @@ export default {
             series: [
               {
                 type: "lines",
+                // coordinateSystem: 'bmap',
                 coordinateSystem: "amap",
                 polyline: true,
                 data: busLinesk,
@@ -188,24 +183,62 @@ export default {
               }
             ]
           };
-
+          //初始化订单类型分析
           setTimeout(() => {
             //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
             myChartk.hideLoading(); //没有加载出来隐藏加载动画
             myChartk.setOption(option, true); //初始化蝌蚪图样例
           }, 5000);
+          // myChartk.setOption(option,);
+          var series = [
+            {
+              type: "lines",
+              coordinateSystem: "amap",
+              polyline: true,
+              data: busLinesk,
+              lineStyle: {
+                normal: {
+                  width: 0
+                }
+              },
+              effect: {
+                constantSpeed: 20,
+                show: true,
+                trailLength: 0.1,
+                symbolSize: 1.5
+              },
+              zlevel: 1
+            }
+          ];
+          if (document.getElementById("pushData").value === "订单类别") {
+            series.push({
+              type: "lines",
+              coordinateSystem: "amap",
+              polyline: true,
+              data: busLinesk2,
+              silent: true,
+              lineStyle: {
+                normal: {
+                  opacity: 0.2,
+                  width: 1
+                }
+              },
+              progressiveThreshold: 500,
+              progressive: 200
+            });
+          }
         });
     }
   }
 };
 
 //模块一：使用订单类别分析功能
-function analysis(Date,Hour) {
+function analysis(Date, Hour) {
   var myChartk = echarts.init(document.getElementById("TadpoleChart"));
   myChartk.clear();
   //数据读取需要改动
   this.$axios
-    .get("../../static/data/TadpoleChart/" + Date + "/"+Hour+"小时.json")
+    .get("../../static/data/TadpoleChart/" + Date + "/" + Hour + "小时.json")
     .then(res => {
       var didiData = res.data;
       var hStep = 300 / (didiData.length - 1); //路径颜色
@@ -288,10 +321,10 @@ function analysis(Date,Hour) {
       };
       //初始化订单类型分析
       setTimeout(() => {
-            //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
-            myChartk.hideLoading(); //没有加载出来隐藏加载动画
-            myChartk.setOption(option, true); //初始化蝌蚪图样例
-          }, 5000);
+        //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
+        myChartk.hideLoading(); //没有加载出来隐藏加载动画
+        myChartk.setOption(option, true); //初始化蝌蚪图样例
+      }, 5000);
       // myChartk.setOption(option,);
       var series = [
         {
@@ -329,7 +362,6 @@ function analysis(Date,Hour) {
           progressiveThreshold: 500,
           progressive: 200
         });
-
       }
     });
 }
