@@ -3,7 +3,7 @@
 import TadpoleChart from "../components/TadpoleCharts.vue"; //蝌蚪图
 import MoveToChart from "../components/MoveToChart.vue"; //交通流量整体流量迁徙图
 import LineCharts from "../components/LineCharts.vue"; //出行距离与出行次数折线图
-import DailyBarChart from"../components/DailyBarChart.vue";
+import DailyBarChart from "../components/DailyBarChart.vue";
 import CalendarChart from "../components/CalendarChart.vue"; //日期订单情况热力图
 import ForecastPointChart from "../components/ForecastPointChart"; //预测起终点散点界面
 import StartHeatMapChart from "../components/StartHeatMapChart.vue"; //起点订单情况热力图界面
@@ -12,6 +12,8 @@ import ChordChart from "../components/ChordChart.vue"; //订单情况街道和�
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
+import wordCloud from "../components/wordCloud";
+import Data from "../components/dataDel";
 // 网页界面设计
 export default {
   name: "Home",
@@ -19,7 +21,7 @@ export default {
     TadpoleChart,
     MoveToChart,
     LineCharts,
-    DailyBarChart,//三维订单情况柱状图
+    DailyBarChart, //三维订单情况柱状图
     CalendarChart,
     PreBarChart,
     ForecastPointChart,
@@ -28,6 +30,8 @@ export default {
     centerOrderNumChart,
     RateLineChart,
     ChordChart,
+    wordCloud,
+    Data
   },
   data() {
     return {
@@ -35,6 +39,7 @@ export default {
       centerOrderNumVisible: false, //订单的出行距离与该订单出行距离数量组合折线图弹窗
       centerMoveToVisible: false, //订单情况区域迁徙图的弹窗
       centerDepVisible: false, //订单情况街道流向和弦图
+      openwordCloud: false, //词云图弹窗开关
       centerTadpoleVisible: false, //
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
@@ -177,6 +182,8 @@ export default {
       </ul>
     </div>
 
+    <Data></Data>
+
     <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
     <div class="submenu">
       <ul>
@@ -232,7 +239,13 @@ export default {
       </ul>
     </div>
     <!-- 弹窗部分 -->
-    <el-dialog title="交通流量预测组合图" :visible.sync="centerForcastVisible" width="75%" center destroy-on-close="true">
+    <el-dialog
+      title="交通流量预测组合图"
+      :visible.sync="centerForcastVisible"
+      width="75%"
+      center
+      destroy-on-close="true"
+    >
       <span>
         <!-- 整体预测柱状图 -->
         <PreBarChart></PreBarChart>
@@ -243,7 +256,13 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="该天订单的出行距离与整体数量组合折线图" :visible.sync="centerOrderNumVisible" width="75%" center destroy-on-close="true" >
+    <el-dialog
+      title="该天订单的出行距离与整体数量组合折线图"
+      :visible.sync="centerOrderNumVisible"
+      width="75%"
+      center
+      destroy-on-close="true"
+    >
       <span>
         <centerOrderNumChart></centerOrderNumChart>
         <RateLineChart></RateLineChart>
@@ -254,7 +273,13 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="该天交通流量迁徙图" :visible.sync="centerMoveToVisible" width="75%" center destroy-on-close="true">
+    <el-dialog
+      title="该天交通流量迁徙图"
+      :visible.sync="centerMoveToVisible"
+      width="75%"
+      center
+      destroy-on-close="true"
+    >
       <span>
         <MoveToChart></MoveToChart>
       </span>
@@ -264,7 +289,13 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="天气出行整体情况展示" :visible.sync="sumerAndRun" width="50%"  center destroy-on-close="true">
+    <el-dialog
+      title="天气出行整体情况展示"
+      :visible.sync="sumerAndRun"
+      width="50%"
+      center
+      destroy-on-close="true"
+    >
       <span>
         <CalendarChart></CalendarChart>
         <DailyBarChart></DailyBarChart>
@@ -275,7 +306,31 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog :visible.sync="centerDepVisible" width="100%" fullscreen="true" center destroy-on-close="true">
+    <el-dialog
+      title="订单出发地情况词云图"
+      :visible.sync="openwordCloud"
+      width="100%"
+      center
+      destroy-on-close="true"
+    >
+      <span>
+        <div>
+        <wordCloud></wordCloud>
+        </div>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="openwordCloud = false">取 消</el-button>
+        <el-button type="primary" @click="openwordCloud = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog
+      :visible.sync="centerDepVisible"
+      width="100%"
+      fullscreen="true"
+      center
+      destroy-on-close="true"
+    >
       <span>
         <ChordChart></ChordChart>
       </span>
@@ -326,7 +381,7 @@ export default {
         </el-col>
         <el-col :span="4">
           <div class="grid-content bg-purple">
-             <el-button class="button" plain @click="centerDepVisible=true">订单流动情况和弦图</el-button>
+            <el-button class="button" plain @click="centerDepVisible=true">订单流动情况和弦图</el-button>
           </div>
         </el-col>
         <el-col :span="4">
@@ -376,8 +431,14 @@ export default {
               inactive-text="分析关闭"
             ></el-switch>
 
-            <el-button @change="OpenAnalysis()">开启路况分析</el-button>
-            <el-button @change="EndAnalysis()">关闭路况分析</el-button>
+            <li>
+              <a>
+                <el-button type="text" @click="openwordCloud = true">街道情况词云图</el-button>
+              </a>
+            </li>
+
+            <!-- <el-button @change="OpenAnalysis()">开启路况分析</el-button>
+            <el-button @change="EndAnalysis()">关闭路况分析</el-button>-->
           </el-collapse-item>
           <el-collapse-item title="订单预测情况散点图" name="3"></el-collapse-item>
         </el-collapse>

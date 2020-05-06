@@ -50,10 +50,10 @@ export default {
         this.$axios.get("../../static/data/yuce/"+ name1[j] +"/2017-05-13.json").then(res => {
           // chezhan
           var pointsData=res.data;
-          console.log(pointsData);
+          // console.log(pointsData);
           points[j] = res.data[prasInt(timeindex)];
           });
-      console.log("zheshi散点图"+points[j]);
+      // console.log("zheshi散点图"+points[j]);
       }
 
           var map = new AMap.Map("Chart", {
