@@ -31,14 +31,14 @@ export default {
           var startStreet = new Array();
           var endStreet = new Array();
 
-          var temp = 0;
+          var temp = 1;
           var tempData = new Array();
           for (var i = 0; i < 1104; i++) {
             // console.log(data1[i]);
             if (data1[i][0] !== data1[i + 1][0]) {
               startStreet.push(data1[i + 1][0]);
               tempData.push(temp);
-              var temp = 0;
+              var temp = 1;
             } else {
               temp++;
             }

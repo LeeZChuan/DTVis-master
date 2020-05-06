@@ -182,8 +182,6 @@ export default {
       </ul>
     </div>
 
-    <Data></Data>
-
     <!-- 操作台：用于操作交通流量可视化平台的参数与相关信息 -->
     <div class="submenu">
       <ul>
@@ -430,17 +428,14 @@ export default {
               active-text="分析开启"
               inactive-text="分析关闭"
             ></el-switch>
-
             <li>
               <a>
                 <el-button type="text" @click="openwordCloud = true">街道情况词云图</el-button>
               </a>
             </li>
-
-            <!-- <el-button @change="OpenAnalysis()">开启路况分析</el-button>
-            <el-button @change="EndAnalysis()">关闭路况分析</el-button>-->
           </el-collapse-item>
-          <el-collapse-item title="订单预测情况散点图" name="3"></el-collapse-item>
+          <el-collapse-item title="订单预测情况散点图" name="3">
+          </el-collapse-item>
         </el-collapse>
       </span>
     </el-drawer>
@@ -469,11 +464,11 @@ export default {
         </div>
         <div class="img-tip">{{ NowTimeHour }}点</div>
       </div>
-
       <div style="width: 950px;height:300px;">
+        <!-- 系统下方设计 -->
         <LineCharts></LineCharts>
-        <!-- <del></del> -->
-        <ForecastPointChart></ForecastPointChart>
+        <!-- <ForecastPointChart></ForecastPointChart> -->
+          <!-- <Data></Data> -->
       </div>
     </div>
 
