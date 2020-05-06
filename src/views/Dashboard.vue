@@ -369,11 +369,11 @@ export default {
             <strong style="line-height：20pt">实时路况分析:</strong>
             <el-switch
               style="display: block"
-              v-model="analysis"
+              v-model="centerVisible"
               active-color="#13ce66"
               inactive-color="#ff4949"
-              active-text="分析关闭"
-              inactive-text="分析开启"
+              active-text="分析开启"
+              inactive-text="分析关闭"
             ></el-switch>
 
             <el-button @change="OpenAnalysis()">开启路况分析</el-button>
@@ -411,7 +411,8 @@ export default {
 
       <div style="width: 950px;height:300px;">
         <LineCharts></LineCharts>
-        <del></del>
+        <!-- <del></del> -->
+        <ForecastPointChart></ForecastPointChart>
       </div>
     </div>
 

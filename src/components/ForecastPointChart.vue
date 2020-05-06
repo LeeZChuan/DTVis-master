@@ -45,11 +45,15 @@ export default {
       //       [110.3003359682968, 20.02209205730502],                                                            // 酒店
       //       [110.28733273053196, 20.004736626542677]                                                           // 医院
       //     ];
-      for(var j=0;j<=0;j++){
+      var points=new Array();
+      for(var j=0;j<9;j++){
         this.$axios.get("../../static/data/yuce/"+ name1[j] +"/2017-05-13.json").then(res => {
           // chezhan
+          var pointsData=res.data;
+          console.log(pointsData);
           points[j] = res.data[prasInt(timeindex)];
           });
+      console.log("zheshi散点图"+points[j]);
       }
 
           var map = new AMap.Map("Chart", {
