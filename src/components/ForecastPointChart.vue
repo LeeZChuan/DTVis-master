@@ -54,18 +54,23 @@ export default {
       // });
       // console.log(rads.points.value)
       // console.log(rads.points.value[2])
-      console.log(rads.points[2])
+      // console.log(rads.points[2])
+      var a= new Array()
+      a = rads.points
+      console.log(a)
+      console.log(a[2])
+      console.log(geoCoordMap)
       // console.log(rads.points.forEach(v=>{v}))
       // console.log(parseInt(rads.points[i]))
       // console.log(geoCoordMap[5][0])
-      var circles = []
+      var circles = new Array()
       for(var i=0;i<=8;i++){
         //  console.log(rads.points)
           circles[i] = new AMap.Circle({
           // 数据读取
           center: new AMap.LngLat(geoCoordMap[i][0],geoCoordMap[i][1]), // 圆心位置
           // 半径 数据读取 
-          radius: parseInt(rads.points[i]),//500,  
+          radius: a[i],//500,  
           strokeColor: colors[i],  //线颜色
           strokeOpacity: 0.5,  //线透明度
           strokeWeight: 1,  //线粗细度
@@ -92,7 +97,7 @@ export default {
       var data = "2017-05-13"
       var timeindex = "15";
       var name = ['Station','University','Square','Hotal','Hospital2','Market','Hospital1','Friendship','Government']
-      var points = []
+      var points = new Array()
       // console.log("tempdata");
       for(var j=0;j<=8;j++){
         this.$axios.get("../../static/data/yuce/"+ name[j] +"/" + data + ".json").then(res => {
