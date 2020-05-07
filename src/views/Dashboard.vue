@@ -12,7 +12,7 @@ import ChordChart from "../components/ChordChart.vue"; //订单情况街道和�
 import centerOrderNumChart from "../components/OrderNumLineChart.vue"; //订单数量情况与出行距离折线图
 import RateLineChart from "../components/RateLineChart.vue"; //订单情况每小时变化率折线图
 import PreBarChart from "../components/PreBarChart.vue"; //预测界面的柱状图
-import wordCloud from "../components/wordCloudEcharts";
+import wordCloud from "../components/wordCloud";
 import Data from "../components/dataDel";
 // 网页界面设计
 export default {
@@ -467,8 +467,8 @@ export default {
       <div style="width: 950px;height:300px;">
         <!-- 系统下方设计 -->
         <!-- <LineCharts></LineCharts> -->
-        <!-- <ForecastPointChart></ForecastPointChart> -->
-          <Data></Data>
+        <ForecastPointChart></ForecastPointChart>
+          <!-- <Data></Data> -->
       </div>
     </div>
 

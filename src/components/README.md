@@ -29,7 +29,7 @@
 13. ParallelChart 平行坐标系--分析多个因素对出行量的影响（日期x1、天气x2、距离x3、时间x4、地区x5、订单数量x6）
 14. FinishChart （柱状/折线图）--订单完成率，以周/月为单位，分析不同时间的订单完成率
 15. DailyBarChart 每天订单情况数量柱状图 √-finsh
-16. wordCloud 词云图 finsh
+16. wordCloud 词云图 √-finsh
 
 
 
