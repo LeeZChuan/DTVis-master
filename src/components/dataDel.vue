@@ -22,7 +22,7 @@ export default {
       //   var HeatmapChart = echarts.init(document.getElementById("HeatMapChart"));
       this.$axios
         // 读取json文件到didiData
-        .get("../../static/data/ChordChart/2017-05-13_ChordChart.json")
+        .get("../../static/data/ChordChart/2017-05-16_ChordChart.json")
         .then(res => {
           var didiStartHotData = res.data;
           // console.log(didiStartHotData.value);
@@ -35,8 +35,8 @@ export default {
           var tempData = new Array();
           for (var i = 0; i < 1104; i++) {
             // console.log(data1[i]);
-            if (data1[i][0] !== data1[i + 1][0]) {
-              startStreet.push(data1[i + 1][0]);
+            if (data1[i][1] !== data1[i + 1][1]) {
+              startStreet.push(data1[i + 1][1]);
               tempData.push(temp);
               var temp = 1;
             } else {
@@ -85,7 +85,7 @@ export default {
             save_link.download = name;
             fakeClick(save_link);
           }
-          exportRaw("test.txt", JSON.stringify(wordCloudData));
+          exportRaw("2017-5-16.txt", JSON.stringify(wordCloudData));
         });
     }
   }
