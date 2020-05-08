@@ -1,0 +1,38 @@
+[
+  {
+        "id":"Station",
+        "proVal":"153.2301483"
+  },
+  {
+        "id":"University",
+    "proVal": "96.58787537"
+  },
+  {
+        "id":"Square",
+    "proVal": "394.5930786"
+  },
+  {
+        "id":"Hotal",
+        "proVal":"47.15247345"
+  },
+  {
+        "id":"Hospital2",
+        "proVal":"106.7636032"
+  },
+  {
+        "id":"Market",
+    "proVal": "51.54896927"
+  },
+  {
+        "id":"Hospital1",
+    "proVal": "54.08745193"
+  },
+  {
+        "id":"Friendship",
+        "proVal":"213.17913819999998"
+  },
+  {
+        "id":"Government",
+    "proVal": "2.951170921"
+  }
+]

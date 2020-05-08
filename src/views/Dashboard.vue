@@ -466,7 +466,7 @@ export default {
       </div>
       <div style="width: 950px;height:300px;">
         <!-- 系统下方设计 -->
-        <!-- <LineCharts></LineCharts> -->
+        <LineCharts></LineCharts>
         <ForecastPointChart></ForecastPointChart>
           <!-- <Data></Data> -->
       </div>
