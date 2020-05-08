@@ -40,7 +40,7 @@ export default {
       centerMoveToVisible: false, //订单情况区域迁徙图的弹窗
       centerDepVisible: false, //订单情况街道流向和弦图
       openwordCloud: false, //词云图弹窗开关
-      openForecast:false,//预测界面的弹窗开关
+      openForecast:false,//预测界面切换开关
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       sumerAndRun: false, //天气展示情况
@@ -207,11 +207,6 @@ export default {
         </li>
         <li>
           <a>
-            <el-button type="text" @click="openForecast = true">交通流量预测具体情况散点图</el-button>
-          </a>
-        </li>
-        <li>
-          <a>
             <el-button type="text" @click="centerDepVisible = true">具体街道情况交通流量和弦图</el-button>
           </a>
         </li>
@@ -330,24 +325,6 @@ export default {
     </el-dialog>
 
     <el-dialog
-      title="订单情况具体预测界面"
-      :visible.sync="openForecast"
-      width="100%"
-      center
-      destroy-on-close="true"
-    >
-      <span>
-        <div>
-           <ForecastPointChart></ForecastPointChart>
-        </div>
-      </span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="openForecast = false">取 消</el-button>
-        <el-button type="primary" @click="openForecast = false">确 定</el-button>
-      </span>
-    </el-dialog>
-
-    <el-dialog
       :visible.sync="centerDepVisible"
       width="100%"
       fullscreen="true"
@@ -398,8 +375,8 @@ export default {
         </el-col>
         <el-col :span="4">
           <div class="grid-content bg-purple-light">
-            <!-- <div>三维气泡图标注开关</div>
-            <el-switch v-model="openBubble" active-color="#13ce66" inactive-color="#ff4949"></el-switch> -->
+            <div>预测界面开关</div>
+            <el-switch v-model="openForecast" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
           </div>
         </el-col>
         <el-col :span="4">
@@ -483,7 +460,8 @@ export default {
       <!-- 主图展示区 -->
       <div>
         <div label="交通流量蝌蚪图" v-show="centerVisible">
-          <TadpoleChart label="交通流量蝌蚪图"></TadpoleChart>
+          <TadpoleChart label="交通流量蝌蚪图" v-show="!openForecast"></TadpoleChart>
+          <ForecastPointChart label="交通流量预测" v-show="openForecast"></ForecastPointChart>
         </div>
         <div label="交通流量热力图" v-show="!centerVisible">
           <StartHeatMapChart label="交通流量起点热力图" v-show="StartOrEnd"></StartHeatMapChart>
