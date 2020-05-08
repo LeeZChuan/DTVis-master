@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-amap id="Chart" style="width: 980px; height: 400px;"></el-amap>
+    <el-amap id="Chart" style="width: 1000px; height: 400px;"></el-amap>
   </div>
 </template>
 
@@ -12,12 +12,43 @@ export default {
   data() {
     return {};
   },
+   computed: {
+    TimeDate() {
+      return this.$store.state.TimeDate;
+    },
+    TimeHour() {
+      return this.$store.state.TimeHour;
+    }
+  },
+  watch: {
+    TimeDate: function(curVal, oldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      if (true) {
+        if (curVal) {
+          this.drawForecastChart(curVal, this.$store.state.TimeHour);
+        } else {
+          this.drawForecastChart(oldVal, this.$store.state.TimeHour);
+        }
+      }
+    },
+    TimeHour: function(CurVal, OldVal) {
+      //需要执行的画图代码,用于时刻监听该图的日期更换
+      if (true) {
+        if (CurVal) {
+          this.drawForecastChart(this.$store.state.TimeDate, CurVal);
+        } else {
+          this.drawForecastChart(this.$store.state.TimeDate, OldVal);
+        }
+      }
+    }
+  },
   mounted() {
-    this.drawChart();
+    this.drawForecastChart(this.$store.state.TimeDate,
+      this.$store.state.TimeHour);
   },
   methods: {
-    drawChart() {
-      this.$axios.get("../../static/data/scatterChart/2017-05-15/7.json").then(res => {
+    drawForecastChart(Date, Hour) {
+      this.$axios.get("../../static/data/scatterChart/"+Date+"/"+Hour+".json").then(res => {
         var placeData = res.data
         var geoCoordMap = [
           [110.34600449319761, 19.982437787047544],                                                          // 车站
@@ -46,15 +77,15 @@ export default {
           pitchEnable:true
         });
         var circles = []
-        console.log(placeData)
-        console.log(placeData[5])
-        console.log(placeData[5].proVal)
+        // console.log(placeData)
+        // console.log(placeData[5])
+        // console.log(placeData[5].proVal)
         for(var i=0;i<=8;i++){
           circles[i] = new AMap.Circle({
               // 数据读取
               center: new AMap.LngLat(geoCoordMap[i][0],geoCoordMap[i][1]), // 圆心位置
               // 半径 数据读取 
-              radius: placeData[i].proVal*20,// 500
+              radius: placeData[i].proVal*2,// 500
               strokeColor: colors[i],  //线颜色
               strokeOpacity: 0.5,  //线透明度
               strokeWeight: 1,  //线粗细度
@@ -62,7 +93,7 @@ export default {
               fillOpacity: 0.5, //填充透明度
             });  
         }
-        console.log(circles)
+        // console.log(circles)
         // 添加覆盖物
         map.add(circles);
         // 样式修改(暂无)

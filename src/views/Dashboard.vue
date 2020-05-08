@@ -40,7 +40,7 @@ export default {
       centerMoveToVisible: false, //订单情况区域迁徙图的弹窗
       centerDepVisible: false, //订单情况街道流向和弦图
       openwordCloud: false, //词云图弹窗开关
-      centerTadpoleVisible: false, //
+      openForecast:false,//预测界面的弹窗开关
       centerVisible: false, //热力图与蝌蚪图进行切换
       StartOrEnd: true, //起终点订单情况热力图切换按钮
       sumerAndRun: false, //天气展示情况
@@ -207,6 +207,11 @@ export default {
         </li>
         <li>
           <a>
+            <el-button type="text" @click="openForecast = true">交通流量预测具体情况散点图</el-button>
+          </a>
+        </li>
+        <li>
+          <a>
             <el-button type="text" @click="centerDepVisible = true">具体街道情况交通流量和弦图</el-button>
           </a>
         </li>
@@ -246,7 +251,9 @@ export default {
     >
       <span>
         <!-- 整体预测柱状图 -->
+        <ForecastPointChart></ForecastPointChart>
         <PreBarChart></PreBarChart>
+
       </span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="centerForcastVisible = false">取 消</el-button>
@@ -319,6 +326,24 @@ export default {
       <span slot="footer" class="dialog-footer">
         <el-button @click="openwordCloud = false">取 消</el-button>
         <el-button type="primary" @click="openwordCloud = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog
+      title="订单情况具体预测界面"
+      :visible.sync="openForecast"
+      width="100%"
+      center
+      destroy-on-close="true"
+    >
+      <span>
+        <div>
+           <ForecastPointChart></ForecastPointChart>
+        </div>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="openForecast = false">取 消</el-button>
+        <el-button type="primary" @click="openForecast = false">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -440,6 +465,8 @@ export default {
       </span>
     </el-drawer>
 
+ 
+
     <!-- 时间选择器 -->
     <div class="block">
       <el-date-picker
@@ -467,7 +494,6 @@ export default {
       <div style="width: 950px;height:300px;">
         <!-- 系统下方设计 -->
         <LineCharts></LineCharts>
-        <ForecastPointChart></ForecastPointChart>
           <!-- <Data></Data> -->
       </div>
     </div>
