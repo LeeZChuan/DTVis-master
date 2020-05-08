@@ -64,7 +64,6 @@ export default {
             fillOpacity: 0.5, //填充透明度
           });  
           console.log(circles)
-          // console.log(parseFloat(rads))
           // 添加覆盖物
           map.add(circles);
         });
