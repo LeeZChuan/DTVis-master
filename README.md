@@ -60,7 +60,7 @@ DTVis-master
 │
 ├── static # 该目录下的文件不会被WebPack处理：会被直接复制到最终的打包目录下 （绝对路径）
 │   ├── data  # 包含了可视化页面所用到的数据
-│   │    |──  Forecast # 订单预测结果数据源
+│   │    |──  Forecast # 订单预测
 │   │    |──  ForecastPointChart # 订单预测结果数据源-散点图
 │   │    |──  StartHeatMapChart # 起点订单分布热力图
 │   │    |──  EndHeatMapChart # 终点订单分布热力图
@@ -73,6 +73,7 @@ DTVis-master
 │   │    |──  OrderNumLineChart #订单的出行距离与该订单出行距离数量组合折线图（用在弹窗展示部分）
 │   │    |──  LineCharts #订单情况变化折线图
 │   │    |──  PreBarChart # 订单整体预测柱状图
+│   │    |──  wordCloud # 订单热门地点词云图
 │   ├── img # 页面所需要的背景图片
 │   └── js # 作图所需要的库文件
 │
