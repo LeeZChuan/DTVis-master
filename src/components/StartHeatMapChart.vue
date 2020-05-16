@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import { lazyAmapApiLoaderInstanse } from "vue-amap";
+import { lazyAmapApiLoaderInstanse } from "vue-amap";
 require("echarts-extension-amap");
 var echarts = require("echarts");
 export default {

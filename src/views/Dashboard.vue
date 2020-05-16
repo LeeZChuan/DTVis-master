@@ -483,7 +483,7 @@ export default {
       </h3>
       <div class="area-inbox-1">
         <dl>
-          <dt style="color:white">今日整体订单量</dt>
+          <dt style="color:white">今日整体快车订单量</dt>
           <dd class="font12">
             <span>{{GetNowFastRecent}}</span>
             <b></b>
