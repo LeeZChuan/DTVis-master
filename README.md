@@ -76,6 +76,7 @@ DTVis-master
 │   │    |──  wordCloud # 订单热门地点词云图
 │   │    |──  DailyBarChart # 订单预测视图，整体预测柱状图
 │   ├── img # 页面所需要的背景图片
+│   ├── script # 数据处理所需要的代码
 │   └── js # 作图所需要的库文件
 │
 ├── test.html # 测试效果样例网页
