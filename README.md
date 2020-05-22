@@ -1,7 +1,8 @@
 
 # :dolphin:	 DTVis-master
+![Vue](https://img.shields.io/badge/Vue-2.5.2-yellow)
+![Python](https://img.shields.io/badge/Python-3.8-blue)
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-
 > Author: Lee ZChuan\Qin Yangxin
 
 > E-mail: cdutlzc@gmail.com
@@ -95,5 +96,5 @@ DTVis-master
 
 * 系统支持：`Win10` 
 
-* 编程环境:`pycharm、Vcode`
+* 编程环境:`pycharm、Vscode`
 
