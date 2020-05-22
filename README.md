@@ -1,7 +1,7 @@
 
 # :dolphin:	 DTVis-master
 [![Vue](https://img.shields.io/badge/Vue-2.5.2-yellow)](https://img.shields.io/badge/Vue-2.5.2-yellow)
-![Python](https://img.shields.io/badge/Python-3.8-blue)
+[![Python](https://img.shields.io/badge/Python-3.8-blue)](https://img.shields.io/badge/Python-3.8-blue)
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 > Author: Lee ZChuan\Qin Yangxin
 
