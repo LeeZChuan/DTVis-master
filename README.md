@@ -82,7 +82,7 @@ DTVis-master
 │   ├── script # 数据处理所需要的代码
 │   └── js # 作图所需要的库文件
 │
-├── test.html # 测试效果样例网页
+├── DT-Vis.html # 测试效果样例网页
 │
 │
 └── README.md # 此说明文件
