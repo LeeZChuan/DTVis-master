@@ -88,6 +88,11 @@ DTVis-master
 └── README.md # 此说明文件
 ```
 
+## 系统截图
+
+![Image text](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E8%8D%89%E5%9B%BE.bmp)
+
+
 ## 环境
 
 * `Python 3.8 `
