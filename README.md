@@ -90,7 +90,13 @@ DTVis-master
 
 ## 系统截图
 
-![Image text](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E8%8D%89%E5%9B%BE.bmp)
+![Image 1](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E8%8D%89%E5%9B%BE.bmp)
+
+![Image 2](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E8%9D%8C%E8%9A%AA%E5%9B%BE.bmp)
+
+![Image 3](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E9%A2%84%E6%B5%8B.bmp)
+
+
 
 
 ## 环境
