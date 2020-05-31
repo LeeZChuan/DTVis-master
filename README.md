@@ -58,7 +58,9 @@ DTVis-master
 │   ├── assets  # 包含了css页面情况
 │   ├── components # 页面的各个模块分布，各自介绍在README中有所介绍
 │   ├── utils # 页面的可能需要的工具
+│   ├── pages # 页面跳转保存的文件
 │   ├── views # 跳转页面的布局情况
+│   ├── vuex # 路由管理文件保存页面
 │   └── router # 页面Vue路由管理，用于进行网页链接
 │
 ├── static # 该目录下的文件不会被WebPack处理：会被直接复制到最终的打包目录下 （绝对路径）
