@@ -1,22 +1,22 @@
 
-# :dolphin:	 DTVis-master
+# :dolphin:	 DTVis-master中文版本
 [![Vue](https://img.shields.io/badge/Vue-2.5.2-yellow)](https://img.shields.io/badge/Vue-2.5.2-yellow)
 [![Python](https://img.shields.io/badge/Python-3.8-blue)](https://img.shields.io/badge/Python-3.8-blue)
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-中文/英文
+
 
 > Author: Lee ZChuan\Qin Yangxin
 
-> E-mail: cdutlzc@gmail.com
+> 邮箱: cdutlzc@gmail.com
 
-> PreDate: 2020-02-29
+> 筹划时间点: 2020-02-29
 
-> StartDate: 2020-03-15
+> 开始时间点: 2020-03-15
 
-> EndDate: 2020-04-30
+> 完成时间点: 2020-04-30
 
->Description: 基于Vue框架的交通流量时空演变特征可视分析系统
+>项目描述: 基于Vue框架的交通流量时空演变特征可视分析系统
 
 >UI设计：自己手写设计的UI、弹窗、时间选取工具以及提示窗使用的element-ui组件、
 
@@ -95,11 +95,16 @@ DTVis-master
 
 ## 系统截图
 
-![Image 1](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E8%8D%89%E5%9B%BE.bmp)
 
-![Image 2](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E8%9D%8C%E8%9A%AA%E5%9B%BE.bmp)
 
-![Image 3](https://github.com/LeeZChuan/DTVis-master/blob/master/static/img/README/%E9%A2%84%E6%B5%8B.bmp)
+![Image 1](static/img/README/草图.bmp)
+
+![Image 2](static/img/README/蝌蚪图.bmp)
+
+![Image 3](static/img/README/预测.bmp)
+
+![Image 4](static/img/README/天气情况分析.bmp)
+
 
 
 
