@@ -103,7 +103,7 @@ DTVis-master
 
 ## Environment 
 
-* `Python 3.8 `
+* Data processing：`Python 3.8 `
 
 * Dependency：`Echarts` `D3.js`
 
