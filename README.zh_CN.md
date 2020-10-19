@@ -113,7 +113,7 @@ DTVis-master
 
 * 数据处理：`Python 3.8 `
 
-* 依赖：`Echarts` `D3.js` `HighCharts`
+* 依赖：`Echarts` `D3.js` `ECharts`
 
 * 系统支持：`Win10` 
 
