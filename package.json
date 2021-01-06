@@ -14,7 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "common": "^0.2.5",
     "echarts": "^4.6.0",
     "echarts-extension-amap": "^1.0.0-rc.4",
