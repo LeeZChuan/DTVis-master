@@ -2,6 +2,7 @@
 node_modules/
 /dist/
 /test/
+/static/pdf/
 /DT-Vis.html
 /package.json
 /package-lock.json
