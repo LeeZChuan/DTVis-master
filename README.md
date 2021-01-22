@@ -104,7 +104,7 @@ DTVis-master
 
 * Data processing：`Python 3.8 `
 
-* Dependency：`Echarts` `D3.js` `ECharts` 
+* Dependency：`Echarts` `D3.js` `HighCharts` 
 
 * System support：`Win10` 
 
