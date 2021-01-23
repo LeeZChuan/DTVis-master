@@ -112,5 +112,8 @@ DTVis-master
 
 ## About
 
-Those who are interested can pay attention to my personal official account, which will share relevant technologies and experience from time to time.
+* Those who are interested can pay attention to my personal official account, which will share relevant technologies and experience from time to time.
+
+* 公众号名称：当生活遇上Coding
+
 ![公众号](static/img/README/微信公众号.jpg)
