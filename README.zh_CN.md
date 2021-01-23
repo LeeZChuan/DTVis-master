@@ -118,3 +118,8 @@ DTVis-master
 
 * 编程环境:`pycharm、Vscode`
 
+## 其他
+
+感兴趣的可以关注我的个人公众号，上面会不时分享相关技术与心得
+![公众号](static/img/README/微信公众号.jpg)
+

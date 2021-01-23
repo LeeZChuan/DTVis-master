@@ -109,3 +109,8 @@ DTVis-master
 * System support：`Win10` 
 
 * Programming environment:`pycharm、Vscode`
+
+## About
+
+Those who are interested can pay attention to my personal official account, which will share relevant technologies and experience from time to time.
+![公众号](static/img/README/微信公众号.jpg)
