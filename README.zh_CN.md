@@ -18,8 +18,6 @@
 
 >项目描述: 基于Vue框架的交通流量时空演变特征可视分析系统
 
->UI设计：自己手写设计的UI、弹窗、时间选取工具以及提示窗使用的element-ui组件、
-
 
 
 ## 结果展示
@@ -112,7 +110,7 @@ DTVis-master
 
 * 数据处理：`Python 3.8 `
 
-* 依赖：`Echarts` `D3.js` `HighCharts`
+* 依赖：`Echarts` `HighCharts`
 
 * 系统支持：`Win10` 
 

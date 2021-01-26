@@ -17,7 +17,6 @@
 
 >Description: Visual analysis system of traffic flow spatio-temporal evolution based on Vue framework
 
->UI design：The UI, popup window, time selection tool and element-ui component used by the handwriting design
 
 ## Results display
 
@@ -104,7 +103,7 @@ DTVis-master
 
 * Data processing：`Python 3.8 `
 
-* Dependency：`Echarts` `D3.js` `HighCharts` 
+* Dependency：`Echarts` `HighCharts` 
 
 * System support：`Win10` 
 
