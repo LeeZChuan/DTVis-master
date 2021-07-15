@@ -5,17 +5,6 @@
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 
-
-> Author: Lee ZChuan\Qin Yangxin
-
-> 邮箱: cdutlzc@gmail.com
-
-> 筹划时间点: 2020-02-29
-
-> 开始时间点: 2020-03-15
-
-> 完成时间点: 2020-04-30
-
 >项目描述: 基于Vue框架的交通流量时空演变特征可视分析系统
 
 

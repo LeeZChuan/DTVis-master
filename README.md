@@ -5,15 +5,6 @@
 
 > [🇨🇳 中文版](./README.zh_CN.md)
 
-> Author: Lee ZChuan\Qin Yangxin
-
-> E-mail: cdutlzc@gmail.com
-
-> Plan time: 2020-02-29
-
-> Starting time: 2020-03-15
-
-> End time: 2020-04-30
 
 >Description: Visual analysis system of traffic flow spatio-temporal evolution based on Vue framework
 
